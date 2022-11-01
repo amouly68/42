@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/01 10:30:15 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/01 14:54:32 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/01 13:12:34 by amouly            #+#    #+#             */
+/*   Updated: 2022/11/01 14:52:49 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef LIBFT_H
-# define LIBFT_H
 
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
-int		ft_isalnum(int c);
-int		ft_isascii(int c);
-int		ft_isprint(int c);
-int		ft_isprint(int c);
-int		ft_toupper(int c);
-int		ft_tolower(int c);
-int		ft_strlen(const char *s);
-int		strncmp(const char *s1, const char *s2, size_t n);
-char	*strchr(const char *s, int c);
+#include <string.h>
 
-#endif
+int	*strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+	while ((s1[i] != '\0') && (s2[i] != '\0')
+		&& (s1[i] == s2[i]) && (i < n - 1))
+	{
+		i++;
+	}
+	if (s1[i] == s2[i])
+		return (0);
+	else
+		return (s1[i] - s2[i]);
+}
