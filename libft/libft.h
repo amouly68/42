@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:30:15 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/03 15:52:36 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/03 17:10:37 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -27,6 +27,8 @@ unsigned int	ft_strlcpy(char *dest, const char *src, unsigned int destsize);
 unsigned int	ft_strlcat(char *dest, const char *src, unsigned int destsize);
 void			*ft_memset(void *b, int c, unsigned int len);
 void			ft_bzero(void *s, unsigned int n);
-void			*memcpy(void *dest, const void *src, unsigned int n);
+void			*ft_memcpy(void *dest, const void *src, unsigned int n);
+void			*ft_memchr(const void *s, int c, unsigned int n);
+int				ft_memcmp(const void *s1, const void *s2, unsigned int n);
 
 #endif

@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 14:51:50 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/03 16:38:23 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/03 17:33:32 by amouly            #+#    #+#             */
+/*   Updated: 2022/11/03 17:39:22 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <stdlib.h>
 
-void	*ft_memcpy(void *dest, const void *src, unsigned int n)
+int	atoi(const char *str)
 {
-	unsigned int	a;
-	unsigned char	*temp;
-	unsigned char	*car;
 
-	temp = (unsigned char *) dest;
-	car = (unsigned char *) src;
-	a = 0;
-	if (dest != NULL || src != NULL)
-	{
-		while (a < n && n != 0)
-		{
-			temp[a] = car [a];
-			a++;
-		}
-	}
-	return (dest);
+
+
+
 }

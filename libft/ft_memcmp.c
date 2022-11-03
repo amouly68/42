@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 14:51:50 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/03 16:38:23 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/03 17:12:16 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-void	*ft_memcpy(void *dest, const void *src, unsigned int n)
+int	ft_memcmp(const void *s1, const void *s2, unsigned int n)
 {
 	unsigned int	a;
-	unsigned char	*temp;
-	unsigned char	*car;
+	unsigned char	*ts1;
+	unsigned char	*ts2;
 
-	temp = (unsigned char *) dest;
-	car = (unsigned char *) src;
+	ts1 = (unsigned char *) s1;
+	ts2 = (unsigned char *) s2;
 	a = 0;
-	if (dest != NULL || src != NULL)
+	while (a < n)
 	{
-		while (a < n && n != 0)
-		{
-			temp[a] = car [a];
-			a++;
-		}
+		if (ts1[a] != ts2[a])
+			return (ts1[a] - ts2[a]);
+		a++;
 	}
-	return (dest);
+	return (0);
 }

@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 14:51:50 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/03 16:38:23 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/03 17:16:17 by amouly            #+#    #+#             */
+/*   Updated: 2022/11/03 17:33:21 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-void	*ft_memcpy(void *dest, const void *src, unsigned int n)
+char	*strnstr(const char *haystack, const char *needle, unsigned int len)
 {
 	unsigned int	a;
-	unsigned char	*temp;
-	unsigned char	*car;
+	int				b
 
-	temp = (unsigned char *) dest;
-	car = (unsigned char *) src;
 	a = 0;
-	if (dest != NULL || src != NULL)
+	b = 0;
+	if (needle = 0)
+		return (haystack);
+	
+	while (a < len)
 	{
-		while (a < n && n != 0)
-		{
-			temp[a] = car [a];
-			a++;
-		}
-	}
-	return (dest);
+		if 
+		a++;
+		b = 0;
+	} 
+
 }
