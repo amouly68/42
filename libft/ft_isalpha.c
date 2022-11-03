@@ -6,15 +6,15 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:26:43 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/01 11:19:28 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/03 12:23:43 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_is_alpha(int c)
+int	ft_isalpha(int c)
 
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z' ))
-		return (c);
+		return (1);
 	else
 		return (0);
 }
