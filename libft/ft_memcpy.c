@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 14:51:50 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/03 16:38:23 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/04 16:10:02 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void	*ft_memcpy(void *dest, const void *src, unsigned int n)
 			a++;
 		}
 	}
-	return (dest);
+	return (temp);
 }

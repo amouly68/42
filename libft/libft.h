@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:30:15 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/04 11:51:21 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/04 13:30:40 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -31,6 +31,10 @@ void			*ft_memcpy(void *dest, const void *src, unsigned int n);
 void			*ft_memchr(const void *s, int c, unsigned int n);
 int				ft_memcmp(const void *s1, const void *s2, unsigned int n);
 int				ft_atoi(const char *str);
-char			*ft_strnstr(const char *haystack, const char *needle, unsigned int len);
+char			*ft_strnstr(const char *haystack, const char *needle,
+					unsigned int len);
+void			*ft_calloc(unsigned int count, unsigned int size);
+char			*ft_strdup(const char *s1);
+void			*ft_memmove(void *dest, const void *src, unsigned int len);
 
 #endif
