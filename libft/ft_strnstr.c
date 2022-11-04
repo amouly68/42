@@ -6,27 +6,33 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:16:17 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/03 17:33:21 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/04 11:58:07 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-char	*strnstr(const char *haystack, const char *needle, unsigned int len)
+char	*ft_strnstr(const char *haystack, const char *needle, unsigned int len)
 {
 	unsigned int	a;
-	int				b
+	unsigned int	b;
+	char			*hay;
 
 	a = 0;
-	b = 0;
-	if (needle = 0)
-		return (haystack);
-	
-	while (a < len)
+	hay = (char *) haystack;
+	if (needle[0] == '\0')
+		return (hay);
+	while (a < len && hay[a] != '\0')
 	{
-		if 
+		if (hay[a] == needle[0] && needle[0] != '\0')
+		{
+			b = 0;
+			while (hay[a + b] == needle[b] && needle[b] != '\0')
+				b++;
+			if (needle[b] == '\0' && (a+b <= len))
+				return (&hay[a]);
+		}
 		a++;
-		b = 0;
-	} 
-
+	}
+	return (NULL);
 }

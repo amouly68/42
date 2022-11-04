@@ -15,7 +15,9 @@ SOURCES = ft_isalnum.c \
 	ft_bzero.c \
 	ft_memcpy.c \
 	ft_memchr.c \
-	ft_memcmp.c
+	ft_memcmp.c \
+	ft_atoi.c \
+	ft_strnstr.c
 FLAGS = -Wall -Wextra -Werror
 HEADERS = libft.h
 NAME = libft.a
