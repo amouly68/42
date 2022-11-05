@@ -6,11 +6,13 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:30:15 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/04 13:30:40 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/05 14:20:59 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# include <stdlib.h>
 
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
@@ -36,5 +38,11 @@ char			*ft_strnstr(const char *haystack, const char *needle,
 void			*ft_calloc(unsigned int count, unsigned int size);
 char			*ft_strdup(const char *s1);
 void			*ft_memmove(void *dest, const void *src, unsigned int len);
+void			ft_putnbr_fd(int n, int fd);
+void			ft_putendl_fd(char *s, int fd);
+void			ft_putstr_fd(char *s, int fd);
+void			ft_putchar_fd(char c, int fd);
+char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
