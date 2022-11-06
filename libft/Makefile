@@ -26,7 +26,8 @@ SOURCES = ft_isalnum.c \
 	ft_putstr_fd.c \
 	ft_putchar_fd.c \
 	ft_strjoin.c \
-	ft_substr.c
+	ft_substr.c \
+	ft_itoa.c
 FLAGS = -Wall -Wextra -Werror
 HEADERS = libft.h
 NAME = libft.a

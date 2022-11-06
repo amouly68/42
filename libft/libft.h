@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:30:15 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/05 14:20:59 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/06 10:56:01 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -43,6 +43,7 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putchar_fd(char c, int fd);
 char			*ft_strjoin(char const *s1, char const *s2);
-char			*ft_substr(char const *s, unsigned int start, size_t len);
+char			*ft_substr(char const *s, unsigned int start, unsigned int len);
+char			*ft_itoa(int n);
 
 #endif
