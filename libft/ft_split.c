@@ -6,12 +6,11 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 08:04:32 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/07 10:07:14 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/07 15:23:31 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
 
 int	count_word(char const *str, char c)
 {
@@ -51,18 +50,30 @@ int	long_mot(char const *str, char c)
 	return (count);
 }
 
+char	**malloc_split(char const *s, char c)
+{
+	char	**tab;
+
+	if (s == NULL)
+		return (NULL);
+	tab = malloc(sizeof(char *) * (count_word(s, c) + 1));
+	if (tab == NULL)
+		return (NULL);
+	return (tab);
+}
+
 char	**ft_split(char const *s, char c)
 {
-	char	**tab ;
+	char	**tab;
 	int		i;
 	int		pos;
 	int		j;
-	int		a;
 
 	i = -1;
-	a = 0;
 	pos = 0;
-	tab = malloc(sizeof(char *) * (count_word(s, c) + 1));
+	tab = malloc_split(s, c);
+	if (tab == NULL)
+		return (NULL);
 	while (++i < count_word(s, c))
 	{
 		while (long_mot(&s[pos], c) == 0)

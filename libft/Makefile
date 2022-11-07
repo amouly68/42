@@ -32,10 +32,14 @@ SOURCES = ft_isalnum.c \
 	ft_split.c \
 	ft_strmapi.c\
 	ft_striteri.c
+SRCBONUS = ft_lstnew.c \
+		   ft_lstadd_front.c \
+		   ft_lstsize.c
 FLAGS = -Wall -Wextra -Werror
 HEADERS = libft.h
 NAME = libft.a
 OBJS = ${SOURCES:.c=.o}
+OBJBONUS = ${SRCBONUS:.c=.o}
 
 all : ${NAME}
 
@@ -46,8 +50,12 @@ ${NAME} : ${OBJS}
 	ar rc ${NAME} ${OBJS}
 	ranlib ${NAME}
 
+bonus : ${OBJBONUS}
+	ar rc ${NAME} ${OBJBONUS}
+	ranlib ${NAME}
+
 clean :
-	rm -f ${OBJS}
+	rm -f ${OBJS} ${OBJBONUS}
 
 fclean : clean
 	rm -f ${NAME}
