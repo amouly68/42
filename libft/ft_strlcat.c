@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 13:41:13 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/04 15:32:12 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/09 17:43:52 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ unsigned int	ft_strlcat(char *dest, const char *src, unsigned int destsize)
 		i++;
 	while (src[b] != '\0')
 		b++;
-	if (destsize <= i)
+	if (destsize <= i || (destsize == 0 && dest == NULL))
 		return (b + destsize);
 	while (i < (destsize - 1) && src[a] != '\0')
 	{
