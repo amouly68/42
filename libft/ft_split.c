@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 08:04:32 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/07 15:23:31 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/16 12:08:44 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,50 @@ int	long_mot(char const *str, char c)
 	return (count);
 }
 
-char	**malloc_split(char const *s, char c)
+int	free_tab(char **tab, int i)
+{
+	int	j;
+
+	j = 0;
+	while (j < i)
+	{
+		free(tab[j]);
+		j++;
+	}
+	free(tab);
+	return (0);
+}
+
+int	fill_tab(char **tab, char c, char const *s)
+{
+	int		i;
+	int		pos;
+	int		j;
+
+	i = 0;
+	pos = 0;
+	while (i < count_word(s, c))
+	{
+		while (long_mot(&s[pos], c) == 0)
+			pos++;
+		tab[i] = malloc (sizeof(char) * (long_mot(&s[pos], c) + 1));
+		if (tab[i] == NULL)
+			return (free_tab(tab, i));
+		j = 0;
+		while ((s[pos] != c) && s[pos] != '\0' )
+		{	
+			tab[i][j] = s[pos];
+			pos++;
+			j++;
+		}
+	tab[i][j] = '\0';
+	i++;
+	}
+	tab[i] = 0;
+	return (1);
+}
+
+char	**ft_split(char const *s, char c)
 {
 	char	**tab;
 
@@ -59,34 +102,8 @@ char	**malloc_split(char const *s, char c)
 	tab = malloc(sizeof(char *) * (count_word(s, c) + 1));
 	if (tab == NULL)
 		return (NULL);
-	return (tab);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**tab;
-	int		i;
-	int		pos;
-	int		j;
-
-	i = -1;
-	pos = 0;
-	tab = malloc_split(s, c);
-	if (tab == NULL)
+	if (fill_tab(tab, c, s) == 0)
 		return (NULL);
-	while (++i < count_word(s, c))
-	{
-		while (long_mot(&s[pos], c) == 0)
-			pos++;
-		tab[i] = malloc (sizeof(char) * (long_mot(&s[pos], c) + 1));
-		j = -1;
-		while ((s[pos] != c) && s[pos] != '\0' )
-		{	
-			tab[i][++j] = s[pos];
-			pos++;
-		}
-	tab[i][++j] = '\0';
-	}
-	tab[i] = 0;
-	return (tab);
+	else
+		return (tab);
 }
