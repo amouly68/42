@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_putpointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 13:43:11 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/22 12:48:50 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/22 13:46:33 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	ft_strlen(char *str)
+int	ft_putnbr_long_base(unsigned long long nbr, char *base)
 {
-	int	a;
-
-	a = 0;
-	while (str[a] != '\0')
-	{
-		a = a + 1;
-	}
-	return (a);
-}
-
-
-int	ft_putnbr_base(unsigned int nbr, char *base)
-{
-	int				a;
-	unsigned int	nb;	
-	unsigned int	nb1;
-	int				ret;
+	long long 	nb;
+	long long	nb1;
+	int			ret;
 
 	ret = 0;
-	a = ft_strlen(base);
 	nb = nbr;
-	nb1 = nb % a;
-	nb = nb / a;
+	nb1 = nb % 16;
+	nb = nb /16;
 	if (nb != 0)
-		ret += ft_putnbr_base(nb, base);
-	ret += write (1, &base[nb1], 1);
+		ret += ft_putnbr_long_base(nb, base);
+   ret += write(1, &base[nb1], 1);
+	return (ret);
+}
+
+int ft_putpointer(void *pointer)
+{
+	int ret;
+	
+	if (pointer == NULL)
+		ret =  write(1, "0x0", 3);
+	else 
+	{
+		ret = write(1, "0x", 2);
+		ret += ft_putnbr_long_base((unsigned long long)pointer, "0123456789abcdef");	
+	}
 	return (ret);
 }

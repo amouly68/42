@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/17 14:33:05 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/22 13:18:25 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,16 @@ int	parse(const char *str, va_list ptr)
 		return (write(1,"%",1));
 	if (str[0] == '%' && str[1] == 's')
 		return (ft_putstr_fd(va_arg(ptr, char *), 1));
-	if (str[0] == '%' && str[1] == 'd')
-		return (ft_putnbr(va_arg(ptr, int));
+	if (str[0] == '%' && str[1] == 'p')
+		return (ft_putpointer(va_arg(ptr, void *)));
+	if (str[0] == '%' && (str[1] == 'd' || str[1] == 'i'))
+		return (ft_putnbr_fd(va_arg(ptr, int), 1));
+	if (str[0] == '%' && (str[1] == 'u'))
+		return (ft_putnbr_u_fd(va_arg(ptr, int), 1));
+	if (str[0] == '%' && (str[1] == 'x'))
+		return (ft_putnbr_base(va_arg(ptr, int), "0123456789abcdef"));
+	if (str[0] == '%' && (str[1] == 'X'))
+		return (ft_putnbr_base(va_arg(ptr, int), "0123456789ABCDEF"));
 	return (0);
 }
 

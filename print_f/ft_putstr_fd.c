@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:54:06 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/17 12:14:27 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/22 12:08:11 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int	ft_putstr_fd(const char *s, int fd)
 	int	a;
 
 	a = 0;
-	if ((fd < 0 || fd > 255) || s == NULL)
+	if (fd < 0 || fd > 255)
 		return (-1);
+	if (s == NULL)
+		return (ft_putstr_fd("(null)", 1));
 	while (s[a] != '\0')
 	{
 		write(fd, &s[a], 1);

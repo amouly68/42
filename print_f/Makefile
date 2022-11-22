@@ -1,13 +1,14 @@
 SOURCES = ft_printf.c \
 		 ft_putchar_fd.c \
-		 ft_putnbr_fd.c \
 		 ft_putstr_fd.c \
-		 count_arg.c 
+		ft_putnbr_fd.c \
+	   ft_putnbr_u_fd.c \
+	   ft_putnbr_base.c \
+	   ft_putpointer.c
 FLAGS = -Wall -Wextra -Werror
 HEADERS = ft_printf.h
 NAME = libftprintf.a
 OBJS = ${SOURCES:.c=.o}
-OBJBONUS = ${SRCBONUS:.c=.o}
 
 all : ${NAME}
 
