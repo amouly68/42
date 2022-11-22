@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/22 13:18:25 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/22 14:48:29 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	parse(const char *str, va_list ptr)
 	if (str[0] == '%' && str[1] == 'c')
 		return (ft_putchar_fd(va_arg(ptr, int), 1));
 	if (str[0] == '%' && str[1] == '%')
-		return (write(1,"%",1));
+		return (write(1, "%", 1));
 	if (str[0] == '%' && str[1] == 's')
 		return (ft_putstr_fd(va_arg(ptr, char *), 1));
 	if (str[0] == '%' && str[1] == 'p')
-		return (ft_putpointer(va_arg(ptr, void *)));
+		return (ft_putpointer(va_arg(ptr, unsigned long long int)));
 	if (str[0] == '%' && (str[1] == 'd' || str[1] == 'i'))
 		return (ft_putnbr_fd(va_arg(ptr, int), 1));
 	if (str[0] == '%' && (str[1] == 'u'))

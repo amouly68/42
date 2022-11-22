@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 13:43:11 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/22 12:48:50 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/22 14:49:23 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -22,7 +22,6 @@ int	ft_strlen(char *str)
 	}
 	return (a);
 }
-
 
 int	ft_putnbr_base(unsigned int nbr, char *base)
 {

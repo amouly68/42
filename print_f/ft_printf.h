@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/22 13:16:57 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/22 14:45:32 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int		ft_printf(const char *str, ...);
 int		ft_putnbr_fd(int n, int fd);
 int		ft_putnbr_u_fd(unsigned int n, int fd);
 int		ft_putnbr_base(unsigned int nbr, char *base);
-int		ft_putpointer(void *pointer);
+int		ft_putpointer(unsigned long long int pointer);
 
 #endif
