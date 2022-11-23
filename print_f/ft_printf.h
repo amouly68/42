@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/23 14:33:40 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/23 17:43:14 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int		ft_putstr_fd(const char *s, int fd);
 int		ft_putchar_fd(char c, int fd);
-int		parse(const char c, va_list ptr);
+int		parse(const char c, va_list ptr, int *count);
 int		ft_printf(const char *str, ...);
 int		ft_putnbr_fd(int n, int fd);
 int		ft_putnbr_u_fd(unsigned int n, int fd);

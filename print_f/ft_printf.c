@@ -6,62 +6,60 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/23 14:30:51 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/23 17:49:08 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	parse(const char c, va_list ptr)
+int	parse(const char c, va_list ptr, int *count)
 {
+	int	verif;
+
+	verif = *count;
 	if (c == 'c')
-		return (ft_putchar_fd(va_arg(ptr, int), 1));
+		*count += (ft_putchar_fd(va_arg(ptr, int), 1));
 	if (c == '%')
-		return (write(1, "%", 1));
+		*count += (write(1, "%", 1));
 	if (c == 's')
-		return (ft_putstr_fd(va_arg(ptr, char *), 1));
+		*count += (ft_putstr_fd(va_arg(ptr, char *), 1));
 	if (c == 'p')
-		return (ft_putpointer(va_arg(ptr, unsigned long long int)));
+		*count += (ft_putpointer(va_arg(ptr, unsigned long long int)));
 	if (c == 'd' || c == 'i')
-		return (ft_putnbr_fd(va_arg(ptr, int), 1));
+		*count += (ft_putnbr_fd(va_arg(ptr, int), 1));
 	if (c == 'u')
-		return (ft_putnbr_u_fd(va_arg(ptr, int), 1));
+		*count += (ft_putnbr_u_fd(va_arg(ptr, int), 1));
 	if (c == 'x')
-		return (ft_putnbr_base(va_arg(ptr, int), "0123456789abcdef"));
+		*count += (ft_putnbr_base(va_arg(ptr, int), "0123456789abcdef"));
 	if (c == 'X')
-		return (ft_putnbr_base(va_arg(ptr, int), "0123456789ABCDEF"));
-	return (0);
+		*count += (ft_putnbr_base(va_arg(ptr, int), "0123456789ABCDEF"));
+	if (*count < verif)
+		return (-1);
+	return (*count);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	int		i;
 	int		count;
 	va_list	ptr;
-	int		a;
-	
-	i = 0;
-	a = 0;
+
 	count = 0;
 	va_start(ptr, str);
-	while (str[i])
+	while (*str)
 	{
-		if (str[i] != '%')
+		if (*str != '%')
 		{
-			if (ft_putchar_fd(str[i], 1) != -1)
-				count++;
-			else 
+			if (ft_putchar_fd(*str, 1) == -1)
+				return (-1);
+			count++;
+		}
+		else if (*str == '%')
+		{
+			str++;
+			if (parse(*str, ptr, &count) == -1)
 				return (-1);
 		}
-		else if (str[i] == '%')
-		{
-			a = parse(str[i + 1], ptr);
-			if (a == -1)
-				return (-1);
-			count += a;
-			i++;
-		}
-		i++;
+		str++;
 	}
 	return (count);
 	va_end(ptr);

@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:54:06 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/23 14:35:24 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/23 16:38:09 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ int	ft_putnbr_fd(int n, int fd)
 			return (-1);
 	}
 	nb1 = n % 10 + '0';
-	n = n / 10;
-	if (n != 0)
+	if (n / 10 != 0)
 	{
-		if (ft_putnbr_fd(n, fd) == -1)
+		if (ft_putnbr_fd(n / 10, fd) == -1)
 			return (-1);
 	}
 	if (b == 1)

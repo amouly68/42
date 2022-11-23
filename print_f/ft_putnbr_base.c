@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 13:43:11 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/23 15:09:58 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/23 16:13:28 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -29,12 +29,17 @@ int	ft_putnbr_base(unsigned int nbr, char *base)
 	int				ret;
 
 	ret = 1;
-	a = ft_strlen(base);
+	a = 0;
 	nb = nbr;
-	nb1 = nb % a;
-	nb = nb / a;
+	nb1 = nb % ft_strlen(base);
+	nb = nb / ft_strlen(base);
 	if (nb != 0)
-		ret += ft_putnbr_base(nb, base);
+	{	
+		a = ft_putnbr_base(nb, base);
+		if (a == -1)
+			return (-1);
+		ret += a;
+	}
 	if (write(1, &base[nb1], 1) == -1)
 		return (-1);
 	return (ret);
