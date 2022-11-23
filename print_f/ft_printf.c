@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/23 12:10:55 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/23 14:30:51 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_printf(const char *str, ...)
 		}
 		else if (str[i] == '%')
 		{
-			a = parse(str[i + 1], ptr) ;
+			a = parse(str[i + 1], ptr);
 			if (a == -1)
 				return (-1);
 			count += a;

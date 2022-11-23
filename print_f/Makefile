@@ -4,7 +4,8 @@ SOURCES = ft_printf.c \
 		ft_putnbr_fd.c \
 	   ft_putnbr_u_fd.c \
 	   ft_putnbr_base.c \
-	   ft_putpointer.c
+	   ft_putpointer.c \
+	   ft_count_num.c
 FLAGS = -Wall -Wextra -Werror
 HEADERS = ft_printf.h
 NAME = libftprintf.a
