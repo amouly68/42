@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:54:06 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/22 14:48:55 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/23 11:19:19 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,5 @@ int	ft_putchar_fd(char c, int fd)
 {
 	if (fd < 0 || fd > 255)
 		return (-1);
-	write(fd, &c, 1);
-	return (1);
+	return (write(fd, &c, 1));
 }

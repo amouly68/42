@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 12:54:06 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/22 14:49:54 by amouly           ###   ########.fr       */
+/*   Updated: 2022/11/23 12:40:12 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ int	ft_putnbr_fd(int n, int fd)
 	int	b;
 	int	ret;
 
-	ret = 0;
+	ret = 1;
 	b = 0;
-	if (fd < 0 || fd > 255)
-		return (-1);
 	if (n == -2147483648)
 		n = ++b + n;
 	if (n < 0)
 	{
 		n = -n;
-		ret += ft_putchar_fd('-', fd);
+		if (ft_putchar_fd('-', fd) == -1)
+			return (-1);
+		ret++ ;
 	}
 	nb1 = n % 10 + '0';
 	n = n / 10;
@@ -35,6 +35,7 @@ int	ft_putnbr_fd(int n, int fd)
 		ret += ft_putnbr_fd(n, fd);
 	if (b == 1)
 		nb1++;
-	ret += ft_putchar_fd(nb1, fd);
+	if (ft_putchar_fd(nb1, fd) == -1)
+		return (-1);
 	return (ret);
 }
