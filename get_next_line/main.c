@@ -27,15 +27,13 @@ int main()
 {
 	int fd;
 	fd = open("test.txt", O_RDONLY);
-	static s_list *test;
 
-	test = NULL;
-	fill_node(&test, fd);
-	fill_node(&test, fd);
-	fill_node(&test, fd);
-	fill_node(&test, fd);
-	fill_node(&test, fd);
-	fill_node(&test, fd);
-	fill_node(&test, fd);
-	print_list(test);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 }
