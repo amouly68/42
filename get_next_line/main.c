@@ -5,15 +5,37 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+
+void print_list(s_list *list)
+{
+	int a;
+
+	a = 0;	
+	while(list)
+	{
+		printf("noeud %d : %s\n",a , list->str);
+	    a++;
+		list = list->next;	
+	}		
+}
+
+
+
+
+
 int main()
 {
 	int fd;
-	char *buffer;
 	fd = open("test.txt", O_RDONLY);
-	printf("%zd = ", read(fd, buffer, BUFFER_SIZE));
-	printf("%s\n", buffer);
-	printf("%zd = ", read(fd, buffer, BUFFER_SIZE));
-	printf("%s\n", buffer);
-	printf("%zd = ", read(fd, buffer, BUFFER_SIZE));
-	printf("%s\n", buffer);
+	static s_list *test;
+
+	test = NULL;
+	fill_node(&test, fd);
+	fill_node(&test, fd);
+	fill_node(&test, fd);
+	fill_node(&test, fd);
+	fill_node(&test, fd);
+	fill_node(&test, fd);
+	fill_node(&test, fd);
+	print_list(test);
 }
