@@ -6,11 +6,12 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/06 17:05:05 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/06 18:15:33 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 int fill_node(s_list **stock, int fd)
 {
@@ -22,13 +23,13 @@ int fill_node(s_list **stock, int fd)
 	if (new == NULL)
 		return 0;
 	ft_lstadd_back(stock, new);
-	new->str = malloc ((sizeof(char) * BUFFER_SIZE) + 1);
+	new->str = malloc ((sizeof(char) * BUFFER_SIZE) + 5);
 	if (new->str == NULL)
 		return 0;
 	lu = read(fd, new->str, BUFFER_SIZE);
 	if (lu <= 0)
 		return 0;
-	new->str[lu + 1] = '\0';
+	new->str[lu] = '\0';
 	return 1;
 }
 
@@ -41,6 +42,7 @@ int	check_new_line(s_list *list, int *count)
 	while (list)
 	{
 		i = 0;
+		printf("%s\n", list->str);
 		while (list->str[i] != '\0')
 		{
 			if (list->str[i] == '\n')
@@ -132,11 +134,10 @@ void trim_list(s_list **stock)
 
 char	*get_next_line(int fd)
 {
-	static s_list *stock;
+	static s_list *stock = NULL;
 	int count;
 	char *line;
 
-	stock = NULL;
 	count = 0;
 	while (!(check_new_line(stock, &count)))
 	{

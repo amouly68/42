@@ -60,8 +60,24 @@ void print_list(s_list *list)
 	trim_list(&stock);
 	printf("APRES trim :\n");
 	print_list(stock);
-}
-*/
+	count = 0;
+	while (!(check_new_line(stock, &count)))
+	{
+		if (!(fill_node(&stock, fd)))
+		{
+			print_list(stock);
+			 printf("null");
+			 return 0;
+		}
+	}
+	print_list(stock);
+	line = extract_line(stock, &count);
+	printf("LINE : %s", line);
+	trim_list(&stock);
+	printf("APRES trim :\n");
+	print_list(stock);
+}*/
+
 
 
 
@@ -70,6 +86,10 @@ void print_list(s_list *list)
 	int fd;
 	fd = open("test.txt", O_RDONLY);
 
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
