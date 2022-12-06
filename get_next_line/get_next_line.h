@@ -6,14 +6,14 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/06 12:28:34 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/06 16:53:31 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 45 
+#  define BUFFER_SIZE 5
 # endif
 
 #  include <stdlib.h>
@@ -25,13 +25,13 @@ typedef struct l_list
 	struct l_list	 *next;
 } s_list;
 
-//char	*get_next_line(int fd);
+char	*get_next_line(int fd);
 void	ft_lstadd_back(s_list **list, s_list *new);
 int		fill_node(s_list **stock, int fd);
 int		check_new_line(s_list *list, int *count);
 void	print_list(s_list *list);
 char	*extract_line(s_list *stock, int *count);
-void	trim_str(char **str);
+char	*trim_str(char *str);
 void	trim_list(s_list **stock);
 int		newline_in_node(s_list *node);
 

@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/06 12:29:00 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/06 17:05:05 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int fill_node(s_list **stock, int fd)
 {
 	s_list *new;
 	s_list *last;
-
+	int lu;
+	
 	new = malloc(sizeof(s_list));
 	if (new == NULL)
 		return 0;
@@ -24,9 +25,10 @@ int fill_node(s_list **stock, int fd)
 	new->str = malloc ((sizeof(char) * BUFFER_SIZE) + 1);
 	if (new->str == NULL)
 		return 0;
-	if (read(fd, new->str, BUFFER_SIZE) <= 0)
+	lu = read(fd, new->str, BUFFER_SIZE);
+	if (lu <= 0)
 		return 0;
-	new->str[BUFFER_SIZE] = '\0';
+	new->str[lu + 1] = '\0';
 	return 1;
 }
 
@@ -79,18 +81,36 @@ char *extract_line(s_list *stock, int *count)
 	return ret;
 }
 
-void	trim_str(char **str)
+char	*trim_str(char *str)
 {
+	int		a;
+	int		b;
+	int		c;
+	char	*temp;
 	
-	while (**str != '\n')
-		(*str)++;
-	if (**str == '\n')
-		(*str)++;
+	temp = str;
+	a = 0;
+	b = 0;
+	while (str[a] != '\0')
+		a++;
+	while (str[b] != '\n')
+		b++;
+	b++;
+	c = a - b;
+	temp = malloc(sizeof(char) * (c + 1));
+	if (temp == NULL)
+		return NULL;
+	a = 0;
+	while (a < c)
+		temp[a++] = str[b++];
+	temp[a] = '\0';
+	return (temp);
 }
 
 void trim_list(s_list **stock)
 {
 	s_list *temp;
+	char	*str_tmp;
 
 	if (*stock == NULL || stock == NULL)
 		return ;
@@ -102,18 +122,22 @@ void trim_list(s_list **stock)
 		free (temp);
 	}		
 	if (newline_in_node(*stock))
-		//trim_str((*stock)->str);
+	{
+		str_tmp = trim_str((*stock)->str);
+		free((*stock)->str);
+		((*stock)->str) = str_tmp;
+	}
 }
 
 
-/*char	*get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static s_list *stock;
 	int count;
 	char *line;
 
 	stock = NULL;
-	count = tri;
+	count = 0;
 	while (!(check_new_line(stock, &count)))
 	{
 		if (!(fill_node(&stock, fd)))
@@ -122,7 +146,7 @@ void trim_list(s_list **stock)
 	line = extract_line(stock, &count);
 	trim_list(&stock);
 	return (line);
-}*/
+}
 
 
 

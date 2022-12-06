@@ -19,13 +19,14 @@ void print_list(s_list *list)
 	}		
 }
 
-int main ()
+/*int main ()
 {
 	char str[] = "salut\nygdfweyugf\nbvedwnb";
+	char *dest;
 	printf("avant strim : %s\n", str);
-	trim_str(&str);
-	printf("apres strim : %s", str);
-}
+	dest = trim_str(str);
+	printf("apres strim : %s", dest);
+}*/
 
 
 
@@ -52,12 +53,10 @@ int main ()
 			 printf("null");
 			 return 0;
 		}
-		print_list(stock);
 	}
+	print_list(stock);
 	line = extract_line(stock, &count);
 	printf("LINE : %s", line);
-	print_list(stock);
-	printf("newline dans node : %d\n", newline_in_node(stock));
 	trim_list(&stock);
 	printf("APRES trim :\n");
 	print_list(stock);
@@ -65,7 +64,8 @@ int main ()
 */
 
 
-/*int main()
+
+ int main()
 {
 	int fd;
 	fd = open("test.txt", O_RDONLY);
@@ -74,12 +74,5 @@ int main ()
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
 
-}*/
+}
