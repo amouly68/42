@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/08 15:26:44 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/08 15:17:03 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	check_new_line(s_list *list)
 	while (list)
 	{
 		i = 0;
-		while (list->str[i] != '\0')
+		while (list && list->str && list->str[i] != '\0')
 		{
-			if (list->str[i] == '\n')
+			if (list && list->str && list->str[i] == '\n')
 			{
 				return 1;
 			}
@@ -187,7 +187,6 @@ char	*get_next_line(int fd)
 	int count;
 	char *line;
 
-	line = NULL;
 	count = 0;
 	if (fd <= 0)
 		return NULL;
