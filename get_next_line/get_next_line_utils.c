@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/08 13:32:42 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/08 17:08:35 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstadd_back(s_list **list, s_list *new)
 {
-	s_list *temp;
+	s_list	*temp;
 
 	if (new != NULL)
 	{
@@ -33,13 +33,13 @@ void	ft_lstadd_back(s_list **list, s_list *new)
 	}
 }
 
-int newline_in_node(s_list *node)
+int	newline_in_node(s_list *node)
 {
 	int	a;
 
 	a = 0;
 	if (node == NULL)
-		return 0;
+		return (0);
 	while (node->str[a])
 	{
 		if (node->str[a] == '\n')
@@ -49,3 +49,50 @@ int newline_in_node(s_list *node)
 	return (0);
 }
 
+int	check_new_line(s_list *list)
+{
+	int	i;
+
+	if (list == NULL)
+		return (0);
+	while (list)
+	{
+		if (list->str == NULL)
+			return (0);
+		i = 0;
+		while (list->str[i] != '\0')
+		{
+			if (list->str[i] == '\n')
+				return (1);
+			i++;
+		}
+		list = list->next;
+	}
+	return (0);
+}
+
+int	count_char_line(s_list *list)
+{
+	int	i;
+	int	count;
+
+	count = 0;
+	if (list == NULL)
+		return (0);
+	while (list)
+	{
+		i = 0;
+		while (list->str[i] != '\0')
+		{
+			if (list->str[i] == '\n')
+			{
+				count++;
+				return (count);
+			}
+			count++;
+			i++;
+		}
+		list = list->next;
+	}
+	return (count);
+}

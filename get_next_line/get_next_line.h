@@ -6,14 +6,14 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/08 12:11:33 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/08 17:10:47 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1 
+#  define BUFFER_SIZE 45 
 # endif
 
 #  include <stdlib.h>
