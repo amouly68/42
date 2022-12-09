@@ -116,17 +116,16 @@ char	*get_next_line(int fd)
 
 	line = NULL;
 	count = 0;
-	if (fd <= 0 || BUFFER_SIZE < 1 || read(fd, line, 0) == -1)
+	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, line, 0) == -1)
 		return (NULL);
 	while (!(check_new_line(stock)))
 	{
 		if (!(fill_node(&stock, fd)))
 		{
-			trim_list(&stock);
 			if (stock)
 			{
 				if (stock->str)
-					free(stock->str);
+					break;
 				free(stock);
 				stock = NULL;
 			}

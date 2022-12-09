@@ -52,21 +52,23 @@ int	newline_in_node(s_list *node)
 int	check_new_line(s_list *list)
 {
 	int	i;
+	s_list	*temp;
 
 	if (list == NULL)
 		return (0);
-	while (list)
+	temp = list;
+	while (temp)
 	{
-		if (list->str == NULL)
+		if (temp->str == NULL)
 			return (0);
 		i = 0;
-		while (list->str[i] != '\0')
+		while (temp->str[i] != '\0')
 		{
-			if (list->str[i] == '\n')
+			if (temp->str[i] == '\n')
 				return (1);
 			i++;
 		}
-		list = list->next;
+		temp = temp->next;
 	}
 	return (0);
 }
