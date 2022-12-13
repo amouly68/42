@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/13 14:22:05 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/13 16:56:48 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,17 @@ int	fill_node(t_list **stock, int fd)
 	t_list	*new;
 	int		lu;
 
+//	if (*stock == NULL)
+//		return(0);
 	new = malloc(sizeof(t_list));
 	if (new == NULL)
 		return (0);
 	new->str = malloc (sizeof(char) * (BUFFER_SIZE + 1));
 	if (new->str == NULL)
+	{
+		free(new);
 		return (0);
+	}
 	lu = read(fd, new->str, BUFFER_SIZE);
 	if (lu <= 0)
 	{	
@@ -34,6 +39,8 @@ int	fill_node(t_list **stock, int fd)
 	new->str[lu] = '\0';
 	new->next = NULL;
 	ft_lstadd_back(stock, new);
+//	if (*stock == NULL)
+//		return (0);
 	return (1);
 }
 
