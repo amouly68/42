@@ -4,10 +4,10 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "get_next_line.c"
-#include "get_next_line_utils.c"
+//#include "get_next_line.c"
+//#include "get_next_line_utils.c"
 
-void print_list(s_list *list)
+void print_list(t_list *list)
 {
 	int a;
 

@@ -6,19 +6,19 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/08 17:15:01 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/13 14:22:05 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-int	fill_node(s_list **stock, int fd)
+int	fill_node(t_list **stock, int fd)
 {
-	s_list	*new;
+	t_list	*new;
 	int		lu;
 
-	new = malloc(sizeof(s_list));
+	new = malloc(sizeof(t_list));
 	if (new == NULL)
 		return (0);
 	new->str = malloc (sizeof(char) * (BUFFER_SIZE + 1));
@@ -26,14 +26,18 @@ int	fill_node(s_list **stock, int fd)
 		return (0);
 	lu = read(fd, new->str, BUFFER_SIZE);
 	if (lu <= 0)
+	{	
+		free(new->str);
+		free(new);
 		return (0);
+	}
 	new->str[lu] = '\0';
 	new->next = NULL;
 	ft_lstadd_back(stock, new);
 	return (1);
 }
 
-char	*extract_line(s_list *stock, int count)
+char	*extract_line(t_list *stock, int count)
 {
 	int		i;
 	int		b;
@@ -55,8 +59,6 @@ char	*extract_line(s_list *stock, int count)
 		stock = stock->next;
 	}
 	ret[b] = '\0';
-	if (b == 0)
-		return (NULL);
 	return (ret);
 }
 
@@ -86,9 +88,9 @@ char	*trim_str(char *str)
 	return (temp);
 }
 
-void	trim_list(s_list **stock)
+void	trim_list(t_list **stock)
 {
-	s_list	*temp;
+	t_list	*temp;
 	char	*str_tmp;
 
 	if (*stock == NULL || stock == NULL)
@@ -110,25 +112,22 @@ void	trim_list(s_list **stock)
 
 char	*get_next_line(int fd)
 {
-	static s_list	*stock = NULL;
+	static t_list	*stock = NULL;
 	int				count;
 	char			*line;
 
 	line = NULL;
 	count = 0;
-	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, line, 0) == -1)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	while (!(check_new_line(stock)))
 	{
+		if (clean_stock (&stock, fd, line))
+			return (NULL);
 		if (!(fill_node(&stock, fd)))
 		{
-			if (stock)
-			{
-				if (stock->str)
-					break;
-				free(stock);
-				stock = NULL;
-			}
+			if (stock && stock->str)
+				break ;
 			return (NULL);
 		}
 	}

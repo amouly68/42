@@ -6,15 +6,15 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/08 17:08:35 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/13 14:23:02 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	ft_lstadd_back(s_list **list, s_list *new)
+void	ft_lstadd_back(t_list **list, t_list *new)
 {
-	s_list	*temp;
+	t_list	*temp;
 
 	if (new != NULL)
 	{
@@ -33,7 +33,7 @@ void	ft_lstadd_back(s_list **list, s_list *new)
 	}
 }
 
-int	newline_in_node(s_list *node)
+int	newline_in_node(t_list *node)
 {
 	int	a;
 
@@ -49,10 +49,10 @@ int	newline_in_node(s_list *node)
 	return (0);
 }
 
-int	check_new_line(s_list *list)
+int	check_new_line(t_list *list)
 {
-	int	i;
-	s_list	*temp;
+	int		i;
+	t_list	*temp;
 
 	if (list == NULL)
 		return (0);
@@ -73,7 +73,7 @@ int	check_new_line(s_list *list)
 	return (0);
 }
 
-int	count_char_line(s_list *list)
+int	count_char_line(t_list *list)
 {
 	int	i;
 	int	count;
@@ -97,4 +97,17 @@ int	count_char_line(s_list *list)
 		list = list->next;
 	}
 	return (count);
+}
+
+int	clean_stock(t_list **list, int fd, char *line)
+{
+	if (read(fd, line, 0) == -1)
+	{
+		trim_list(list);
+		free(*list);
+		(*list) = NULL;
+		return (1);
+	}
+	else
+		return (0);
 }
