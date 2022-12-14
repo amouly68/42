@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/14 10:40:31 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/14 11:12:14 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 
 int	fill_node(t_list **stock, int fd)
@@ -115,7 +115,7 @@ void	trim_list(t_list **stock)
 
 char	*get_next_line(int fd)
 {
-	static t_list	*stock = NULL;
+	static t_list	*stock[256];
 	int				count;
 	char			*line;
 
@@ -123,19 +123,19 @@ char	*get_next_line(int fd)
 	count = 0;
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	while (!(check_new_line(stock)))
+	while (!(check_new_line(stock[fd])))
 	{
-		if (clean_stock (&stock, fd, line))
+		if (clean_stock (&stock[fd], fd, line))
 			return (NULL);
-		if (!(fill_node(&stock, fd)))
+		if (!(fill_node(&stock[fd], fd)))
 		{
-			if (stock && stock->str)
+			if (stock[fd] && stock[fd]->str)
 				break ;
 			return (NULL);
 		}
 	}
-	count = count_char_line(stock);
-	line = extract_line(stock, count);
-	trim_list(&stock);
+	count = count_char_line(stock[fd]);
+	line = extract_line(stock[fd], count);
+	trim_list(&stock[fd]);
 	return (line);
 }
