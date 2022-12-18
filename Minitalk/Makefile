@@ -1,3 +1,10 @@
+### COMPILATION ###
+CC = gcc
+FLAGS = -Wall -Werror -Wextra
+
+
+
+
 SOURCES = ft_printf.c \
 		 ft_putchar_fd.c \
 		 ft_putstr_fd.c \
