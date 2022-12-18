@@ -31,7 +31,18 @@ SOURCES = ft_isalnum.c \
 	ft_strtrim.c \
 	ft_split.c \
 	ft_strmapi.c\
-	ft_striteri.c
+	ft_striteri.c\
+	ft_putnbr_base.c\
+	ft_putnbr_u_fd.c\
+	ft_putpointer.c\
+	ft_putstr_fd_printf.c\
+	ft_count_num.c\
+	ft_printf.c\
+	ft_putnbr_fd_printf.c\
+	ft_putchar_fd_printf.c\
+	get_next_line.c\
+	get_next_line_utils.c
+
 SRCBONUS = ft_lstnew_bonus.c \
 		   ft_lstadd_front_bonus.c \
 		   ft_lstsize_bonus.c \

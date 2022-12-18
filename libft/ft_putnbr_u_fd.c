@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_u_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 13:41:13 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/18 10:30:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/05 12:54:06 by amouly            #+#    #+#             */
+/*   Updated: 2022/12/18 10:39:44 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-unsigned int	ft_strlcpy(char *dest, const char *src, unsigned int destsize)
+int	ft_putnbr_u_fd(unsigned int n, int fd)
 {
-	unsigned int	a;
-	unsigned int	c;
+	int	nb1;
+	int	ret;
 
-	c = 0;
-	a = 0;
-	while (src[c] != '\0')
-		c++;
-	if (destsize == 0)
-		return (c);
-	while (a < destsize - 1 && src[a] != '\0')
+	ret = ft_count_num(n);
+	nb1 = n % 10 + '0';
+	n = n / 10;
+	if (n != 0)
 	{
-		dest[a] = src[a];
-		a++;
+		if (ft_putnbr_fd_printf(n, fd) == -1)
+			return (-1);
 	}
-	dest[a] = '\0';
-	return (c);
+	if (ft_putchar_fd_printf(nb1, fd) == -1)
+		return (-1);
+	return (ret);
 }

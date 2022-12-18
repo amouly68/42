@@ -1,0 +1,6 @@
+Premiere ligne
+Deuxieme ligne
+
+La troisieme est vide et voici la quatrieme
+5
+enfn la sixieme et derniere ligne

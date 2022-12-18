@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_count_num.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 13:41:13 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/18 10:30:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/05 12:54:06 by amouly            #+#    #+#             */
+/*   Updated: 2022/11/23 16:32:52 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-unsigned int	ft_strlcpy(char *dest, const char *src, unsigned int destsize)
+int	ft_count_num(long int n)
 {
-	unsigned int	a;
-	unsigned int	c;
+	int	ret;
 
-	c = 0;
-	a = 0;
-	while (src[c] != '\0')
-		c++;
-	if (destsize == 0)
-		return (c);
-	while (a < destsize - 1 && src[a] != '\0')
+	ret = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
 	{
-		dest[a] = src[a];
-		a++;
+		n = -n;
+		ret++;
 	}
-	dest[a] = '\0';
-	return (c);
+	while (n > 0)
+	{
+		n = n / 10;
+		ret++;
+	}
+	return (ret);
 }

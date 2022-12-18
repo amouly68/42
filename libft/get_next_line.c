@@ -6,21 +6,18 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/14 12:08:36 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/18 11:37:51 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	fill_node(t_list **stock, int fd)
+int	fill_node(gnl_list **stock, int fd)
 {
-	t_list	*new;
+	gnl_list	*new;
 	int		lu;
 
-	//if (*stock == NULL)
-	//	return (0);
-	new = malloc(sizeof(t_list));
+	new = malloc(sizeof(gnl_list));
 	if (new == NULL)
 		return (0);
 	new->str = malloc (sizeof(char) * (BUFFER_SIZE + 1));
@@ -38,11 +35,11 @@ int	fill_node(t_list **stock, int fd)
 	}
 	new->str[lu] = '\0';
 	new->next = NULL;
-	ft_lstadd_back(stock, new);
+	ft_lstadd_back_gnl(stock, new);
 	return (1);
 }
 
-char	*extract_line(t_list *stock, int count)
+char	*extract_line(gnl_list *stock, int count)
 {
 	int		i;
 	int		b;
@@ -93,9 +90,9 @@ char	*trim_str(char *str)
 	return (temp);
 }
 
-void	trim_list(t_list **stock)
+void	trim_list(gnl_list **stock)
 {
-	t_list	*temp;
+	gnl_list	*temp;
 	char	*str_tmp;
 
 	if (*stock == NULL || stock == NULL)
@@ -117,7 +114,7 @@ void	trim_list(t_list **stock)
 
 char	*get_next_line(int fd)
 {
-	static t_list	*stock = NULL;
+	static gnl_list	*stock[256];
 	int				count;
 	char			*line;
 
@@ -125,19 +122,19 @@ char	*get_next_line(int fd)
 	count = 0;
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	while (!(check_new_line(stock)))
+	while (!(check_new_line(stock[fd])))
 	{
-		if (clean_stock (&stock, fd, line))
+		if (clean_stock (&stock[fd], fd, line))
 			return (NULL);
-		if (!(fill_node(&stock, fd)))
+		if (!(fill_node(&stock[fd], fd)))
 		{
-			if (stock && stock->str)
+			if (stock[fd] && stock[fd]->str)
 				break ;
 			return (NULL);
 		}
 	}
-	count = count_char_line(stock);
-	line = extract_line(stock, count);
-	trim_list(&stock);
+	count = count_char_line(stock[fd]);
+	line = extract_line(stock[fd], count);
+	trim_list(&stock[fd]);
 	return (line);
 }

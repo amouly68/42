@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd_printf.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 13:41:13 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/18 10:30:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/05 12:54:06 by amouly            #+#    #+#             */
+/*   Updated: 2022/12/18 10:41:29 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-unsigned int	ft_strlcpy(char *dest, const char *src, unsigned int destsize)
+int	ft_putstr_fd_printf(const char *s, int fd)
 {
-	unsigned int	a;
-	unsigned int	c;
+	int	a;
 
-	c = 0;
 	a = 0;
-	while (src[c] != '\0')
-		c++;
-	if (destsize == 0)
-		return (c);
-	while (a < destsize - 1 && src[a] != '\0')
+	if (fd < 0 || fd > 255)
+		return (-1);
+	if (s == NULL)
+		return (ft_putstr_fd_printf("(null)", 1));
+	while (s[a] != '\0')
 	{
-		dest[a] = src[a];
+		if (write(fd, &s[a], 1) == -1)
+			return (-1);
 		a++;
 	}
-	dest[a] = '\0';
-	return (c);
+	return (a);
 }

@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 13:41:13 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/18 10:30:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/07/19 13:43:11 by amouly            #+#    #+#             */
+/*   Updated: 2022/11/23 16:13:28 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include <string.h>
 
-unsigned int	ft_strlcpy(char *dest, const char *src, unsigned int destsize)
+int	ft_putnbr_base(unsigned int nbr, char *base)
 {
-	unsigned int	a;
-	unsigned int	c;
+	int				a;
+	unsigned int	nb;	
+	unsigned int	nb1;
+	int				ret;
 
-	c = 0;
+	ret = 1;
 	a = 0;
-	while (src[c] != '\0')
-		c++;
-	if (destsize == 0)
-		return (c);
-	while (a < destsize - 1 && src[a] != '\0')
-	{
-		dest[a] = src[a];
-		a++;
+	nb = nbr;
+	nb1 = nb % ft_strlen(base);
+	nb = nb / ft_strlen(base);
+	if (nb != 0)
+	{	
+		a = ft_putnbr_base(nb, base);
+		if (a == -1)
+			return (-1);
+		ret += a;
 	}
-	dest[a] = '\0';
-	return (c);
+	if (write(1, &base[nb1], 1) == -1)
+		return (-1);
+	return (ret);
 }

@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd_printf.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 13:41:13 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/18 10:30:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/05 12:54:06 by amouly            #+#    #+#             */
+/*   Updated: 2022/12/18 10:37:10 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-unsigned int	ft_strlcpy(char *dest, const char *src, unsigned int destsize)
+int	ft_putchar_fd_printf(char c, int fd)
 {
-	unsigned int	a;
-	unsigned int	c;
-
-	c = 0;
-	a = 0;
-	while (src[c] != '\0')
-		c++;
-	if (destsize == 0)
-		return (c);
-	while (a < destsize - 1 && src[a] != '\0')
-	{
-		dest[a] = src[a];
-		a++;
-	}
-	dest[a] = '\0';
-	return (c);
+	if (fd < 0 || fd > 255)
+		return (-1);
+	return (write(fd, &c, 1));
 }

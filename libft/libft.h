@@ -6,13 +6,19 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:30:15 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/09 13:51:45 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/18 11:37:31 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 # include <stdlib.h>
+# include <stdarg.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
@@ -66,5 +72,36 @@ void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
+//   AJOUT DE PRINTF
+
+int				ft_putnbr_base(unsigned int nbr, char *base);
+int				ft_putnbr_u_fd(unsigned int n, int fd);
+int				ft_putnbr_long_base(unsigned long long int nbr, char *base);
+int				ft_putpointer(unsigned long long int pointer);
+int				ft_putstr_fd_printf(const char *s, int fd);
+int				ft_count_num(long int n);
+int				parse(const char c, va_list ptr, int *count);
+int				ft_printf(const char *str, ...);
+int				ft_putnbr_fd_printf(int n, int fd);
+int				ft_putchar_fd_printf(char c, int fd);
+
+// AJOUT DE GET NEXT LINE
+
+typedef struct b_list
+{
+	char			*str;
+	struct b_list	*next;
+}					gnl_list;
+
+char			*get_next_line(int fd);
+int				fill_node(gnl_list **stock, int fd);
+int				check_new_line(gnl_list *list);
+int				count_char_line(gnl_list *list);
+char			*extract_line(gnl_list *stock, int count);
+char			*trim_str(char *str);
+void			trim_list(gnl_list **stock);
+int				newline_in_node(gnl_list *node);
+int				clean_stock(gnl_list **list, int fd, char *line);
+void			ft_lstadd_back_gnl(gnl_list **lst, gnl_list *new);
 
 #endif
