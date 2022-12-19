@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 13:28:35 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/19 13:01:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/03 13:41:13 by amouly            #+#    #+#             */
+/*   Updated: 2022/12/18 10:30:39 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <unistd.h>
-#include "libft/libft.h"
+#include <string.h>
 
-int main()
+unsigned int	ft_strlcpy(char *dest, const char *src, unsigned int destsize)
 {
-	pid_t pid;
-	pid = getpid();
-	ft_printf("Le pid est : %d\n", pid);
-	while (1)
+	unsigned int	a;
+	unsigned int	c;
+
+	c = 0;
+	a = 0;
+	while (src[c] != '\0')
+		c++;
+	if (destsize == 0)
+		return (c);
+	while (a < destsize - 1 && src[a] != '\0')
 	{
-		signal(SIGSUR1, handler);
-		signal(SIGSUR2, handler);
-		pause();
+		dest[a] = src[a];
+		a++;
 	}
+	dest[a] = '\0';
+	return (c);
 }

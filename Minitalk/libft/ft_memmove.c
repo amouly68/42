@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 13:28:35 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/19 13:01:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/04 13:13:34 by amouly            #+#    #+#             */
+/*   Updated: 2022/11/04 17:27:25 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <unistd.h>
-#include "libft/libft.h"
+#include <string.h>
+#include "libft.h"
 
-int main()
+void	*ft_memmove(void *dest, const void *src, unsigned int len)
 {
-	pid_t pid;
-	pid = getpid();
-	ft_printf("Le pid est : %d\n", pid);
-	while (1)
+	unsigned char	*tdest;
+	unsigned char	*tsrc;
+
+	tdest = (unsigned char *) dest;
+	tsrc = (unsigned char *) src;
+	if (dest != NULL || src != NULL)
 	{
-		signal(SIGSUR1, handler);
-		signal(SIGSUR2, handler);
-		pause();
+		if (src < dest)
+		{
+			while (len-- > 0)
+				tdest[len] = tsrc[len];
+		}
+		else
+		{	
+			ft_memcpy(dest, src, len);
+		}
 	}
+	return (tdest);
 }

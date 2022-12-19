@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 13:28:35 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/19 13:01:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/07 15:11:25 by amouly            #+#    #+#             */
+/*   Updated: 2022/11/08 11:28:18 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <unistd.h>
-#include "libft/libft.h"
+#include "libft.h"
 
-int main()
+int	ft_lstsize(t_list *lst)
 {
-	pid_t pid;
-	pid = getpid();
-	ft_printf("Le pid est : %d\n", pid);
-	while (1)
+	int			a;
+
+	a = 0;
+	if (lst == NULL)
+		return (0);
+	else if (lst->next == NULL)
+		return (1);
+	while (lst != NULL)
 	{
-		signal(SIGSUR1, handler);
-		signal(SIGSUR2, handler);
-		pause();
+		lst = lst->next ;
+		a++;
 	}
+	return (a);
 }

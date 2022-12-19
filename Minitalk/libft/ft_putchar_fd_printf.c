@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_putchar_fd_printf.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 13:28:35 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/19 13:01:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/05 12:54:06 by amouly            #+#    #+#             */
+/*   Updated: 2022/12/18 10:37:10 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <unistd.h>
-#include "libft/libft.h"
+#include "libft.h"
 
-int main()
+int	ft_putchar_fd_printf(char c, int fd)
 {
-	pid_t pid;
-	pid = getpid();
-	ft_printf("Le pid est : %d\n", pid);
-	while (1)
-	{
-		signal(SIGSUR1, handler);
-		signal(SIGSUR2, handler);
-		pause();
-	}
+	if (fd < 0 || fd > 255)
+		return (-1);
+	return (write(fd, &c, 1));
 }

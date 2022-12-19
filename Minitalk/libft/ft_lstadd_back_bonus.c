@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 13:28:35 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/19 13:01:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/08 09:39:59 by amouly            #+#    #+#             */
+/*   Updated: 2022/11/09 16:51:03 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <unistd.h>
-#include "libft/libft.h"
+#include "libft.h"
 
-int main()
+void	ft_lstadd_back(t_list **lst, t_list *new)
+
 {
-	pid_t pid;
-	pid = getpid();
-	ft_printf("Le pid est : %d\n", pid);
-	while (1)
+	t_list	*temp;
+
+	if (new != NULL && lst != NULL)
 	{
-		signal(SIGSUR1, handler);
-		signal(SIGSUR2, handler);
-		pause();
+		if ((*lst) == NULL)
+		{
+			(*lst) = new;
+			new->next = NULL;
+		}
+		else
+		{
+			temp = (*lst);
+			while (temp->next != NULL)
+				temp = temp->next;
+			temp->next = new;
+		}
 	}
 }

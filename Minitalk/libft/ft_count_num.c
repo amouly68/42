@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_count_num.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 13:28:35 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/19 13:01:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/05 12:54:06 by amouly            #+#    #+#             */
+/*   Updated: 2022/11/23 16:32:52 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <unistd.h>
-#include "libft/libft.h"
+#include "libft.h"
 
-int main()
+int	ft_count_num(long int n)
 {
-	pid_t pid;
-	pid = getpid();
-	ft_printf("Le pid est : %d\n", pid);
-	while (1)
+	int	ret;
+
+	ret = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
 	{
-		signal(SIGSUR1, handler);
-		signal(SIGSUR2, handler);
-		pause();
+		n = -n;
+		ret++;
 	}
+	while (n > 0)
+	{
+		n = n / 10;
+		ret++;
+	}
+	return (ret);
 }

@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 13:28:35 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/19 13:01:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/08 10:14:11 by amouly            #+#    #+#             */
+/*   Updated: 2022/11/08 10:46:05 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <unistd.h>
-#include "libft/libft.h"
+#include "libft.h"
 
-int main()
+t_list	*ft_lstlast(t_list *lst)
 {
-	pid_t pid;
-	pid = getpid();
-	ft_printf("Le pid est : %d\n", pid);
-	while (1)
-	{
-		signal(SIGSUR1, handler);
-		signal(SIGSUR2, handler);
-		pause();
-	}
+	if (lst == NULL)
+		return (lst);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

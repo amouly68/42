@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 13:28:35 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/19 13:01:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/01 13:12:34 by amouly            #+#    #+#             */
+/*   Updated: 2022/11/03 13:38:02 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <unistd.h>
-#include "libft/libft.h"
+#include <string.h>
 
-int main()
+char	*ft_strrchr(const char *s, int c)
 {
-	pid_t pid;
-	pid = getpid();
-	ft_printf("Le pid est : %d\n", pid);
-	while (1)
-	{
-		signal(SIGSUR1, handler);
-		signal(SIGSUR2, handler);
-		pause();
-	}
+	int		a;
+	char	b;
+	char	*temp;
+
+	b = (char) c;
+	a = 0;
+	temp = (char *)s;
+	while (s[a] != '\0')
+		a++;
+	while ((temp[a] != b) && (a > 0))
+		a--;
+	if (temp[a] == b)
+		return (&temp[a]);
+	else
+		return (NULL);
 }

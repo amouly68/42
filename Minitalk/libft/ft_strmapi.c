@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 13:28:35 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/19 13:01:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/07 10:09:17 by amouly            #+#    #+#             */
+/*   Updated: 2022/11/07 10:21:48 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <unistd.h>
-#include "libft/libft.h"
+#include "libft.h"
 
-int main()
+char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
 {
-	pid_t pid;
-	pid = getpid();
-	ft_printf("Le pid est : %d\n", pid);
-	while (1)
+	char	*ret;
+	int		i;
+
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	ret = malloc(sizeof (char) * (ft_strlen(s) + 1));
+	if (ret == NULL)
+		return (NULL);
+	while (i < ft_strlen(s))
 	{
-		signal(SIGSUR1, handler);
-		signal(SIGSUR2, handler);
-		pause();
+		ret[i] = (*f)(i, s[i]);
+		i++;
 	}
+	ret[i] = '\0';
+	return (ret);
 }

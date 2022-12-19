@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 13:28:35 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/19 13:01:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/07/19 13:43:11 by amouly            #+#    #+#             */
+/*   Updated: 2022/12/19 10:32:36 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include <sys/types.h>
-#include <unistd.h>
-#include "libft/libft.h"
-
-int main()
+int	ft_putnbr_base(unsigned int nbr, char *base)
 {
-	pid_t pid;
-	pid = getpid();
-	ft_printf("Le pid est : %d\n", pid);
-	while (1)
-	{
-		signal(SIGSUR1, handler);
-		signal(SIGSUR2, handler);
-		pause();
+	int				a;
+	unsigned int	nb;	
+	unsigned int	nb1;
+	int				ret;
+
+	ret = 1;
+	a = 0;
+	nb = nbr;
+	nb1 = nb % ft_strlen(base);
+	nb = nb / ft_strlen(base);
+	if (nb != 0)
+	{	
+		a = ft_putnbr_base(nb, base);
+		if (a == -1)
+			return (-1);
+		ret += a;
 	}
+	if (write(1, &base[nb1], 1) == -1)
+		return (-1);
+	return (ret);
 }

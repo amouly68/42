@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 13:28:35 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/19 13:01:39 by amouly           ###   ########.fr       */
+/*   Created: 2022/11/04 12:39:14 by amouly            #+#    #+#             */
+/*   Updated: 2022/11/04 12:54:18 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
-#include <unistd.h>
-#include "libft/libft.h"
+#include <string.h>
+#include <stdlib.h>
 
-int main()
+char	*ft_strdup(const char *s1)
 {
-	pid_t pid;
-	pid = getpid();
-	ft_printf("Le pid est : %d\n", pid);
-	while (1)
-	{
-		signal(SIGSUR1, handler);
-		signal(SIGSUR2, handler);
-		pause();
+	char	*string;
+	int		a;
+	int		b;
+
+	a = 0;
+	b = 0;
+	while (s1[a] != '\0')
+		a++;
+	string = malloc(sizeof(unsigned char) * (a + 1));
+	if (string == NULL)
+		return (NULL);
+	while (b < a)
+	{	
+		string[b] = s1[b];
+		b++;
 	}
+	string[b] = '\0';
+	return (string);
 }

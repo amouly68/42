@@ -1,36 +1,32 @@
-### COMPILATION ###
+NAME = Minitalk
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
+LIBFT_DIR = ./libft
+LIBFT = ./libft/libft.a
+HEADERS = -I ./libft/libft.h
 
 
+SOURCES = server.c 
 
-
-SOURCES = ft_printf.c \
-		 ft_putchar_fd.c \
-		 ft_putstr_fd.c \
-		ft_putnbr_fd.c \
-	   ft_putnbr_u_fd.c \
-	   ft_putnbr_base.c \
-	   ft_putpointer.c \
-	   ft_count_num.c
-FLAGS = -Wall -Wextra -Werror
-HEADERS = ft_printf.h
-NAME = libftprintf.a
 OBJS = ${SOURCES:.c=.o}
 
-all : ${NAME}
+all :  ${LIBFT} ${NAME}
 
-.c.o : 
-	gcc ${FLAGS} -c $< -o ${<:.c=.o} 
+${LIBFT} : 
+		make -C ${LIBFT_DIR}
+
+.c.o: 
+	gcc ${FLAGS} -c $< -o ${<:.c=.o}  
 
 ${NAME} : ${OBJS}
-	ar rc ${NAME} ${OBJS}
-	ranlib ${NAME}
+	gcc ${FLAGS} ${OBJS} ${LIBFT} ${HEADERS} -o ${NAME} 
 
 clean :
 	rm -f ${OBJS} 
+	make -C ${LIBFT_DIR} clean
 
 fclean : clean
 	rm -f ${NAME}
+	make -C ${LIBFT_DIR} fclean
 
 re : fclean all
