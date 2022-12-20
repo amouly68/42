@@ -6,11 +6,10 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 13:43:11 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/23 16:13:28 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/19 10:32:36 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-
 
 int	ft_putnbr_base(unsigned int nbr, char *base)
 {

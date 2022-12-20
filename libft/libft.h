@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:30:15 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/18 11:37:31 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/19 10:35:38 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -91,17 +91,17 @@ typedef struct b_list
 {
 	char			*str;
 	struct b_list	*next;
-}					gnl_list;
+}					t_gnl_list;
 
 char			*get_next_line(int fd);
-int				fill_node(gnl_list **stock, int fd);
-int				check_new_line(gnl_list *list);
-int				count_char_line(gnl_list *list);
-char			*extract_line(gnl_list *stock, int count);
+int				fill_node(t_gnl_list **stock, int fd);
+int				check_new_line(t_gnl_list *list);
+int				count_char_line(t_gnl_list *list);
+char			*extract_line(t_gnl_list *stock, int count);
 char			*trim_str(char *str);
-void			trim_list(gnl_list **stock);
-int				newline_in_node(gnl_list *node);
-int				clean_stock(gnl_list **list, int fd, char *line);
-void			ft_lstadd_back_gnl(gnl_list **lst, gnl_list *new);
+void			trim_list(t_gnl_list **stock);
+int				newline_in_node(t_gnl_list *node);
+int				clean_stock(t_gnl_list **list, int fd, char *line);
+void			ft_lstadd_back_gnl(t_gnl_list **lst, t_gnl_list *new);
 
 #endif

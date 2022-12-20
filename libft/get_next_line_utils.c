@@ -6,15 +6,15 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/18 11:36:40 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/19 10:38:42 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back_gnl(gnl_list **list, gnl_list *new)
+void	ft_lstadd_back_gnl(t_gnl_list **list, t_gnl_list *new)
 {
-	gnl_list	*temp;
+	t_gnl_list	*temp;
 
 	if (new != NULL)
 	{
@@ -33,7 +33,7 @@ void	ft_lstadd_back_gnl(gnl_list **list, gnl_list *new)
 	}
 }
 
-int	newline_in_node(gnl_list *node)
+int	newline_in_node(t_gnl_list *node)
 {
 	int	a;
 
@@ -49,10 +49,10 @@ int	newline_in_node(gnl_list *node)
 	return (0);
 }
 
-int	check_new_line(gnl_list *list)
+int	check_new_line(t_gnl_list *list)
 {
-	int		i;
-	gnl_list	*temp;
+	int			i;
+	t_gnl_list	*temp;
 
 	if (list == NULL)
 		return (0);
@@ -73,7 +73,7 @@ int	check_new_line(gnl_list *list)
 	return (0);
 }
 
-int	count_char_line(gnl_list *list)
+int	count_char_line(t_gnl_list *list)
 {
 	int	i;
 	int	count;
@@ -99,7 +99,7 @@ int	count_char_line(gnl_list *list)
 	return (count);
 }
 
-int	clean_stock(gnl_list **list, int fd, char *line)
+int	clean_stock(t_gnl_list **list, int fd, char *line)
 {
 	if (read(fd, line, 0) == -1)
 	{

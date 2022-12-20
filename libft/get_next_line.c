@@ -6,18 +6,18 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:43:47 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/18 11:37:51 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/19 10:39:09 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	fill_node(gnl_list **stock, int fd)
+int	fill_node(t_gnl_list **stock, int fd)
 {
-	gnl_list	*new;
-	int		lu;
+	t_gnl_list		*new;
+	int				lu;
 
-	new = malloc(sizeof(gnl_list));
+	new = malloc(sizeof(t_gnl_list));
 	if (new == NULL)
 		return (0);
 	new->str = malloc (sizeof(char) * (BUFFER_SIZE + 1));
@@ -39,7 +39,7 @@ int	fill_node(gnl_list **stock, int fd)
 	return (1);
 }
 
-char	*extract_line(gnl_list *stock, int count)
+char	*extract_line(t_gnl_list *stock, int count)
 {
 	int		i;
 	int		b;
@@ -90,10 +90,10 @@ char	*trim_str(char *str)
 	return (temp);
 }
 
-void	trim_list(gnl_list **stock)
+void	trim_list(t_gnl_list **stock)
 {
-	gnl_list	*temp;
-	char	*str_tmp;
+	t_gnl_list	*temp;
+	char		*str_tmp;
 
 	if (*stock == NULL || stock == NULL)
 		return ;
@@ -114,9 +114,9 @@ void	trim_list(gnl_list **stock)
 
 char	*get_next_line(int fd)
 {
-	static gnl_list	*stock[256];
-	int				count;
-	char			*line;
+	static t_gnl_list	*stock[256];
+	int					count;
+	char				*line;
 
 	line = NULL;
 	count = 0;
