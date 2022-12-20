@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:28:53 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/20 09:16:44 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/20 11:12:07 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	char_to_byte(unsigned char c, pid_t pid)
 	int	i;
 	int	j;
 
-	if (c > 128 || pid < 0)
+	if (c > 255 || pid < 0)
 		return ;
 	i = 0;
 	j = 128;
@@ -32,7 +32,7 @@ void	char_to_byte(unsigned char c, pid_t pid)
 			kill(pid, SIGUSR2);
 		j = j / 2;
 		i++;
-		usleep(150);
+		usleep(100);
 	}
 }
 
@@ -42,7 +42,10 @@ int	main(int argc, char **argv)
 	int	i;	
 
 	if (argc != 3)
+	{
 		ft_printf("Nombre d'arguments invalide\n");
+		return (0);
+	}
 	pid = ft_atoi(argv[1]);
 	i = 0;
 	while (argv[2][i])

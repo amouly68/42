@@ -6,7 +6,7 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:28:35 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/20 09:17:47 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/20 11:10:50 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 void	handler(int signal)
 {
 	static unsigned char	car = 255;
+	static int				i = 0;
 
 	if (signal == SIGUSR1)
 		car = car << 1;
@@ -26,12 +27,13 @@ void	handler(int signal)
 		car = car << 1;
 		car = car | 1;
 	}
-	if (car <= 128)
+	i++;
+	if (i == 8)
 	{
 		ft_putchar_fd(car, 1);
 		car = 255;
+		i = 0;
 	}
-	usleep(150);
 }
 
 int	main(void)
