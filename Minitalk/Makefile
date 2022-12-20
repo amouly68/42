@@ -15,7 +15,7 @@ SOURCES_SE = server.c
 OBJS_CL = ${SOURCES_CL:.c=.o}
 OBJS_SE = ${SOURCES_SE:.c=.o}
 
-all :  ${LIBFT} ${NAME}
+all :  ${LIBFT} ${CLIENT} ${SERVER}
 
 ${LIBFT} : 
 		make -C ${LIBFT_DIR}
@@ -23,8 +23,10 @@ ${LIBFT} :
 .c.o: 
 	gcc ${FLAGS} -c $< -o ${<:.c=.o}  
 
-${NAME} : ${OBJS_CL} ${OBJS_SE}
+${CLIENT} : ${OBJS_CL}
 	gcc ${FLAGS} ${OBJS_CL} ${LIBFT} ${HEADERS} -o ${CLIENT} 
+
+${SERVER} : ${OBJS_SE}
 	gcc ${FLAGS} ${OBJS_SE} ${LIBFT} ${HEADERS} -o ${SERVER}
 
 clean :
