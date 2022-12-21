@@ -26,6 +26,7 @@ void print_list(t_ps_list *list)
         list = list->next;
         i++;
     }
+    ft_printf("----FIN DE LA LISTE----\n");
 }
 
 int main(int argc, char **argv)
@@ -33,11 +34,17 @@ int main(int argc, char **argv)
     t_ps_list *pile_a;
     t_ps_list *pile_b;
 
-    list = NULL;
+    pile_a = NULL;
+    pile_b = NULL;
     if (!(fill_list_verif(&pile_a, argc, argv)))
       //clean la list en verifiant si pas nulle
       return(-1);
     print_list(pile_a);
+    push_x(&pile_b, &pile_a); 
+    print_list(pile_a);
+    print_list(pile_b);
+
+
 	return (0);
 }
 

@@ -26,5 +26,11 @@ typedef struct l_list
 void	print_list(t_ps_list *list);
 int fill_list(t_ps_list **list, int nbr);
 int fill_list_verif(t_ps_list **list, int argc, char **argv);
+t_ps_list   *ft_getlast(t_ps_list *list);
+t_ps_list   *ft_getprelast(t_ps_list *list);
+void    swap_pile(t_ps_list **list);
+void    push_x(t_ps_list **list_x, t_ps_list **list_y);
+void    rotate_pile(t_ps_list **list);
+void    rev_rotate_pile(t_ps_list **list);
 
 #endif

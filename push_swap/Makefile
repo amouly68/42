@@ -1,13 +1,14 @@
 NAME = push_swap 
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g3
 LIBFT_DIR = ./libft
 LIBFT = ./libft/libft.a
 HEADERS = -I ./libft/libft.h -I push_swap.h
 
 
 SOURCES = push_swap.c \
-		fill_list.c
+		fill_list.c \
+		instruction.c
 
 OBJS = ${SOURCES:.c=.o}
 
