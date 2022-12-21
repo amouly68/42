@@ -6,42 +6,46 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:46:18 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/20 11:52:08 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/20 09:50:55 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-void print_list(t_ps_list *list)
+void    pa(t_ps_list **list_a, t_ps_list **list_b)
 {
-    int i;
+    t_ps_list   *first_a;
+    t_ps_list   *second_a;
+    t_ps_list   *first_b;
 
-    i = 1;
-    if (!list)
+
+    if (!(list_a) || !(list_b) || !(*(list_b)))
         return ;
-    while (list)
-    {
-        ft_printf("noeud %d : %d\n", i, list->nbr);
-        list = list->next;
-        i++;
-    }
-    ft_printf("----FIN DE LA LISTE----\n");
+    first_a = *list_b;
+    second_a = *list_a;
+    first_b = (*list_b)->next;
+    *list_a = first_a;
+    first_a->next = second_a;
+    *list_b = first_b;
+    ft_printf("pa\n");
 }
 
-int main(int argc, char **argv)
+void    pb(t_ps_list **list_b, t_ps_list **list_a)
 {
-    t_ps_list *pile_a;
-    t_ps_list *pile_b;
+    t_ps_list   *first_b;
+    t_ps_list   *second_b;
+    t_ps_list   *first_a;
 
-    pile_a = NULL;
-    pile_b = NULL;
-    
-    if (!(fill_list_verif(&pile_a, argc, argv)))
-      //clean la list en verifiant si pas nulle
-      return(-1);
-    print_list(pile_a);
 
-	return (0);
+    if (!(list_b) || !(list_b) || !(*(list_a)))
+        return ;
+    first_b = *list_a;
+    second_b = *list_b;
+    first_a = (*list_a)->next;
+    *list_b = first_b;
+    first_b->next = second_b;
+    *list_a = first_a;
+    ft_printf("pb\n");
 }
 

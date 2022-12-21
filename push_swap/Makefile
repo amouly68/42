@@ -8,7 +8,10 @@ HEADERS = -I ./libft/libft.h -I push_swap.h
 
 SOURCES = push_swap.c \
 		fill_list.c \
-		instruction.c \
+		push.c \
+		reverse.c \
+		rotate.c \
+		swap.c \
 		check_error.c
 
 OBJS = ${SOURCES:.c=.o}

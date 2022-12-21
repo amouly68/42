@@ -26,14 +26,23 @@ typedef struct l_list
 void	print_list(t_ps_list *list);
 int fill_list(t_ps_list **list, int nbr);
 int fill_list_verif(t_ps_list **list, int argc, char **argv);
-t_ps_list   *ft_getlast(t_ps_list *list);
-t_ps_list   *ft_getprelast(t_ps_list *list);
-void    swap_pile(t_ps_list **list);
-void    push_x(t_ps_list **list_x, t_ps_list **list_y);
-void    rotate_pile(t_ps_list **list);
-void    rev_rotate_pile(t_ps_list **list);
+int check_list(t_ps_list *list);
 long long	ft_long_atoi(const char *str);
 int check_int(long long nbr);
 int check_error(int argc, char **argv);
+t_ps_list   *ft_getlast(t_ps_list *list);
+t_ps_list   *ft_getprelast(t_ps_list *list);
+void    sa(t_ps_list **list);
+void    sb(t_ps_list **list);
+void	ss(t_ps_list **list_a, t_ps_list **list_b);
+void    pa(t_ps_list **list_a, t_ps_list **list_b);
+void    pb(t_ps_list **list_b, t_ps_list **list_a);
+void    ra(t_ps_list **list);
+void    rb(t_ps_list **list);
+void    rr(t_ps_list **list_a, t_ps_list **list_b);
+void    rra(t_ps_list **list);
+void    rrb(t_ps_list **list);
+void    rrr(t_ps_list **list_a, t_ps_list **list_b);
+
 
 #endif

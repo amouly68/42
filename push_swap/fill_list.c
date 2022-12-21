@@ -53,11 +53,26 @@ int fill_list_verif(t_ps_list **list, int argc, char **argv)
     int i;
 
     i = 1;
+    if (argc < 2)
+    {
+            ft_putstr_fd("Error\n", 2);
+            return(0);
+    }
     while( i < argc)
     {
+        if (!(check_error(argc, argv)))
+        {
+            ft_putstr_fd("Error\n", 2);
+            return(0);
+        }
         if (!(fill_list(list, ft_atoi(argv[i]))))
             return (0);
         i++;
+    }
+    if (!(check_list(*list)))
+    {
+            ft_putstr_fd("Error\n", 2);
+            return(0);
     }
     return (1);
 }

@@ -70,5 +70,26 @@ int check_error(int argc, char **argv)
     return (1);
 }
 
+int check_list(t_ps_list *list)
+{
+	t_ps_list	*next;
+	t_ps_list	*head;
+	int 		current; 
+
+	head = list;
+	while(head->next)
+	{
+		next = head->next;
+		current = head->nbr;
+		while (head->next)
+		{
+			if (current == (head->next)->nbr)
+				return(0);
+			head = head->next;
+		}
+		head = next;
+	}
+	return (1);
+}
 
 
