@@ -36,6 +36,11 @@ int main(int argc, char **argv)
 
     pile_a = NULL;
     pile_b = NULL;
+    if (!(check_error(argc, argv)))
+    {
+        ft_printf("Error\n");
+        return (-1);
+    }
     if (!(fill_list_verif(&pile_a, argc, argv)))
       //clean la list en verifiant si pas nulle
       return(-1);

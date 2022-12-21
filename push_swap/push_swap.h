@@ -32,5 +32,8 @@ void    swap_pile(t_ps_list **list);
 void    push_x(t_ps_list **list_x, t_ps_list **list_y);
 void    rotate_pile(t_ps_list **list);
 void    rev_rotate_pile(t_ps_list **list);
+long long	ft_long_atoi(const char *str);
+int check_int(long long nbr);
+int check_error(int argc, char **argv);
 
 #endif
