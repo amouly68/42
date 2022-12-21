@@ -25,5 +25,6 @@ typedef struct l_list
 
 void	print_list(t_ps_list *list);
 int fill_list(t_ps_list **list, int nbr);
+int fill_list_verif(t_ps_list **list, int argc, char **argv);
 
 #endif
