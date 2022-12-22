@@ -22,7 +22,7 @@ t_ps_list   *ft_getlast(t_ps_list *list)
     return (list);
 }
 
-void    ra(t_ps_list **list)
+void    rotate(t_ps_list **list)
 {
     t_ps_list *first;
     t_ps_list *prelast;
@@ -36,28 +36,23 @@ void    ra(t_ps_list **list)
     *list = first;
     prelast->next = last;
     last->next = NULL;
+}
+
+void    ra(t_ps_list **list)
+{
+    rotate(list);
     ft_printf("ra\n");
 }
 
 void    rb(t_ps_list **list)
 {
-    t_ps_list *first;
-    t_ps_list *prelast;
-    t_ps_list *last;
-
-    if ((!(list)) || (!(*list)) || (!((*list)->next)))
-        return ;
-    first = (*list)->next;
-    prelast = ft_getlast(*list);
-    last = *list;
-    *list = first;
-    prelast->next = last;
-    last->next = NULL;
+    rotate(list);
     ft_printf("rb\n");
 }
 
 void    rr(t_ps_list **list_a, t_ps_list **list_b)
 {
-    ra(list_a);
-    rb(list_b);
+    rotate(list_a);
+    rotate(list_b);
+    ft_printf("rr\n");
 }

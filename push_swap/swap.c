@@ -13,8 +13,7 @@
 #include "push_swap.h"
 #include "libft/libft.h"
 
-
-void    sa(t_ps_list **list)
+void    swap(t_ps_list **list)
 {
     t_ps_list *first;
     t_ps_list *second;
@@ -29,29 +28,23 @@ void    sa(t_ps_list **list)
     *list = first;
     first->next = second;
     second->next = third;
+}
+
+void    sa(t_ps_list **list)
+{
+    swap(list);
     ft_printf("sa\n");
 }
 
 void    sb(t_ps_list **list)
 {
-    t_ps_list *first;
-    t_ps_list *second;
-    t_ps_list *third;
-
-
-    if (!list || !(*list) || !((*list)->next))
-        return ;
-    first = (*list)->next;
-    second = *list;
-    third = ((*list)->next)->next;
-    *list = first;
-    first->next = second;
-    second->next = third;
+    swap(list);
     ft_printf("sb\n");
 }
 
 void    ss(t_ps_list **list_a, t_ps_list **list_b)
 {
-    sa(list_a);
-    sb(list_b);
+    swap(list_a);
+    swap(list_b);
+    ft_printf("ss\n");
 }
