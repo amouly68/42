@@ -6,33 +6,26 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:46:18 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/20 11:52:08 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/20 09:50:55 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-
-int main(int argc, char **argv)
+int more_than_fifteen(t_ps_list **list_a, t_ps_list **list_b)
 {
-    t_ps_list *pile_a;
-    t_ps_list *pile_b;
-
-    pile_a = NULL;
-    pile_b = NULL;
-    
-    if (!(fill_list_verif(&pile_a, argc, argv)))
-      //clean la list en verifiant si pas nulle
-      return(-1);
-
-    if (argc < 5)
-        less_than_four(&pile_a, argc - 1);
-    if(argc > 4 && argc < 17 )
-        four_to_fifteen(&pile_a, &pile_b, argc);  
-    if (argc > 16)
-        more_than_fifteen(&pile_a, &pile_b); 
-    //print_both_list(pile_a, pile_b);
+    pb(list_b, list_a);
+    while(*list_a)
+    {
+        a_to_b(list_a, list_b);
+        pb(list_b, list_a); 
+    }
+    while(*list_b)
+    { 
+        max_to_top_b(list_b);
+        pa(list_a, list_b);
+    }
     return (0);
 }
 

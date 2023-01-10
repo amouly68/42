@@ -83,7 +83,7 @@ void max_to_top_b(t_ps_list **list)
 
     nbr = count_pile(*list);
     ind_max = (index_max(*list)); 
-    if (ind_max < (nbr / 2))
+    if (ind_max <= (nbr / 2))
     {
         while (ind_max > 0)
         {

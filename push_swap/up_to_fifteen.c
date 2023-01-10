@@ -105,12 +105,6 @@ int four_to_fifteen(t_ps_list **list_a, t_ps_list **list_b, int argc)
     sort_three_numbers_a(list_a);
     while(*list_b)
         pa(list_a, list_b);
-    print_both_list(*list_a, *list_b);
-    /*
-    print_both_list(*list_a, *list_b);
-  
-    
-    return(1);*/
     return (0);
 }
 

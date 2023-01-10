@@ -6,33 +6,35 @@
 /*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:46:18 by amouly            #+#    #+#             */
-/*   Updated: 2022/12/20 11:52:08 by amouly           ###   ########.fr       */
+/*   Updated: 2022/12/20 09:50:55 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-
-int main(int argc, char **argv)
+void a_to_b(t_ps_list **list_a, t_ps_list **list_b)
 {
-    t_ps_list *pile_a;
-    t_ps_list *pile_b;
-
-    pile_a = NULL;
-    pile_b = NULL;
-    
-    if (!(fill_list_verif(&pile_a, argc, argv)))
-      //clean la list en verifiant si pas nulle
-      return(-1);
-
-    if (argc < 5)
-        less_than_four(&pile_a, argc - 1);
-    if(argc > 4 && argc < 17 )
-        four_to_fifteen(&pile_a, &pile_b, argc);  
-    if (argc > 16)
-        more_than_fifteen(&pile_a, &pile_b); 
-    //print_both_list(pile_a, pile_b);
-    return (0);
+    int nbr;
+    int ind_min;
+    int ind_max;
+   
+    nbr = count_pile(*list_a);
+    ind_min = (index_min(*list_a));
+    ind_max = (index_max(*list_b));
+    if (ind_min < ind_max && (nbr - ind_max) > ind_min)
+    {
+        min_to_top_a(list_a);
+        pb(list_b, list_a);
+        rb(list_b);
+    } else
+    {
+        max_to_top_a(list_a);
+        pb(list_b, list_a);
+        rrb(list_b);
+    }
 }
+
+
+
 

@@ -66,6 +66,9 @@ int count_pile(t_ps_list    *list);
 void max_to_top_a(t_ps_list **list);
 void min_to_top_a(t_ps_list **list);
 void max_to_top_b(t_ps_list **list);
-
+//more_than_fifteen
+int more_than_fifteen(t_ps_list **list_a, t_ps_list **list_b);
+//a_to_b
+void a_to_b(t_ps_list **list_a, t_ps_list **list_b);
 
 #endif
