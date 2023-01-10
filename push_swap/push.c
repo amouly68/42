@@ -49,3 +49,20 @@ void    pb(t_ps_list **list_b, t_ps_list **list_a)
     ft_printf("pb\n");
 }
 
+void    push_silent(t_ps_list **list_a, t_ps_list **list_b)
+{
+    t_ps_list   *first_a;
+    t_ps_list   *second_a;
+    t_ps_list   *first_b;
+
+
+    if (!(list_a) || !(list_b) || !(*(list_b)))
+        return ;
+    first_a = *list_b;
+    second_a = *list_a;
+    first_b = (*list_b)->next;
+    *list_a = first_a;
+    first_a->next = second_a;
+    *list_b = first_b;
+}
+

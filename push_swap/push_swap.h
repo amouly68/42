@@ -38,8 +38,10 @@ void	ss(t_ps_list **list_a, t_ps_list **list_b);
 //push
 void    pa(t_ps_list **list_a, t_ps_list **list_b);
 void    pb(t_ps_list **list_b, t_ps_list **list_a);
+void    push_silent(t_ps_list **list_a, t_ps_list **list_b);
 //rotate
 void    ra(t_ps_list **list);
+void    rotate(t_ps_list **list);
 void    rb(t_ps_list **list);
 void    rr(t_ps_list **list_a, t_ps_list **list_b);
 //reverse
@@ -66,9 +68,14 @@ int count_pile(t_ps_list    *list);
 void max_to_top_a(t_ps_list **list);
 void min_to_top_a(t_ps_list **list);
 void max_to_top_b(t_ps_list **list);
+void max_to_top_silent(t_ps_list **list);
 //more_than_fifteen
 int more_than_fifteen(t_ps_list **list_a, t_ps_list **list_b);
 //a_to_b
 void a_to_b(t_ps_list **list_a, t_ps_list **list_b);
+//a_to_b_v2
+void a_to_b_v2(t_ps_list **list_a, t_ps_list **list_b);
+void grand_to_top(t_ps_list *list, int middle, int nbr);
+void petit_to_top(t_ps_list *list, int middle, int nbr);
 
 #endif

@@ -15,12 +15,9 @@
 
 int more_than_fifteen(t_ps_list **list_a, t_ps_list **list_b)
 {
-    pb(list_b, list_a);
-    while(*list_a)
-    {
+    //a_to_b_v2(list_a, list_b); 
+   while(*list_a)
         a_to_b(list_a, list_b);
-        pb(list_b, list_a); 
-    }
     while(*list_b)
     { 
         max_to_top_b(list_b);

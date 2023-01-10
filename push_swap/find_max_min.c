@@ -75,3 +75,19 @@ int index_min(t_ps_list *list)
     } 
     return (index);
 }
+
+/*int midd_value(t_ps_list *list)
+{
+    int nbr;
+    int mid;
+    int i;
+
+    nbr = count_pile(list);
+    i = 0;
+    while (i < nbr / 2)
+    {
+        
+    }
+
+
+}*/

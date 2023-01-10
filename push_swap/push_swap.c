@@ -18,10 +18,11 @@ int main(int argc, char **argv)
 {
     t_ps_list *pile_a;
     t_ps_list *pile_b;
+    
 
     pile_a = NULL;
     pile_b = NULL;
-    
+        
     if (!(fill_list_verif(&pile_a, argc, argv)))
       //clean la list en verifiant si pas nulle
       return(-1);
@@ -31,7 +32,9 @@ int main(int argc, char **argv)
     if(argc > 4 && argc < 17 )
         four_to_fifteen(&pile_a, &pile_b, argc);  
     if (argc > 16)
+    {
         more_than_fifteen(&pile_a, &pile_b); 
+    }
     //print_both_list(pile_a, pile_b);
     return (0);
 }
