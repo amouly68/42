@@ -24,7 +24,8 @@ void a_to_b(t_ps_list **list_a, t_ps_list **list_b)
     ind_min = (index_min(*list_a));
     ind_max = (index_max(*list_a));
    
-    if(ind_min < ind_max && (nbr - ind_max) > ind_min)
+    if((ind_min < ind_max && (nbr - ind_max) > ind_min) ||
+        (ind_min > ind_max && (nbr - ind_min) < ind_max))
     {
         min_to_top_a(list_a);
         pb(list_b, list_a);
