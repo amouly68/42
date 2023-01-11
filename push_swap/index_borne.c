@@ -13,66 +13,66 @@
 #include "push_swap.h"
 #include "libft/libft.h"
 
-t_ps_list *find_max(t_ps_list *list)
+int index_rot_superieur(t_ps_list *list, int borne)
 {
-    t_ps_list   *ret;
+    int index_rotate;
 
-    ret = list;
+    index_rotate = 0;
     while(list)
     {
-        if (list->nbr > ret->nbr)
-            ret = list;
+        if (list->nbr > borne)
+            break;
+        index_rotate++;
+        list = list->next;
+    }
+    return (index_rotate);
+}
+
+int index_rev_superieur(t_ps_list *list, int borne)
+{
+    int index_rev;
+    int i;
+
+    index_rev = 0;
+    i = 0;
+    while(list)
+    {
+        if (list->nbr > borne)
+            index_rev = i;
+        i++;
         list = list->next;
     } 
-    return (ret);
+    return (index_rev);
 }
 
-int index_max(t_ps_list *list)
+int index_rot_inferieur(t_ps_list *list, int borne)
 {
-    int index;
-    int max;
+    int index_rotate;
 
-    index = 0;
-    max = (find_max(list)->nbr);
+    index_rotate = 0;
     while(list)
     {
-        if (list->nbr == max)
-            break ;
-        index++;
-        list = list -> next;
-    } 
-    return (index);
+        if (list->nbr < borne)
+            break;
+        index_rotate++;
+        list = list->next;
+    }
+    return (index_rotate);
 }
 
-
-t_ps_list *find_min(t_ps_list *list)
+int index_rev_inferieur(t_ps_list *list, int borne)
 {
-    t_ps_list   *ret;
+    int index_rev;
+    int i;
 
-    ret = list;
+    index_rev = 0;
+    i = 0;
     while(list)
     {
-        if (list->nbr < ret->nbr)
-            ret = list;
+        if (list->nbr < borne)
+            index_rev = i;
+        i++;
         list = list->next;
     } 
-    return (ret);
+    return (index_rev);
 }
-
-int index_min(t_ps_list *list)
-{
-    int index;
-    int min;
-
-    index = 0;
-    min = (find_min(list)->nbr);
-    while(list)
-    {
-        if (list->nbr == min)
-            break ;
-        index++;
-        list = list -> next;
-    } 
-    return (index);
-}
-

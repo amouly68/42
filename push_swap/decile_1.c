@@ -13,32 +13,12 @@
 #include "push_swap.h"
 #include "libft/libft.h"
 
-void sort_tab(int *tab, int length)
-{
-    int temp;
-    int i;
-
-    i = 0;
-    while(i < length - 1)
-    {
-        if (tab[i + 1] < tab[i])
-        {
-            temp = tab[i];
-            tab[i] = tab[i + 1];
-            tab[i + 1] = temp;
-            i = 0;
-        }
-        else
-            i++;
-    }
-}
-
-int midd_value(t_ps_list *list)
+int decile_1(t_ps_list *list)
 {
     int nbr;
     int i;
     int *tab;
-    int median;
+    int decile;
 
     i = 0;
     nbr = count_pile(list);
@@ -52,17 +32,17 @@ int midd_value(t_ps_list *list)
         i++;
     }
     sort_tab(tab, nbr);
-    median = tab[nbr / 2];
+    decile = tab[(nbr / 10) * 1];
     free(tab);
-    return (median);
+    return (decile);
 }
 
-int prem_quarter(t_ps_list *list)
+int decile_2(t_ps_list *list)
 {
     int nbr;
     int i;
     int *tab;
-    int quarter;
+    int decile;
 
     i = 0;
     nbr = count_pile(list);
@@ -76,17 +56,17 @@ int prem_quarter(t_ps_list *list)
         i++;
     }
     sort_tab(tab, nbr);
-    quarter = tab[nbr / 4];
+    decile = tab[(nbr / 10) * 2];
     free(tab);
-    return (quarter);
+    return (decile);
 }
 
-int third_quarter(t_ps_list *list)
+int decile_3(t_ps_list *list)
 {
     int nbr;
     int i;
     int *tab;
-    int quarter;
+    int decile;
 
     i = 0;
     nbr = count_pile(list);
@@ -100,7 +80,55 @@ int third_quarter(t_ps_list *list)
         i++;
     }
     sort_tab(tab, nbr);
-    quarter = tab[(nbr / 4) * 3];
+    decile = tab[(nbr / 10) * 3];
     free(tab);
-    return (quarter);
+    return (decile);
+}
+
+int decile_4(t_ps_list *list)
+{
+    int nbr;
+    int i;
+    int *tab;
+    int decile;
+
+    i = 0;
+    nbr = count_pile(list);
+    tab = malloc(sizeof(int) * nbr);
+    if (tab == NULL)
+        return(-1);
+    while(list)
+    {
+        tab[i] = list->nbr;
+        list = list->next;
+        i++;
+    }
+    sort_tab(tab, nbr);
+    decile = tab[(nbr / 10) * 4];
+    free(tab);
+    return (decile);
+}
+
+int decile_5(t_ps_list *list)
+{
+    int nbr;
+    int i;
+    int *tab;
+    int decile;
+
+    i = 0;
+    nbr = count_pile(list);
+    tab = malloc(sizeof(int) * nbr);
+    if (tab == NULL)
+        return(-1);
+    while(list)
+    {
+        tab[i] = list->nbr;
+        list = list->next;
+        i++;
+    }
+    sort_tab(tab, nbr);
+    decile = tab[(nbr / 10) * 5];
+    free(tab);
+    return (decile);
 }

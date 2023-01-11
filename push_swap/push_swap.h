@@ -63,7 +63,6 @@ t_ps_list *find_max(t_ps_list *list);
 int index_max(t_ps_list *list);
 t_ps_list *find_min(t_ps_list *list);
 int index_min(t_ps_list *list);
-int midd_value(t_ps_list *list);
 //max_min_to_top
 int count_pile(t_ps_list    *list);
 void max_to_top_a(t_ps_list **list);
@@ -73,12 +72,17 @@ void max_to_top_silent(t_ps_list **list);
 //more_than_fifteen
 int more_than_fifteen(t_ps_list **list_a, t_ps_list **list_b);
 int more_than_fifteen_v2(t_ps_list **list_a, t_ps_list **list_b, int argc, int median);
+int more_than_fifteen_v3(t_ps_list **list_a, t_ps_list **list_b, int argc);
 //a_to_b
 void a_to_b(t_ps_list **list_a, t_ps_list **list_b);
 //a_to_b_v2
 void a_to_b_v2(t_ps_list **list_a, t_ps_list **list_b, int grand, int median);
+void a_to_b_bis(t_ps_list **list_a, t_ps_list **list_b, int quarter);
 // tab
 void sort_tab(int *tab, int length);
+int midd_value(t_ps_list *list);
+int prem_quarter(t_ps_list *list);
+int third_quarter(t_ps_list *list);
 //index_grand_petit
 int index_rev_petit(t_ps_list *list, int median);
 int index_rev_grand(t_ps_list *list, int median);
@@ -87,5 +91,23 @@ int index_rot_grand(t_ps_list *list, int median);
 //grand_petit_top
 void grand_to_top(t_ps_list **list, int middle);
 void petit_to_top(t_ps_list **list, int middle);
+//sup_borne_to_top
+void sup_borne_to_top(t_ps_list **list, int borne);
+void inf_borne_to_top(t_ps_list **list, int borne);
+//index borne
+int index_rev_inferieur(t_ps_list *list, int borne);
+int index_rot_inferieur(t_ps_list *list, int borne);
+int index_rev_superieur(t_ps_list *list, int borne);
+int index_rot_superieur(t_ps_list *list, int borne);
+//decile
+int decile_1(t_ps_list *list);
+int decile_2(t_ps_list *list);
+int decile_3(t_ps_list *list);
+int decile_4(t_ps_list *list);
+int decile_5(t_ps_list *list);
+int decile_6(t_ps_list *list);
+int decile_7(t_ps_list *list);
+int decile_8(t_ps_list *list);
+int decile_9(t_ps_list *list);
 
 #endif

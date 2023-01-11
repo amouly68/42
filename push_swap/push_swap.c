@@ -33,7 +33,7 @@ int main(int argc, char **argv)
         four_to_fifteen(&pile_a, &pile_b, argc);  
     if (argc > 16)
     {
-        more_than_fifteen_v2(&pile_a, &pile_b, argc, midd_value(pile_a)); 
+        more_than_fifteen_v3(&pile_a, &pile_b, argc); 
        
         
     }

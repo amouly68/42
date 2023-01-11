@@ -22,7 +22,12 @@ SOURCES = push_swap.c \
 		a_to_b_v2.c \
 		tab.c \
 		index_grand_petit.c \
-		grand_petit_top.c
+		grand_petit_top.c \
+		index_borne.c \
+		sup_borne_top.c \
+		decile_1.c \
+		decile_2.c
+
 		
 
 OBJS = ${SOURCES:.c=.o}
