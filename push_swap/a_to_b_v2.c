@@ -60,8 +60,10 @@ void grand_to_top(t_ps_list *list, int middle, int nbr)
 {
     int index_rotate;
     int index_reverse;
+    t_ps_list *head;
     int i;
 
+    head = list;
     index_rotate = 0;
     index_reverse = 0;
     i = 0;
@@ -72,28 +74,34 @@ void grand_to_top(t_ps_list *list, int middle, int nbr)
         index_rotate++;
         list = list -> next;
     }
-    while(list)
+    while(head)
     {
-        if (list->nbr > middle)
+        if (head->nbr > middle)
             index_reverse = i;
         i++;
-        list = list -> next;
+        head = head -> next;
     }
+    ft_printf("nbr : %d\n", nbr);
+    ft_printf("index rotate : %d\n", index_rotate);
+    ft_printf("index reverse : %d\n", index_reverse);
     if (index_rotate < (nbr - index_reverse))
-    {
+        ft_printf("par le haut en %d coups\n", index_rotate);
+    /*{
         while(index_rotate > 0)
         {
             ra(&list);
             index_rotate--;
         }
-    } else 
-    {
+    }*/
+     else 
+        ft_printf("par le bas en %d coups\n", nbr - index_reverse);
+    /*{
         while(index_reverse < nbr)
         {
             rra(&list);
             index_reverse++;
         }
-    }
+    }*/
 }
 
 void petit_to_top(t_ps_list *list, int middle, int nbr)

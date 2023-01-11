@@ -19,7 +19,8 @@ SOURCES = push_swap.c \
 		max_min_to_top.c \
 		more_than_fifteen.c \
 		a_to_b.c \
-		a_to_b_v2.c
+		a_to_b_v2.c \
+		tab.c
 		
 
 OBJS = ${SOURCES:.c=.o}

@@ -76,18 +76,26 @@ int index_min(t_ps_list *list)
     return (index);
 }
 
-/*int midd_value(t_ps_list *list)
+int midd_value(t_ps_list *list)
 {
     int nbr;
-    int mid;
     int i;
+    int *tab;
+    int median;
 
-    nbr = count_pile(list);
     i = 0;
-    while (i < nbr / 2)
+    nbr = count_pile(list);
+    tab = malloc(sizeof(int) * nbr);
+    if (tab == NULL)
+        return(-1);
+    while(list)
     {
-        
+        tab[i] = list->nbr;
+        list = list->next;
+        i++;
     }
-
-
-}*/
+    sort_tab(tab, nbr);
+    median = tab[nbr / 2];
+    free(tab);
+    return (median);
+}

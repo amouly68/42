@@ -63,6 +63,7 @@ t_ps_list *find_max(t_ps_list *list);
 int index_max(t_ps_list *list);
 t_ps_list *find_min(t_ps_list *list);
 int index_min(t_ps_list *list);
+int midd_value(t_ps_list *list);
 //max_min_to_top
 int count_pile(t_ps_list    *list);
 void max_to_top_a(t_ps_list **list);
@@ -77,5 +78,7 @@ void a_to_b(t_ps_list **list_a, t_ps_list **list_b);
 void a_to_b_v2(t_ps_list **list_a, t_ps_list **list_b);
 void grand_to_top(t_ps_list *list, int middle, int nbr);
 void petit_to_top(t_ps_list *list, int middle, int nbr);
+// tab
+void sort_tab(int *tab, int length);
 
 #endif

@@ -103,10 +103,10 @@ void max_to_top_b(t_ps_list **list)
 
 void max_to_top_silent(t_ps_list **list)
 {
-    int nbr;
+    //int nbr;
     int ind_max;
 
-    nbr = count_pile(*list);
+   // nbr = count_pile(*list);
     ind_max = (index_max(*list)); 
     while (ind_max > 0)
     {

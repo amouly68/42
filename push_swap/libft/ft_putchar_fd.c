@@ -14,9 +14,9 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	int	a;
+	//int	a;
 
-	a = 0;
+	//a = 0;
 	if (fd < 0 || fd > 255)
 		return ;
 	write(fd, &c, 1);
