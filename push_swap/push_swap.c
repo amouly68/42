@@ -33,10 +33,12 @@ int main(int argc, char **argv)
         four_to_fifteen(&pile_a, &pile_b, argc);  
     if (argc > 16)
     {
-        //more_than_fifteen(&pile_a, &pile_b); 
-        ft_printf("valeur mediane : %d\n", midd_value(pile_a));
-        grand_to_top(pile_a, midd_value(pile_a), count_pile(pile_a));
+        more_than_fifteen_v2(&pile_a, &pile_b, argc, midd_value(pile_a)); 
+       
+        
     }
+
+    
     //print_both_list(pile_a, pile_b);
     return (0);
 }

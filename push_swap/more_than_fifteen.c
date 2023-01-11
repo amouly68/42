@@ -15,9 +15,37 @@
 
 int more_than_fifteen(t_ps_list **list_a, t_ps_list **list_b)
 {
-    //a_to_b_v2(list_a, list_b); 
-   while(*list_a)
+    
+    while (*list_a)
         a_to_b(list_a, list_b);
+    while (*list_b)
+    { 
+        max_to_top_b(list_b);
+        pa(list_a, list_b);
+    }
+    return (0);
+}
+
+int more_than_fifteen_v2(t_ps_list **list_a, t_ps_list **list_b, int argc, int median)
+{
+    int i;
+
+    i = 0;
+    while (i < ((argc - 1) / 4))
+    {
+        a_to_b_v2(list_a, list_b, 1, median);
+        i++;
+    }
+    while (i < (((argc - 1) / 4) * 3))
+    {
+        a_to_b_v2(list_a, list_b, 0, median);
+        i++;
+    }
+     while (i < (argc - 1))
+    {
+        a_to_b_v2(list_a, list_b, 1, median);
+        i++;
+    }
     while(*list_b)
     { 
         max_to_top_b(list_b);
@@ -25,4 +53,5 @@ int more_than_fifteen(t_ps_list **list_a, t_ps_list **list_b)
     }
     return (0);
 }
+
 
