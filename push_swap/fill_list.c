@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   fill_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:46:18 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/13 12:11:43 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/13 17:24:47 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "libft/libft.h"
+#include "push_swap.h"
 
 int	ft_addnode_back(t_ps_list **list, t_ps_list *new)
 {
@@ -38,7 +38,7 @@ int	fill_list(t_ps_list **list, int nbr)
 {
 	t_ps_list	*new;
 
-	new = malloc(sizeof (t_ps_list));
+	new = malloc(sizeof(t_ps_list));
 	if (!new)
 		return (0);
 	new->nbr = nbr;
@@ -48,31 +48,58 @@ int	fill_list(t_ps_list **list, int nbr)
 	return (1);
 }
 
-int	fill_list_verif(t_ps_list **list, int argc, char **argv)
+void	free_split(char **tab)
 {
 	int	i;
 
-    i = 1;
-    if (argc < 2)
-    {
-            ft_putstr_fd("Error\n", 2);
-            return(0);
-    }
-    while( i < argc)
-    {
-        if (!(check_error(argc, argv)))
-        {
-            ft_putstr_fd("Error\n", 2);
-            return(0);
-        }
-        if (!(fill_list(list, ft_atoi(argv[i]))))
-            return (0);
-        i++;
-    }
-    if (!(check_list(*list)))
-    {
-            ft_putstr_fd("Error\n", 2);
-            return(0);
-    }
-    return (1);
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
+int fill_split(t_ps_list **list, int argc, char **argv)
+{
+	int		i;
+	int		j;
+	char	**split;
+
+	i = 1;
+	while (i < argc)
+	{
+		split = ft_split(argv[i], ' ');
+		j = 0;
+		while (split[j])
+		{
+			if (!(check_error(split[j])))
+				return (0);
+			if (!(fill_list(list, ft_atoi(split[j]))))
+				return (0);
+			j++;
+		}
+		free_split(split);
+		i++;
+	}
+	return (1);
+}
+
+int	fill_list_verif(t_ps_list **list, int argc, char **argv)
+{
+	
+	if (argc < 2)
+		return (0);
+	if (!(fill_split(list, argc, argv)))
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (0);
+	}
+	if (!(check_list(*list)))
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (0);
+	}
+	return (1);
 }
