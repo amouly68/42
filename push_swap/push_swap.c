@@ -24,22 +24,19 @@ int main(int argc, char **argv)
     pile_b = NULL;
         
     if (!(fill_list_verif(&pile_a, argc, argv)))
-      //clean la list en verifiant si pas nulle
-      return(-1);
-
+    {
+        //clean la pile en verifiant pas nulle
+        clean_pile(&pile_a);
+        return(-1);
+    }
     if (argc < 5)
         less_than_four(&pile_a, argc - 1);
     if(argc > 4 && argc < 17 )
         four_to_fifteen(&pile_a, &pile_b, argc);  
     if (argc > 16)
-    {
-        more_than_fifteen_v2(&pile_a, &pile_b, argc, 10); 
-       
-        
-    }
-
-    
-    //print_both_list(pile_a, pile_b);
+        more_than_fifteen(&pile_a, &pile_b, argc);
+    clean_pile(&pile_a);
+    //clean_pile(&pile_b);
     return (0);
 }
 

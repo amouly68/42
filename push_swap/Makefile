@@ -18,15 +18,11 @@ SOURCES = push_swap.c \
 		find_max_min.c \
 		max_min_to_top.c \
 		more_than_fifteen.c \
-		a_to_b.c \
-		a_to_b_v2.c \
 		tab.c \
-		index_grand_petit.c \
-		grand_petit_top.c \
 		index_borne.c \
-		sup_borne_top.c \
-		decile_1.c \
-		decile_2.c
+		inf_borne_top.c \
+		clean_pile.c
+		
 
 		
 

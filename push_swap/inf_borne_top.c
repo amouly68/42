@@ -50,8 +50,8 @@ void inf_borne_to_top(t_ps_list **list, int borne)
     int nbr;
 
     nbr = count_pile(*list);
-    index_rotate = index_rot_petit(*list, borne);
-    index_reverse = index_rev_petit(*list, borne);
+    index_rotate = index_rot_inferieur(*list, borne);
+    index_reverse = index_rev_inferieur(*list, borne);
     if (index_rotate < (nbr - index_reverse))
     {
         while(index_rotate > 0)
