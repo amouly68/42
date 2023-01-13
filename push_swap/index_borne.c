@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:46:18 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/13 12:43:45 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/13 18:02:06 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	index_rot_inferieur(t_ps_list *list, int borne)
 
 int	index_rev_inferieur(t_ps_list *list, int borne)
 {
-	int index_rev;
-	int i;
+	int	index_rev;
+	int	i;
 
 	index_rev = 0;
 	i = 0;

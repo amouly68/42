@@ -6,12 +6,24 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:46:18 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/13 17:20:19 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/13 18:47:01 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
+
+void	sort_by_numbers(int len, t_ps_list **list_a, t_ps_list **list_b)
+{
+	if (len < 4)
+		less_than_four(list_a, len);
+	if (len >= 4 && len < 16)
+		four_to_fifteen(list_a, list_b, len + 1);
+	if (len >= 15 && len < 101)
+		fifteen_to_hundred(list_a, list_b, len + 1);
+	if (len > 100)
+		more_than_fifteen(list_a, list_b, len + 1);
+}
 
 int	main(int argc, char **argv)
 {
@@ -32,12 +44,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	len = count_pile(pile_a);
-	if (len < 4)
-		less_than_four(&pile_a, len);
-	if (len >= 4 && len < 16)
-		four_to_fifteen(&pile_a, &pile_b, len + 1);
-	if (len > 15)
-		more_than_fifteen(&pile_a, &pile_b, len + 1);
+	sort_by_numbers(len, &pile_a, &pile_b);
 	clean_pile(&pile_a);
 	return (0);
 }

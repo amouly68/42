@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:46:18 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/13 17:24:47 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/13 17:59:13 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	free_split(char **tab)
 	free(tab);
 }
 
-int fill_split(t_ps_list **list, int argc, char **argv)
+int	fill_split(t_ps_list **list, int argc, char **argv)
 {
 	int		i;
 	int		j;
@@ -88,7 +88,6 @@ int fill_split(t_ps_list **list, int argc, char **argv)
 
 int	fill_list_verif(t_ps_list **list, int argc, char **argv)
 {
-	
 	if (argc < 2)
 		return (0);
 	if (!(fill_split(list, argc, argv)))

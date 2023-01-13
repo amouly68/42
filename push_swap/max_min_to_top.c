@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:46:18 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/13 12:43:56 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/13 18:02:20 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,19 +98,5 @@ void	max_to_top_b(t_ps_list **list)
 			rrb(list);
 			ind_max++;
 		}
-	}
-}
-
-void	max_to_top_silent(t_ps_list **list)
-{
-	int	ind_max;
-
-	//int nbr;
-	// nbr = count_pile(*list);
-	ind_max = (index_max(*list));
-	while (ind_max > 0)
-	{
-		rotate(list);
-		ind_max--;
 	}
 }

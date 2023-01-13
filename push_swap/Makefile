@@ -14,7 +14,6 @@ SOURCES = push_swap.c \
 		swap.c \
 		check_error.c \
 		up_to_fifteen.c \
-		print_list.c \
 		find_max_min.c \
 		max_min_to_top.c \
 		more_than_fifteen.c \

@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 09:46:18 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/13 12:45:08 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/13 18:02:28 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	sup_borne_to_top(t_ps_list **list, int borne)
 
 void	inf_borne_to_top(t_ps_list **list, int borne)
 {
-	int index_rotate;
-	int index_reverse;
-	int nbr;
+	int	index_rotate;
+	int	index_reverse;
+	int	nbr;
 
 	nbr = count_pile(*list);
 	index_rotate = index_rot_inferieur(*list, borne);

@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/13 16:55:42 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/13 18:39:18 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,13 @@ void				max_to_top_silent(t_ps_list **list);
 //more_than_fifteen
 int					more_than_fifteen(t_ps_list **list_a, t_ps_list **list_b,
 						int argc);
+int					fifteen_to_hundred(t_ps_list **list_a, t_ps_list **list_b,
+						int argc);
 // tab
 void				sort_tab(int *tab, int length);
 int					decile_1(t_ps_list *list);
-int pile_triee(t_ps_list *list);
+int					decile_2(t_ps_list *list);
+int					pile_triee(t_ps_list *list);
 //inf_borne_to_top
 void				sup_borne_to_top(t_ps_list **list, int borne);
 void				inf_borne_to_top(t_ps_list **list, int borne);
@@ -87,9 +90,8 @@ int					index_rev_superieur(t_ps_list *list, int borne);
 int					index_rot_superieur(t_ps_list *list, int borne);
 //clean_pile
 void				clean_pile(t_ps_list **list_a);
-int argv_to_tab(char ***tab, int argc, char **argv);
-int 				nbr_element_tab(char **tab);
+int					argv_to_tab(char ***tab, int argc, char **argv);
+int					nbr_element_tab(char **tab);
 void				print_tab(char **tab);
-
 
 #endif
