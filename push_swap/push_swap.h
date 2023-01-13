@@ -71,12 +71,12 @@ void max_to_top_b(t_ps_list **list);
 void max_to_top_silent(t_ps_list **list);
 //more_than_fifteen
 int more_than_fifteen(t_ps_list **list_a, t_ps_list **list_b);
-int more_than_fifteen_v2(t_ps_list **list_a, t_ps_list **list_b, int argc, int median);
+int more_than_fifteen_v2(t_ps_list **list_a, t_ps_list **list_b, int argc, int paquet);
 int more_than_fifteen_v3(t_ps_list **list_a, t_ps_list **list_b, int argc);
 //a_to_b
 void a_to_b(t_ps_list **list_a, t_ps_list **list_b);
 //a_to_b_v2
-void a_to_b_v2(t_ps_list **list_a, t_ps_list **list_b, int grand, int median);
+void a_to_b_v2(t_ps_list **list_a, t_ps_list **list_b, int grand);
 void a_to_b_bis(t_ps_list **list_a, t_ps_list **list_b, int quarter);
 // tab
 void sort_tab(int *tab, int length);
