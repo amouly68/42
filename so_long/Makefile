@@ -8,7 +8,8 @@ HEADERS = -I ./libft/libft.h -I so_long.h
 
 
 SOURCES = parse_map.c \
-			print.c
+			print.c \
+			free.c
 		
 
 		

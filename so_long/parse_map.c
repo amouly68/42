@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 12:56:03 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/18 17:34:19 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/18 18:11:36 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,10 @@ int fill_list_map(t_map **list, int fd)
     
     line =  get_next_line(fd);
     len = len_line(line);
-    line[len] = '\0';
     while(line)
 	{
+        if (len != len_line(line))
+            return (0);
         new = malloc(sizeof(t_map));
 	    if (!new)
 		    return (0);
@@ -76,7 +77,6 @@ int fill_list_map(t_map **list, int fd)
         line =  get_next_line(fd);
         if (!(ft_addnode_back(list, new)))
 		    return (0);
-        
     }
     return(len);
 }
@@ -86,10 +86,10 @@ char *list_into_tab(t_map *map, int largeur)
     char    *tab;
     
     tab = malloc(sizeof(char) * (largeur + 1));
-    // free si faux
+    if (tab == NULL)
+        return (NULL);
     tab = map->line;
     tab[largeur] = '\0';
-    //ft_printf("%s\n", (*tab));
     return (tab);
 }
 
@@ -104,10 +104,11 @@ char    **fill_tab_map(int fd)
 
     i = 0;
     map = NULL;
+    
     largeur = fill_list_map(&map, fd);
     if (largeur == 0)
     {
-        ft_printf("error\n");
+        free_list(&map);
         return(NULL);
     }
     hauteur = len_list(map);
@@ -116,14 +117,14 @@ char    **fill_tab_map(int fd)
         return (NULL) ;
     while(i < hauteur)
     {
-        tab[i]  = 
         tab[i] = list_into_tab(map, largeur);
-        //ft_printf("%s\n", tab[i]);
+        if (tab[i] == NULL)
+            return (NULL);
         map = map->next;
         i++; 
-       
     }
-    tab[i] = 0;  
+    tab[i] = 0; 
+    free_list(&map); 
     return (tab);  
 }
 
@@ -135,8 +136,10 @@ int main ()
     
     fd = open("sources/test.ber", O_RDONLY);
     tab = fill_tab_map(fd);
-    
+    if (tab == NULL)
+        free_tab(tab);
     print_tab(tab);
+    free_tab(tab);
    
     
 }

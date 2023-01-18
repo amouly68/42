@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/18 16:06:30 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/18 18:05:30 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ typedef struct s_so_long
 // print
 void print_list(t_map *list);
 void print_tab(char **tab) ;
+
+// free 
+void free_list(t_map **list);
+void free_tab(char **tab);
 
 // parse map.c
 
