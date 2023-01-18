@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/14 14:54:49 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/18 16:06:30 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,29 @@
 
 typedef struct l_list
 {
-	int				nbr;
+	char			*line;
 	struct l_list	*next;
-}					t_ps_list;
+}					t_map;
 
-//so_long.c
+
+typedef struct s_so_long
+{
+	t_map				**map;
+	int					map_height;
+	int					map_width;
+	char				**tab;
+		
+}					t_so_long;
+
+
+// print
+void print_list(t_map *list);
+void print_tab(char **tab) ;
+
+// parse map.c
+
+
+
 
 
 #endif
