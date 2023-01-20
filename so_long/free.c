@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 17:50:48 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/18 18:03:34 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/20 14:30:03 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ void free_list(t_map **list)
 	while (*list)
 	{
 		next = (*list)->next;
+		free((*list)->line);
 		free(*list);
-		*list = next;
+		(*list) = next;
 	}
 }
 
@@ -35,7 +36,9 @@ void free_tab(char **tab)
     while (tab[i])
     {
         free (tab[i]);
+		tab[i] = NULL;
         i++;
     }
     free(tab);
+	tab = NULL;
 }

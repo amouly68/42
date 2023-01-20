@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/18 18:05:30 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/20 15:28:22 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,14 @@ typedef struct l_list
 
 typedef struct s_so_long
 {
-	t_map				**map;
+	t_map				*map;
+	char				**tab;
 	int					map_height;
 	int					map_width;
-	char				**tab;
+	int					collectible;
+	int					exit;
+	int					position;
+	
 		
 }					t_so_long;
 
@@ -48,6 +52,17 @@ void free_list(t_map **list);
 void free_tab(char **tab);
 
 // parse map.c
+void parse_map(t_so_long *sl, int fd);
+
+//checkline
+int len_line(char *line);
+int all_one(char *line);
+int char_line_ok(char *line);
+
+// checklist
+int map_rectangle(t_so_long *sl);
+int char_ok(t_so_long *sl);
+void    check_list(t_so_long *sl);
 
 
 
