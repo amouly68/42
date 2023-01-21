@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:43:57 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/21 12:59:58 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/21 13:42:07 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,32 @@ int line_wall(char *line)
     return (1);
 }
 
+void find_E_P(t_so_long *sl)
+{
+    int i;
+    int j;
 
+    i = 1;
+    while(sl->tab[i])
+    {
+        j = 1;
+        while(sl->tab[i][j])
+        {
+            if (sl->tab[i][j] == 'E')
+                {
+                    sl->x_exit = j;
+                    sl->y_exit = i;
+                }
+             if (sl->tab[i][j] == 'P')
+                {
+                    sl->x_position = j;
+                    sl->y_position = i;
+                }
+            j++;
+        }
+        i++;
+    }
+}
 
 int check_tab(t_so_long *sl)
 {
@@ -64,5 +89,6 @@ int check_tab(t_so_long *sl)
         }  
         i++;
     }
+    find_E_P(sl);
     return (1);
 }
