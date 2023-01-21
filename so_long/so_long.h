@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/20 15:28:22 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/21 13:01:04 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,27 @@ void print_tab(char **tab) ;
 
 // free 
 void free_list(t_map **list);
-void free_tab(char **tab);
+void free_tab(char ***tab);
 
 // parse map.c
 void parse_map(t_so_long *sl, int fd);
+void    init_sl(t_so_long *sl);
 
 //checkline
 int len_line(char *line);
 int all_one(char *line);
-int char_line_ok(char *line);
+int char_line_ok(char *line, t_so_long *sl);
 
 // checklist
 int map_rectangle(t_so_long *sl);
 int char_ok(t_so_long *sl);
-void    check_list(t_so_long *sl);
+int	check_list(t_so_long *sl);
+
+// argerror
+int check_error(int argc, char **argv);
+
+// checktab
+int check_tab(t_so_long *sl);
 
 
 

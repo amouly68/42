@@ -52,7 +52,7 @@ SRCBONUS = ft_lstnew_bonus.c \
 		   ft_lstclear_bonus.c \
 		   ft_lstmap_bonus.c \
 		   ft_lstiter_bonus.c 	   
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3
 HEADERS = libft.h
 NAME = libft.a
 OBJS = ${SOURCES:.c=.o}

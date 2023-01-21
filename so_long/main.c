@@ -1,17 +1,18 @@
 
 #include "so_long.h"
 
-int main ()
+int main (int argc, char **argv)
 {
     int fd;
-    t_so_long   *sl;
+    t_so_long   sl;
    
-    sl = malloc(sizeof(t_so_long *));
-    if (sl == NULL)
+    
+    if(!(check_error(argc, argv)))
         return (-1);
-    fd = open("sources/test.ber", O_RDONLY);
-    parse_map(sl, fd);
-    free (sl);
+    init_sl(&sl);
+    fd = open(argv[1], O_RDONLY);
+    parse_map(&sl, fd);
+    
 
     
 }

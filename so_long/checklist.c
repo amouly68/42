@@ -9,7 +9,8 @@ int map_rectangle(t_so_long *sl)
     {
         if (len_line(sl->map->line) != sl->map_width)
         {
-            ft_printf("Error\nmap non rectangle\n");
+            ft_printf("Error\nMap non rectangle\n");
+            sl->map = head;
             return (0);
         }
         sl->map = sl->map->next;
@@ -25,23 +26,30 @@ int char_ok(t_so_long *sl)
     head = sl->map;
     while(sl->map)
     {
-        if (!(char_line_ok(sl->map->line)))
+        if (!(char_line_ok(sl->map->line,sl)))
         {
-            ft_printf("Error\nCarcatere non reconnu\n");
+            ft_printf("Error\nMap non valide\n");
+            sl->map = head;
             return (0);
         }
         sl->map = sl->map->next;
     }
+    if (sl->collectible == 0 || sl->exit != 1 || sl->position != 1)
+       {
+            ft_printf("Error\nMap non valide\n");
+            sl->map = head;
+            return (0);
+        }
     sl->map = head;
     return(1);
 }
 
 
-void    check_list(t_so_long *sl)
+int check_list(t_so_long *sl)
 {
     if (!(map_rectangle(sl)))
-        return ;
+        return (0);
     if (!(char_ok(sl)))
-        return ;
-    print_list(sl->map);
+         return (0);
+    return (1);
 }

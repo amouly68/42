@@ -12,6 +12,8 @@ SOURCES = parse_map.c \
 			free.c \
 			checkline.c \
 			checklist.c \
+			argerror.c \
+			checktab.c \
 			main.c
 
 		
@@ -30,6 +32,9 @@ ${LIBFT} :
 
 ${NAME} : ${OBJS} 
 	gcc ${FLAGS} ${OBJS} ${LIBFT} ${HEADERS} -o ${NAME} 
+
+debug : ${OBJS} 
+	gcc ${FLAGS} ${OBJS} ${LIBFT} ${HEADERS} -fsanitize=address -o ${NAME} 
 
 clean :
 	rm -f ${OBJS} 
