@@ -1,26 +1,5 @@
 #include "so_long.h"
 
-/*void first_line(t_so_long *sl, int fd)
-{
-    char    *line;
-    
-    
-    line = get_next_line(fd);
-    sl->map_width = len_line(line);
-    line[sl->map_width] = '\0';
-    if (!(all_one(line)))
-        return ;
-    sl->map_height = 1;
-    sl->tab = malloc(sizeof (char *) * (sl->map_height + 1));
-    if (sl->tab == NULL)
-        return ;
-    sl->tab[0] = malloc (sizeof (char) * (sl->map_width + 1)); 
-    if (sl->tab[0] == NULL)
-        return ;
-    sl->tab[0] = line;
-    sl->tab[1] = 0;  
-   
-}*/
 
 
 void    init_sl(t_so_long *sl)

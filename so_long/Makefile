@@ -1,10 +1,10 @@
 NAME = so_long 
 CC = gcc
 FLAGS = -Wall -Werror -Wextra -g3
-SOURCES = ./sources
-LIBFT_DIR = ./libft
+LIB_MLX =  /Users/$$USER/Documents/42cursus/42/mlx/libmlx42.a -lglfw -L /Users/$$USER/.brew/opt/glfw/lib
+
 LIBFT = ./libft/libft.a
-HEADERS = -I ./libft/libft.h -I so_long.h
+HEADERS = -I headers -I libft -I mlx/include
 
 
 SOURCES = parse_map.c \
@@ -20,28 +20,31 @@ SOURCES = parse_map.c \
 
 		
 
-OBJS = ${SOURCES:.c=.o}
+OBJS = ${addprefix sources/,${SOURCES:.c=.o}}
 
-all :  ${LIBFT} ${NAME}
-
-${LIBFT} : 
-		make -C ${LIBFT_DIR}
+all :  ${NAME}
 
 .c.o: 
-	gcc ${FLAGS} -c $< -o ${<:.c=.o}  
+	gcc ${FLAGS} ${HEADERS} -c $< -o ${<:.c=.o}
 
 ${NAME} : ${OBJS} 
-	gcc ${FLAGS} ${OBJS} ${LIBFT} ${HEADERS} -o ${NAME} 
+	make -C libft
+	make -C /Users/$$USER/Documents/42cursus/42/mlx
+	gcc ${FLAGS} ${OBJS} ${LIBFT} ${LIB_MLX} ${HEADERS} -o ${NAME} 
 
 debug : ${OBJS} 
-	gcc ${FLAGS} ${OBJS} ${LIBFT} ${HEADERS} -fsanitize=address -o ${NAME} 
+	make -C libft
+	make -C /Users/$$USER/Documents/42cursus/42/mlx
+	gcc ${FLAGS} ${OBJS} ${LIBFT} ${LIB_MLX} ${HEADERS} -fsanitize=address -o ${NAME} 
 
 clean :
 	rm -f ${OBJS} 
-	make -C ${LIBFT_DIR} clean
+	make clean -C libft
+	make clean -C /Users/$$USER/Documents/42cursus/42/mlx
 
 fclean : clean
 	rm -f ${NAME} 
-	make -C ${LIBFT_DIR} fclean
+	make fclean -C libft
+	make fclean -C /Users/$$USER/Documents/42cursus/42/mlx
 
 re : fclean all

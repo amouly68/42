@@ -6,14 +6,15 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/21 13:27:53 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/22 13:04:06 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "libft/libft.h"
+# include "libft.h"
+# include "MLX42.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
