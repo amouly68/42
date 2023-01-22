@@ -14,6 +14,7 @@ SOURCES = parse_map.c \
 			checklist.c \
 			argerror.c \
 			checktab.c \
+			add_graphic.c \
 			main.c
 
 		

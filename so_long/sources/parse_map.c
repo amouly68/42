@@ -98,17 +98,8 @@ void parse_map(t_so_long *sl, int fd)
         free_list(&(sl->map));
         return;
     }
-    
-    print_tab(sl->tab);
-    ft_printf("\n\nMap de %d x %d\n", sl->map_width, sl->map_height);
-    ft_printf("Il y a %d collectibles\n", sl->collectible);
-    ft_printf("La postion du joueur est %d,%d\n", sl->x_position, sl->y_position);
-    ft_printf("La postion de la sortie est %d,%d\n", sl->x_exit, sl->y_exit);
-    
-    
-    
-    free(sl->tab);
+    //print_tab(sl->tab);
+    /*free(sl->tab);
     sl->tab = NULL;
-    free_list(&(sl->map));
-
+    free_list(&(sl->map));*/
 }

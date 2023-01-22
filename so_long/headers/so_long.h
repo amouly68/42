@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/22 13:04:06 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/22 16:03:23 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <memory.h>
 
 
 typedef struct l_list
@@ -43,6 +44,9 @@ typedef struct s_so_long
 	int					position;
 	int					x_position;
 	int					y_position;
+
+	void				*mlx;
+	void				*img;
 	
 		
 }					t_so_long;
@@ -77,6 +81,8 @@ int check_error(int argc, char **argv);
 int check_tab(t_so_long *sl);
 void find_E_P(t_so_long *sl);
 
+//add_graphic
+int add_graphic(t_so_long *sl);
 
 
 
