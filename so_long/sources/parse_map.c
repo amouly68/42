@@ -10,11 +10,13 @@ void    init_sl(t_so_long *sl)
     sl->map_width = 0;
     sl->collectible = 0;
     sl->exit = 0;
-    sl->x_exit = 0;
-	sl->y_exit = 0;
     sl->position = 0;
-    sl->x_position = 0;
-    sl->y_position = 0;
+    sl->x_player = 0;
+    sl->y_player = 0;
+    sl->texture = NULL;
+    sl->mlx = NULL;
+    sl->img = NULL;
+    sl->img_player = NULL;
     
 }
 

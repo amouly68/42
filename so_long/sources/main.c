@@ -12,9 +12,8 @@ int main (int argc, char **argv)
     init_sl(&sl);
     fd = open(argv[1], O_RDONLY);
     parse_map(&sl, fd);
-   if (!(add_graphic(&sl)))
+    if (!(add_graphic(&sl)))
         return (-1);
-    //print_tab(sl.tab);
     free(sl.tab);
     sl.tab = NULL;
     free_list(&(sl.map));

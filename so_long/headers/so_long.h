@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/22 16:03:23 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/23 10:27:50 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,16 @@ typedef struct s_so_long
 	int					map_width;
 	int					collectible;
 	int					exit;
-	int					x_exit;
-	int					y_exit;
 	int					position;
-	int					x_position;
-	int					y_position;
+	
+	int					x_player;
+	int					y_player;
 
-	void				*mlx;
-	void				*img;
+	mlx_t				*mlx;
+	mlx_texture_t		*texture;
+	mlx_image_t			*img;
+	mlx_image_t			*img_player;
+	
 	
 		
 }					t_so_long;
