@@ -15,6 +15,7 @@ SOURCES = parse_map.c \
 			argerror.c \
 			checktab.c \
 			add_graphic.c \
+			flood_fill.c \
 			main.c
 
 		

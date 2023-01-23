@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/23 10:27:50 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/23 13:10:19 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ void find_E_P(t_so_long *sl);
 
 //add_graphic
 int add_graphic(t_so_long *sl);
+
+//flod_fill
+void flood_fill(t_so_long *sl);
 
 
 
