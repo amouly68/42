@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:43:57 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/23 13:39:28 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/24 13:57:29 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,44 @@ int line_wall(char *line)
     return (1);
 }
 
-void find_P(t_so_long *sl)
+int	ft_addnode_c_back(t_point **list, t_point *new)
+{
+	t_point	*temp;
+
+	if (list == NULL && new == NULL)
+		return (0);
+	if ((*list) == NULL)
+	{
+		(*list) = new;
+		new->next = NULL;
+	}
+	else
+	{
+		temp = (*list);
+		while (temp->next != NULL)
+			temp = temp->next;
+		temp->next = new;
+	}
+	return (1);
+}
+
+
+
+void fill_list_collectible(t_so_long *sl, int i, int j)
+{
+	t_point	*new;
+    
+    new = malloc(sizeof(t_point));
+	if (!new)
+		return ;
+	new->x_point = j;
+    new->y_point = i;
+    new->next = NULL;
+    if(!(ft_addnode_c_back(&sl->collect_list, new)))
+		    return ;         
+}
+
+void find_coordonates(t_so_long *sl)
 {
     int i;
     int j;
@@ -51,9 +88,16 @@ void find_P(t_so_long *sl)
         {
              if (sl->tab[i][j] == 'P')
                 {
-                    sl->x_player = i;
-                    sl->y_player = j;
+                    sl->x_player = j;
+                    sl->y_player = i;
                 }
+            else if (sl->tab[i][j] == 'E')
+                {
+                    sl->x_player = j;
+                    sl->y_player = i;
+                }
+            else if (sl->tab[i][j] == 'C')
+                    fill_list_collectible(sl, i, j);
             j++;
         }
         i++;
@@ -84,7 +128,8 @@ int check_tab(t_so_long *sl)
         }  
         i++;
     }
-    find_P(sl);
+    find_coordonates(sl);
+    
     flood_fill(sl);
     return (1);
 }

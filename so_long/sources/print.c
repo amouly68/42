@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:39:24 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/18 16:49:23 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/24 12:39:35 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@ void print_list(t_map *list)
         list = list->next;
     }
 }
+
+void print_l(t_point *list)
+{
+    int i;
+
+    i = 0;
+    while(list)
+    {
+        ft_printf("Collectible num %d -- x : %d  | y : %d \n",i, list->x_point, list->y_point);
+        i++;
+        list = list->next;
+    }
+}
+
 
 void print_tab(char **tab)
 {

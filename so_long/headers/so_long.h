@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/23 13:10:19 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/24 12:46:40 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,18 @@ typedef struct l_list
 	struct l_list	*next;
 }					t_map;
 
+typedef struct l_list_coll
+{
+	int 				x_point;
+	int					y_point;
+	struct l_list_coll	*next;
+}					t_point;
+
 
 typedef struct s_so_long
 {
 	t_map				*map;
+	t_point				*collect_list;
 	char				**tab;
 	int					map_height;
 	int					map_width;
@@ -43,6 +51,8 @@ typedef struct s_so_long
 	
 	int					x_player;
 	int					y_player;
+	int					x_exit;
+	int					y_exit;
 
 	mlx_t				*mlx;
 	mlx_texture_t		*texture;
@@ -57,6 +67,7 @@ typedef struct s_so_long
 // print
 void print_list(t_map *list);
 void print_tab(char **tab) ;
+void print_l(t_point *list);
 
 // free 
 void free_list(t_map **list);
@@ -65,6 +76,7 @@ void free_tab(char ***tab);
 // parse map.c
 void parse_map(t_so_long *sl, int fd);
 void    init_sl(t_so_long *sl);
+int	ft_addnode_back(t_map **list, t_map *new);
 
 //checkline
 int len_line(char *line);

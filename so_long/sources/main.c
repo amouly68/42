@@ -18,7 +18,7 @@ int main (int argc, char **argv)
     free(sl.tab);
     sl.tab = NULL;
     free_list(&(sl.map));
-    */
+    system("leaks so_long");*/
 }
 
 /*#include <stdlib.h>

@@ -5,6 +5,7 @@
 void    init_sl(t_so_long *sl)
 {
     sl->map = NULL;
+    sl->collect_list = NULL;
     sl->tab = NULL;
     sl->map_height = 0;
     sl->map_width = 0;
@@ -13,6 +14,8 @@ void    init_sl(t_so_long *sl)
     sl->position = 0;
     sl->x_player = 0;
     sl->y_player = 0;
+    sl->x_exit = 0;
+	sl->y_exit = 0;
     sl->texture = NULL;
     sl->mlx = NULL;
     sl->img = NULL;
@@ -91,7 +94,6 @@ void parse_map(t_so_long *sl, int fd)
         free_list(&(sl->map));
         return;
     }
-    
     list_to_tab(sl);
     if (!(check_tab(sl)))
     {

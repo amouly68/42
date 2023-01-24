@@ -34,6 +34,7 @@ int char_ok(t_so_long *sl)
         }
         sl->map = sl->map->next;
     }
+   
     if (sl->collectible == 0 || sl->exit != 1 || sl->position != 1)
        {
             ft_printf("Error\nMap non valide\n");
@@ -50,6 +51,6 @@ int check_list(t_so_long *sl)
     if (!(map_rectangle(sl)))
         return (0);
     if (!(char_ok(sl)))
-         return (0);
+        return (0);
     return (1);
 }

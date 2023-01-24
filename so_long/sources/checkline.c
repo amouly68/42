@@ -17,6 +17,7 @@ int char_line_ok(char *line, t_so_long *sl)
     i = 0;
     while(line[i] != '\n' && line[i] != '\0')
     {
+        //ft_printf("carac : %c\n", line[i]);
         if (line[i] == '0' || line[i] == '1'
             || line[i] == 'C' || line[i] == 'E'
             || line[i] == 'P' )
