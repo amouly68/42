@@ -62,8 +62,25 @@ int     load_texture(t_so_long *sl)
     return (1);
 }
 
+void    print_char(t_so_long *sl)
+{
+    char *ret;
+    char *itoa;
+
+    itoa = ft_itoa(sl->steps);
+    sl->steps++;
+    ret = ft_strjoin("Nombre de move : ", itoa);
+    ft_printf("nombre de move : %d\n", sl->steps);
+    mlx_delete_image(sl->mlx, sl->text);
+    sl->text = mlx_put_string(sl->mlx, ret, 0, 0);
+    free(ret);
+    free(itoa);
+}
+
+
 void move_player(t_so_long *sl, int cas)
 {
+    print_char(sl);    
     sl->tab[sl->y_player][sl->x_player] = '0';
     sl->texture = mlx_load_png("./images/black.png");
     texture_to_image(sl, sl->y_player, sl->x_player);
@@ -95,7 +112,7 @@ void	hook_key(mlx_key_data_t  keydata, void *param)
 
 	sl = param;
     mlx = sl->mlx;
-	ft_printf("%d\n", sl->collectible);
+	//ft_printf("%d\n", sl->collectible);
     if ((keydata.key == MLX_KEY_ESCAPE) && keydata.action == 1)
 		mlx_close_window(mlx);
 	if ((keydata.key == MLX_KEY_UP) && keydata.action == 1) 
@@ -142,6 +159,7 @@ int add_graphic(t_so_long *sl)
 		exit(EXIT_FAILURE);
     if (!(load_texture(sl)))
         return (0);
+    sl->text = mlx_put_string(sl->mlx, "nombre de move", 0, 0);
     mlx_key_hook(sl->mlx, &hook_key, sl);
 	mlx_loop(sl->mlx);
 	mlx_terminate(sl->mlx);

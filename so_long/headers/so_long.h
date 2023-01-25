@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/25 16:04:52 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/25 17:08:43 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <memory.h>
+
 
 
 typedef struct l_list
@@ -48,7 +49,7 @@ typedef struct s_so_long
 	int					collectible;
 	int					exit;
 	int					position;
-	
+	int					steps;
 	int					x_player;
 	int					y_player;
 	int					x_exit;
@@ -57,7 +58,7 @@ typedef struct s_so_long
 	mlx_t				*mlx;
 	mlx_texture_t		*texture;
 	mlx_image_t			*img;
-	mlx_image_t			*img_player;
+	mlx_image_t			*text;
 	
 	
 		

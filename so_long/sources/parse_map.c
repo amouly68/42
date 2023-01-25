@@ -12,6 +12,7 @@ void    init_sl(t_so_long *sl)
     sl->collectible = 0;
     sl->exit = 0;
     sl->position = 0;
+    sl->steps = 0;
     sl->x_player = 0;
     sl->y_player = 0;
     sl->x_exit = 0;
@@ -19,7 +20,7 @@ void    init_sl(t_so_long *sl)
     sl->texture = NULL;
     sl->mlx = NULL;
     sl->img = NULL;
-    sl->img_player = NULL;
+    sl->text = NULL;
     
 }
 
@@ -95,7 +96,7 @@ int parse_map(t_so_long *sl, int fd)
         return (0);
     }
     list_to_tab(sl);
-    print_tab(sl->tab);
+    //print_tab(sl->tab);
    if (!(check_tab(sl)))
     {
         free(sl->tab);

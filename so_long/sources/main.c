@@ -10,6 +10,7 @@ int main (int argc, char **argv)
     if(!(check_error(argc, argv)))
         return (-1);
     init_sl(&sl);
+    
     fd = open(argv[1], O_RDONLY);
     if (fd < 0)
     {
@@ -18,13 +19,14 @@ int main (int argc, char **argv)
     }    
     if (!(parse_map(&sl, fd)))
         return (-1);
+    ft_printf("%d\n", sl.steps);
     if (!(add_graphic(&sl)))
         return (-1);
     //ft_printf("YO");
     free(sl.tab);
     sl.tab = NULL;
     free_list(&(sl.map));
-    //system ("leaks so_long");
+    system ("leaks so_long");
     
 }
 
