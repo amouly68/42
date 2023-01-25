@@ -7,7 +7,7 @@ int map_rectangle(t_so_long *sl)
     head = sl->map;
     while(sl->map)
     {
-        if (len_line(sl->map->line) != sl->map_width)
+        if (len_line(sl->map->line) != sl->map_width && len_line(sl->map->line) !=0)
         {
             ft_printf("Error\nMap non rectangle\n");
             sl->map = head;

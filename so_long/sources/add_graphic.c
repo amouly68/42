@@ -67,8 +67,9 @@ void    print_char(t_so_long *sl)
     char *ret;
     char *itoa;
 
-    itoa = ft_itoa(sl->steps);
+    
     sl->steps++;
+    itoa = ft_itoa(sl->steps);
     ret = ft_strjoin("Nombre de move : ", itoa);
     ft_printf("nombre de move : %d\n", sl->steps);
     mlx_delete_image(sl->mlx, sl->text);
@@ -104,6 +105,42 @@ void move_player(t_so_long *sl, int cas)
     texture_to_image(sl, sl->y_player, sl->x_player);
 }
 
+/*
+void	hook_key(mlx_key_data_t  keydata, void *param)
+{
+	t_so_long                   *sl;
+    mlx_t		                *mlx;
+
+	sl = param;
+    mlx = sl->mlx;
+    if ((keydata.key == MLX_KEY_ESCAPE) && keydata.action == 1)
+		mlx_close_window(mlx);
+	if ((keydata.key == MLX_KEY_W) && keydata.action == 1) 
+        if (sl->tab[sl->y_player - 1][sl->x_player] == '1') ||
+         ((sl->tab[sl->y_player - 1][sl->x_player] == 'E') &&  sl->collectible != 0)
+            return ;
+        else 
+            move_player(sl, 1);
+	if ((keydata.key ==  MLX_KEY_S) && keydata.action == 1)
+        if (sl->tab[sl->y_player + 1][sl->x_player] == '1') ||
+            ((sl->tab[sl->y_player + 1][sl->x_player] == 'E') &&  sl->collectible != 0)
+                return ;
+        else
+            move_player(sl, 2);
+	if ((keydata.key == MLX_KEY_A) && keydata.action == 1)
+        if (sl->tab[sl->y_player][sl->x_player - 1] != '1') ||
+            ((sl->tab[sl->y_player][sl->x_player - 1] == 'E') &&  sl->collectible != 0)
+                return ;
+        else 
+            move_player(sl, 3);
+	if ((keydata.key == MLX_KEY_D) && keydata.action == 1)
+        if (sl->tab[sl->y_player][sl->x_player + 1] != '1') ||
+            ((sl->tab[sl->y_player][sl->x_player + 1] == 'E') &&  sl->collectible != 0)
+                return ;
+        else 
+            move_player(sl, 4);  
+}*/
+
 
 void	hook_key(mlx_key_data_t  keydata, void *param)
 {
@@ -112,10 +149,9 @@ void	hook_key(mlx_key_data_t  keydata, void *param)
 
 	sl = param;
     mlx = sl->mlx;
-	//ft_printf("%d\n", sl->collectible);
     if ((keydata.key == MLX_KEY_ESCAPE) && keydata.action == 1)
 		mlx_close_window(mlx);
-	if ((keydata.key == MLX_KEY_UP) && keydata.action == 1) 
+	if ((keydata.key == MLX_KEY_W) && keydata.action == 1) 
         if (sl->tab[sl->y_player - 1][sl->x_player] != '1') 
         {
             if ((sl->tab[sl->y_player - 1][sl->x_player] == 'E') &&  sl->collectible != 0)
@@ -123,7 +159,7 @@ void	hook_key(mlx_key_data_t  keydata, void *param)
             else 
                 move_player(sl, 1);
         }
-	if ((keydata.key ==  MLX_KEY_DOWN) && keydata.action == 1)
+	if ((keydata.key ==  MLX_KEY_S) && keydata.action == 1)
         if (sl->tab[sl->y_player + 1][sl->x_player] != '1')
         {
            if ((sl->tab[sl->y_player + 1][sl->x_player] == 'E') &&  sl->collectible != 0)
@@ -131,7 +167,7 @@ void	hook_key(mlx_key_data_t  keydata, void *param)
             else
                 move_player(sl, 2);
         }
-	if ((keydata.key == MLX_KEY_LEFT) && keydata.action == 1)
+	if ((keydata.key == MLX_KEY_A) && keydata.action == 1)
         if (sl->tab[sl->y_player][sl->x_player - 1] != '1')  
         {
             if ((sl->tab[sl->y_player][sl->x_player - 1] == 'E') &&  sl->collectible != 0)
@@ -139,7 +175,7 @@ void	hook_key(mlx_key_data_t  keydata, void *param)
             else 
                 move_player(sl, 3);
         }
-	if ((keydata.key == MLX_KEY_RIGHT) && keydata.action == 1)
+	if ((keydata.key == MLX_KEY_D) && keydata.action == 1)
         if (sl->tab[sl->y_player][sl->x_player + 1] != '1')
         {
               if ((sl->tab[sl->y_player][sl->x_player + 1] == 'E') &&  sl->collectible != 0)
@@ -150,7 +186,6 @@ void	hook_key(mlx_key_data_t  keydata, void *param)
 }
 
 
-
 int add_graphic(t_so_long *sl)
 {
      
@@ -159,7 +194,7 @@ int add_graphic(t_so_long *sl)
 		exit(EXIT_FAILURE);
     if (!(load_texture(sl)))
         return (0);
-    sl->text = mlx_put_string(sl->mlx, "nombre de move", 0, 0);
+    sl->text = mlx_put_string(sl->mlx, "nombre de move : 0", 0, 0);
     mlx_key_hook(sl->mlx, &hook_key, sl);
 	mlx_loop(sl->mlx);
 	mlx_terminate(sl->mlx);

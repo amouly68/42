@@ -54,15 +54,17 @@ void fill_list_map(t_so_long *sl, int fd)
     sl->map_width = len_line(line);
     while(line)
 	{
-        sl->map_height++;
+        if(len_line(line) != 0)
+            sl->map_height++;
         new = malloc(sizeof(t_map));
-	    if (!new)
-		    return ;
-	    new->line = line;
+        if (!new)
+            return ;
+        new->line = line;
         new->next = NULL;
         line = get_next_line(fd);
         if(!(ft_addnode_back(&sl->map, new)))
-		    return ;         
+           return ;         
+
     }
 }
 
@@ -96,7 +98,6 @@ int parse_map(t_so_long *sl, int fd)
         return (0);
     }
     list_to_tab(sl);
-    //print_tab(sl->tab);
    if (!(check_tab(sl)))
     {
         free(sl->tab);
@@ -105,8 +106,4 @@ int parse_map(t_so_long *sl, int fd)
         return (0);
     }
     return (1);
-    //print_tab(sl->tab);
-    /*free(sl->tab);
-    sl->tab = NULL;
-    free_list(&(sl->map));*/
 }
