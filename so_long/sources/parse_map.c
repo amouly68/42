@@ -86,22 +86,24 @@ void    list_to_tab(t_so_long *sl)
     sl->map = head;
 }
 
-void parse_map(t_so_long *sl, int fd)
+int parse_map(t_so_long *sl, int fd)
 {
     fill_list_map(sl, fd);
     if (!(check_list(sl)))
     {
         free_list(&(sl->map));
-        return;
+        return (0);
     }
     list_to_tab(sl);
-    if (!(check_tab(sl)))
+   // print_tab(sl->tab);
+   if (!(check_tab(sl)))
     {
         free(sl->tab);
         sl->tab = NULL;
         free_list(&(sl->map));
-        return;
+        return (0);
     }
+    return (1);
     //print_tab(sl->tab);
     /*free(sl->tab);
     sl->tab = NULL;

@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/24 12:46:40 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/25 11:15:46 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ void print_l(t_point *list);
 
 // free 
 void free_list(t_map **list);
-void free_tab(char ***tab);
+void free_tab(char **tab);
 
 // parse map.c
-void parse_map(t_so_long *sl, int fd);
+int	parse_map(t_so_long *sl, int fd);
 void    init_sl(t_so_long *sl);
 int	ft_addnode_back(t_map **list, t_map *new);
 
@@ -99,7 +99,7 @@ void find_E_P(t_so_long *sl);
 int add_graphic(t_so_long *sl);
 
 //flod_fill
-void flood_fill(t_so_long *sl);
+int flood_fill(t_so_long *sl);
 
 
 

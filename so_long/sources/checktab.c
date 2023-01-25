@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:43:57 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/24 13:57:29 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/24 15:48:57 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void find_coordonates(t_so_long *sl)
                 }
             else if (sl->tab[i][j] == 'E')
                 {
-                    sl->x_player = j;
-                    sl->y_player = i;
+                    sl->x_exit = j;
+                    sl->y_exit = i;
                 }
             else if (sl->tab[i][j] == 'C')
                     fill_list_collectible(sl, i, j);
@@ -129,7 +129,10 @@ int check_tab(t_so_long *sl)
         i++;
     }
     find_coordonates(sl);
-    
-    flood_fill(sl);
+    if (!(flood_fill(sl)))
+        {
+            ft_printf("Error\nMap non jouable\n");
+            return (0);
+        } 
     return (1);
 }
