@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:43:57 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/24 15:48:57 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/25 15:43:54 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,19 +111,19 @@ int check_tab(t_so_long *sl)
     i = 1;
     if (!(all_wall(sl->tab[0])))
     {
-        ft_printf("Error\nMap non entoure de murs\n");
+        ft_printf("Error\nMap non entouree de murs\n");
         return (0);
     }
     if (!(all_wall(sl->tab[sl->map_height - 1])))
     {
-        ft_printf("Error\nMap non entoure de murs\n");
+        ft_printf("Error\nMap non entouree de murs\n");
         return (0);
     }   
     while (i < (sl->map_height - 1))
     {
         if (!(line_wall(sl->tab[i])))
          {
-            ft_printf("Error\nMap non entoure de murs\n");
+            ft_printf("Error\nMap non entouree de murs\n");
             return (0);
         }  
         i++;

@@ -95,7 +95,7 @@ int parse_map(t_so_long *sl, int fd)
         return (0);
     }
     list_to_tab(sl);
-   // print_tab(sl->tab);
+    print_tab(sl->tab);
    if (!(check_tab(sl)))
     {
         free(sl->tab);

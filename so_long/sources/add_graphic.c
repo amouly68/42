@@ -75,6 +75,13 @@ void move_player(t_so_long *sl, int cas)
         sl->x_player = sl->x_player - 1;
     else if (cas == 4)
         sl->x_player = sl->x_player + 1;
+    if (sl->tab[sl->y_player][sl->x_player] == 'C')
+        sl->collectible--;
+    if (sl->tab[sl->y_player][sl->x_player] == 'E')
+    {
+        ft_printf("YOU WIN");
+        mlx_close_window(sl->mlx);
+    }   
     sl->tab[sl->y_player][sl->x_player] = 'P';
     sl->texture = mlx_load_png("./images/pacman_black.png");
     texture_to_image(sl, sl->y_player, sl->x_player);
