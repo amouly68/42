@@ -13,7 +13,7 @@ int main (int argc, char **argv)
     fd = open(argv[1], O_RDONLY);
     if (fd < 0)
     {
-        ft_printf("Map n'existe pas\n");
+        ft_printf("%s n'existe pas\n", argv[1]);
         return (-1);
     }    
     if (!(parse_map(&sl, fd)))
@@ -24,7 +24,7 @@ int main (int argc, char **argv)
     free(sl.tab);
     sl.tab = NULL;
     free_list(&(sl.map));
-    system ("leaks so_long");
+    //system ("leaks so_long");
     
 }
 

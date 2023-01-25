@@ -1,7 +1,7 @@
 
 #include "so_long.h"
 
-mlx_image_t         *img_player;
+//mlx_image_t         *img_player;
 
 /*void	hook(void *param)
 {
@@ -30,7 +30,7 @@ void texture_to_image(t_so_long *sl, int i, int j)
     sl->texture->width = 64;
     sl->img = mlx_texture_to_image(sl->mlx, sl->texture);
     mlx_image_to_window(sl->mlx, sl->img, j * 64, i * 64);
-
+    mlx_delete_texture(sl->texture);
 }
 
 int     load_texture(t_so_long *sl)
@@ -49,11 +49,7 @@ int     load_texture(t_so_long *sl)
             else if (sl->tab[i][j] == '0')
                 sl->texture = mlx_load_png("./images/black.png");
             else if (sl->tab[i][j] == 'P')
-            {
                 sl->texture = mlx_load_png("./images/pacman_black.png");
-                sl->img_player = mlx_texture_to_image(sl->mlx, sl->texture);
-                mlx_image_to_window(sl->mlx, sl->img_player, j * 64, i * 64);
-            }
             else if (sl->tab[i][j] == 'C')
                 sl->texture = mlx_load_png("./images/cherry_black.png");
             else if (sl->tab[i][j] == 'E')
@@ -66,71 +62,67 @@ int     load_texture(t_so_long *sl)
     return (1);
 }
 
+void move_player(t_so_long *sl, int cas)
+{
+    sl->tab[sl->y_player][sl->x_player] = '0';
+    sl->texture = mlx_load_png("./images/black.png");
+    texture_to_image(sl, sl->y_player, sl->x_player);
+    if (cas == 1)
+        sl->y_player = sl->y_player - 1;
+    else if (cas == 2)
+        sl->y_player = sl->y_player + 1;
+    else if (cas == 3)
+        sl->x_player = sl->x_player - 1;
+    else if (cas == 4)
+        sl->x_player = sl->x_player + 1;
+    sl->tab[sl->y_player][sl->x_player] = 'P';
+    sl->texture = mlx_load_png("./images/pacman_black.png");
+    texture_to_image(sl, sl->y_player, sl->x_player);
+}
+
+
 void	hook_key(mlx_key_data_t  keydata, void *param)
 {
 	t_so_long                   *sl;
     mlx_t		                *mlx;
-    mlx_image_t         *img_player;
 
 	sl = param;
     mlx = sl->mlx;
-    img_player = sl->img_player;
-	if ((keydata.key == MLX_KEY_ESCAPE) && keydata.action == 1)
+	ft_printf("%d\n", sl->collectible);
+    if ((keydata.key == MLX_KEY_ESCAPE) && keydata.action == 1)
 		mlx_close_window(mlx);
-	else if ((keydata.key == MLX_KEY_UP) && keydata.action == 1)
-		{
-            if (sl->tab[sl->y_player - 1][sl->x_player] != '1')
-            {
-                sl->tab[sl->y_player][sl->x_player] = '0';
-                sl->texture = mlx_load_png("./images/black.png");
-                texture_to_image(sl, sl->y_player, sl->x_player);
-                sl->y_player = sl->y_player - 1;
-                sl->tab[sl->y_player][sl->x_player] = 'P';
-                sl->texture = mlx_load_png("./images/pacman_black.png");
-                texture_to_image(sl, sl->y_player, sl->x_player);
-            }
+	if ((keydata.key == MLX_KEY_UP) && keydata.action == 1) 
+        if (sl->tab[sl->y_player - 1][sl->x_player] != '1') 
+        {
+            if ((sl->tab[sl->y_player - 1][sl->x_player] == 'E') &&  sl->collectible != 0)
+                return ;
+            else 
+                move_player(sl, 1);
         }
-	else if ((keydata.key ==  MLX_KEY_DOWN) && keydata.action == 1)
-		{
-            if (sl->tab[sl->y_player + 1][sl->x_player] != '1')
-            {
-                sl->tab[sl->y_player][sl->x_player] = '0';
-                sl->texture = mlx_load_png("./images/black.png");
-                texture_to_image(sl, sl->y_player, sl->x_player);
-                sl->y_player = sl->y_player + 1;
-                sl->tab[sl->y_player][sl->x_player] = 'P';
-                sl->texture = mlx_load_png("./images/pacman_black.png");
-                texture_to_image(sl, sl->y_player, sl->x_player);
-            }
+	if ((keydata.key ==  MLX_KEY_DOWN) && keydata.action == 1)
+        if (sl->tab[sl->y_player + 1][sl->x_player] != '1')
+        {
+           if ((sl->tab[sl->y_player + 1][sl->x_player] == 'E') &&  sl->collectible != 0)
+                return ;
+            else
+                move_player(sl, 2);
         }
-	else if ((keydata.key == MLX_KEY_LEFT) && keydata.action == 1)
-		{
-            if (sl->tab[sl->y_player][sl->x_player - 1] != '1')
-            {
-                sl->tab[sl->y_player][sl->x_player] = '0';
-                sl->texture = mlx_load_png("./images/black.png");
-                texture_to_image(sl, sl->y_player, sl->x_player);
-                sl->x_player = sl->x_player - 1;
-                sl->tab[sl->y_player][sl->x_player] = 'P';
-                sl->texture = mlx_load_png("./images/pacman_black.png");
-                texture_to_image(sl, sl->y_player, sl->x_player);
-            }
+	if ((keydata.key == MLX_KEY_LEFT) && keydata.action == 1)
+        if (sl->tab[sl->y_player][sl->x_player - 1] != '1')  
+        {
+            if ((sl->tab[sl->y_player][sl->x_player - 1] == 'E') &&  sl->collectible != 0)
+                return ;
+            else 
+                move_player(sl, 3);
         }
-	else if ((keydata.key == MLX_KEY_RIGHT) && keydata.action == 1)
-		{
-            if (sl->tab[sl->y_player][sl->x_player + 1] != '1')
-            {
-                sl->tab[sl->y_player][sl->x_player] = '0';
-                sl->texture = mlx_load_png("./images/black.png");
-                texture_to_image(sl, sl->y_player, sl->x_player);
-                sl->x_player = sl->x_player + 1;
-                sl->tab[sl->y_player][sl->x_player] = 'P';
-                sl->texture = mlx_load_png("./images/pacman_black.png");
-                texture_to_image(sl, sl->y_player, sl->x_player);
-            }
-        }
-      //if (!(load_texture(sl)))
-       //return ;    
+	if ((keydata.key == MLX_KEY_RIGHT) && keydata.action == 1)
+        if (sl->tab[sl->y_player][sl->x_player + 1] != '1')
+        {
+              if ((sl->tab[sl->y_player][sl->x_player + 1] == 'E') &&  sl->collectible != 0)
+                return ;
+            else 
+                move_player(sl, 4);  
+        }  
 }
 
 
