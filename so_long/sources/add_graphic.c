@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:56:50 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/26 10:00:50 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/26 11:59:46 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	add_graphic(t_so_long *sl)
 			true);
 	if (!(sl->mlx))
 		exit(EXIT_FAILURE);
+	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	if (!(load_texture(sl)))
 		return (0);
 	sl->text = mlx_put_string(sl->mlx, "nombre de move : 0", 0, 0);

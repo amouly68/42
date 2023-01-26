@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 10:01:27 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/26 13:24:11 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/26 10:01:28 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	len_line(char *line)
 	int	i;
 
 	i = 0;
-	if (!line || !line[0])
- 	   return (0);
 	while (line[i] != '\n' && line[i] != '\0')
 		i++;
 	return (i);
@@ -58,7 +56,7 @@ int	char_line_ok(char *line, t_so_long *sl)
 	while (line[i] != '\n' && line[i] != '\0')
 	{
 		if (line[i] == '0' || line[i] == '1' || line[i] == 'C' || line[i] == 'E'
-			|| line[i] == 'P')
+			|| line[i] == 'P' || line[i] == 'M')
 		{
 			if (line[i] == 'C')
 				sl->collectible++;
