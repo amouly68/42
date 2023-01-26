@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:13:49 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/25 11:11:50 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/26 09:29:11 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int check_copy_tab(t_so_long *sl, char **tab_copy)
 void fill(char **tab, t_so_long *sl, int x, int y)
 {
    if (x <= 0 || y <= 0 || x >= (sl->map_width ) || y >= (sl->map_height )
-        || tab[y][x] == '1' )
+        || tab[y][x] == '1'  || tab[y][x] == 'M' )
         return ;
     tab[y][x] = '1';
     fill (tab, sl, x + 1, y);

@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:34:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/01/25 17:08:43 by amouly           ###   ########.fr       */
+/*   Updated: 2023/01/26 09:18:49 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,17 @@ void find_E_P(t_so_long *sl);
 
 //add_graphic
 int add_graphic(t_so_long *sl);
+void texture_to_image(t_so_long *sl, int i, int j);
+void    print_char(t_so_long *sl);
 
 //flod_fill
 int flood_fill(t_so_long *sl);
+
+//controls_player
+void move_left(t_so_long *sl);
+void move_up(t_so_long *sl);
+void move_down(t_so_long *sl);
+void move_right(t_so_long *sl);
 
 
 

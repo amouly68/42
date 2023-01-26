@@ -20,7 +20,7 @@ int char_line_ok(char *line, t_so_long *sl)
         //ft_printf("carac : %c\n", line[i]);
         if (line[i] == '0' || line[i] == '1'
             || line[i] == 'C' || line[i] == 'E'
-            || line[i] == 'P' )
+            || line[i] == 'P' || line[i] == 'M')
         {
             if (line[i] == 'C')
                 sl->collectible++;

@@ -16,6 +16,7 @@ SOURCES = parse_map.c \
 			checktab.c \
 			add_graphic.c \
 			flood_fill.c \
+			controls_player.c \
 			main.c
 
 		
