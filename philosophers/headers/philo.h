@@ -20,18 +20,6 @@
 # include <pthread.h>
 #include <sys/time.h>
 
-typedef struct s_philo_global
-{
-    int nb_philo;
-    int nb_fork;
-    int num_philo;
-    int time_to_eat;
-    int time_to_die;
-    int time_to_sleep;
-    int nb_of_eat;
-
-} t_philo_global;
-
 typedef struct s_philo_single
 {
     int num_philo;
@@ -41,8 +29,28 @@ typedef struct s_philo_single
     int nb_of_eat;
     int ind_right_fork;
     int ind_left_fork;
+    pthread_mutex_t *fork_p;
 
 } t_philo_single;
+
+
+
+typedef struct s_philo_global
+{
+    int nb_philo;
+    int nb_fork;
+    int num_philo;
+    int time_to_eat;
+    int time_to_die;
+    int time_to_sleep;
+    int nb_of_eat;
+    pthread_t *th_philo;
+    t_philo_single *struct_philo;
+    pthread_mutex_t *fork_p;
+
+} t_philo_global;
+
+
 
 // parsing
 int parse_philo(t_philo_global *philo, char **av, int ac);

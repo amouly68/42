@@ -6,13 +6,13 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:58:29 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/08 15:26:03 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/08 17:04:50 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void init_philo(t_philo_global *philo)
+/*void init_philo(t_philo_global *philo)
 {
     philo->nb_philo = 0 ;
     philo->nb_fork = 0;
@@ -22,7 +22,7 @@ void init_philo(t_philo_global *philo)
     philo->time_to_sleep = 0;
     philo->nb_of_eat = 0;
     
-}
+}*/
 
 
 int parse_philo(t_philo_global *philo, char **av, int ac)
@@ -40,5 +40,15 @@ int parse_philo(t_philo_global *philo, char **av, int ac)
     philo->time_to_sleep = ft_atoi(av[4]);
     if (ac == 6)
         philo->nb_of_eat = ft_atoi(av[5]);
+    philo->num_philo = 0;
+    philo->th_philo = malloc(sizeof(pthread_t) * philo->nb_philo);
+    if (philo->th_philo == NULL)
+        return (0) ;
+    philo->struct_philo = malloc(sizeof(t_philo_single) * philo->nb_philo);
+    if (philo ->struct_philo == NULL)
+        return (0);
+    philo->fork_p = malloc(sizeof(pthread_mutex_t) * philo->nb_philo);
+    if (philo->fork_p == NULL)
+        return (0) ;
     return (1);
 }
