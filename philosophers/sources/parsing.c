@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:58:29 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/09 14:03:37 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/10 12:13:07 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 }*/
 
 
-int parse_philo(t_philo_global *philo, char **av, int ac)
+int parse_philo(t_philo_total *philo, char **av, int ac)
 {
     if (av[1]== NULL || av[2] == NULL || av[3] == NULL || av[4] == NULL)
         return (0);
@@ -41,8 +41,10 @@ int parse_philo(t_philo_global *philo, char **av, int ac)
     if (ac == 6)
         philo->nb_of_eat = ft_atoi(av[5]);
     else 
-         philo->nb_of_eat = 2000000000;
+         philo->nb_of_eat = -1;
     philo->num_philo = 0;
+    philo->philo_full = 0;
+    philo->list_of_full_philo = NULL;
     philo->th_philo = malloc(sizeof(pthread_t) * philo->nb_philo);
     if (philo->th_philo == NULL)
         return (0) ;

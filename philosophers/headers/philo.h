@@ -33,30 +33,39 @@ typedef struct s_philo_single
 
 } t_philo_single;
 
+typedef struct s_list_philo
+{
+    int index;
+    struct s_list_philo *next;
+} t_list_philo;
 
-
-typedef struct s_philo_global
+typedef struct s_philo_total
 {
     int nb_philo;
+    int philo_full;
     int nb_fork;
     int num_philo;
     int time_to_eat;
     int time_to_die;
     int time_to_sleep;
     int nb_of_eat;
+    t_list_philo *list_of_full_philo;
     pthread_t *th_philo;
     t_philo_single *struct_philo;
     pthread_mutex_t *fork_p;
 
-} t_philo_global;
+} t_philo_total;
 
 
 
 // parsing
-int parse_philo(t_philo_global *philo, char **av, int ac);
-void init_philo(t_philo_global *philo);
+int parse_philo(t_philo_total *philo, char **av, int ac);
+void init_philo(t_philo_total *philo);
 
 //create philo
-void create_philo(t_philo_global *philo);
+void create_philo(t_philo_total *philo);
+
+//utils
+int check_and_add_philo_full(int index, t_list_philo **list_of_full_philo);
 
 #endif

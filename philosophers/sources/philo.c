@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:54:56 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/09 14:16:11 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/10 11:06:53 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ void    *print_philo(void *param)
             return (NULL);
         }
         pthread_mutex_lock(&(philo->fork_p[philo->ind_left_fork]));
-        printf("Philo num %d  a pris la fourchette num %d \n", num, philo->ind_left_fork );
+        printf("Philo num %d a pris la fourchette num %d \n", num, philo->ind_left_fork );
         pthread_mutex_lock(&(philo->fork_p[philo->ind_right_fork]));
         printf("Philo num %d a pris la fourchette num %d \n", num, philo->ind_right_fork );
         printf("Philo num %d mange \n", num);
-        philo->nb_of_eat--;
+        if (philo->nb_of_eat > 0)
+            philo->nb_of_eat--;
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_left_fork]));
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_right_fork]));
         printf("Philo num %d dort \n", num);
@@ -67,7 +68,8 @@ void    *print_philo_last(void *param)
         pthread_mutex_lock(&(philo->fork_p[philo->ind_left_fork]));
         printf("Philo num %d a pris la fourchette num %d \n", num, philo->ind_right_fork );
         printf("Philo num %d mange \n", num);
-        philo->nb_of_eat--;
+        if (philo->nb_of_eat > 0)
+            philo->nb_of_eat--;
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_right_fork]));
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_left_fork]));
         printf("Philo num %d dort \n", num);
@@ -80,7 +82,7 @@ void    *print_philo_last(void *param)
     return (NULL); 
 }
 
-void fill_struct_philo(t_philo_global *philo, t_philo_single *struct_philo)
+void fill_struct_philo(t_philo_total *philo, t_philo_single *struct_philo)
 {
     struct_philo->num_philo = philo->num_philo;
     struct_philo->time_to_eat = philo->time_to_eat;
@@ -96,7 +98,7 @@ void fill_struct_philo(t_philo_global *philo, t_philo_single *struct_philo)
     
 }
 
-void create_philo(t_philo_global *philo)
+void create_philo(t_philo_total *philo)
 {
     int i;
     
@@ -117,4 +119,5 @@ void create_philo(t_philo_global *philo)
         philo->num_philo ++;
         fill_struct_philo(philo, &(philo->struct_philo[i]));
         pthread_create(&(philo->th_philo[i]), NULL, &print_philo_last, &(philo->struct_philo[i]));
+       
 }
