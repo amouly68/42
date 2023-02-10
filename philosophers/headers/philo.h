@@ -29,6 +29,8 @@ typedef struct s_philo_single
     int nb_of_eat;
     int ind_right_fork;
     int ind_left_fork;
+    struct timeval start;
+    struct timeval end;
     pthread_mutex_t *fork_p;
 
 } t_philo_single;
@@ -49,6 +51,7 @@ typedef struct s_philo_total
     int time_to_die;
     int time_to_sleep;
     int nb_of_eat;
+    struct timeval start;
     t_list_philo *list_of_full_philo;
     pthread_t *th_philo;
     t_philo_single *struct_philo;
@@ -67,5 +70,7 @@ void create_philo(t_philo_total *philo);
 
 //utils
 int check_and_add_philo_full(int index, t_list_philo **list_of_full_philo);
+void print_time(struct timeval start, struct timeval end);
+void check_sleep(struct timeval start, struct timeval begin ,int delay);
 
 #endif
