@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:24:34 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/10 16:18:06 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:14:58 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,26 @@ void check_sleep(struct timeval start, struct timeval begin ,int delay)
         usleep (1000);
         // check si qqn est mort
         gettimeofday(&actual_time, NULL);
-        printf("temps d'attente : %d ms \n", calc_time(start, actual_time) - (calc_time(start, begin)));
+        //printf("temps d'attente : %d ms \n", calc_time(start, actual_time) - (calc_time(start, begin)));
     }
-    printf("LE SLEEP EST FINI\n");
-    
+    //printf("LE SLEEP EST FINI\n");
+}
+
+void print_case(t_philo_single *philo, int choice)
+{
+    gettimeofday(&(philo->now), NULL);
+    if (choice == 1)
+        printf("%d ms %d has taken a fork\n", calc_time(philo->start, philo->now), philo->num_philo);
+    if (choice == 2)
+        printf("%d ms %d is eating\n", calc_time(philo->start, philo->now), philo->num_philo);
+    if (choice == 3)
+        printf("%d ms %d is sleeping\n", calc_time(philo->start, philo->now), philo->num_philo);
+    if (choice == 4)
+        printf("%d ms %d is thinking\n", calc_time(philo->start, philo->now), philo->num_philo);
+    if (choice == 5)
+        printf("%d ms %d died\n", calc_time(philo->start, philo->now), philo->num_philo);
+    if (choice == 6)
+        printf("%d ms %d is done eating\n", calc_time(philo->start, philo->now), philo->num_philo);
+    if (choice == 7)
+        printf("%d ms %d is alive\n", calc_time(philo->start, philo->now), philo->num_philo);
 }

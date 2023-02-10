@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:54:56 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/10 16:15:47 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:14:04 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,44 +16,29 @@
 void    *print_philo(void *param)
 {
     t_philo_single *philo;
-    int num;
     
     philo = param;
-    num = philo->num_philo;
-    gettimeofday(&(philo->end), NULL);
-    print_time(philo->start, philo->end);
-    printf("Philo num %d is alive\n", num); 
+    print_case(philo, 7);
     while (1)
    {
         if (philo->nb_of_eat == 0)
         {
-            gettimeofday(&(philo->end), NULL);
-            print_time(philo->start, philo->end);
-            printf("Philo num %d a fini de manger\n", num);
+            print_case(philo, 6);
             return (NULL);
         }
         pthread_mutex_lock(&(philo->fork_p[philo->ind_left_fork]));
-        gettimeofday(&(philo->end), NULL);
-        print_time(philo->start, philo->end);
-        printf("Philo num %d a pris la fourchette num %d \n", num, philo->ind_left_fork );
+        print_case(philo, 1);
         pthread_mutex_lock(&(philo->fork_p[philo->ind_right_fork]));
-        gettimeofday(&(philo->end), NULL);
-        print_time(philo->start, philo->end);
-        printf("Philo num %d a pris la fourchette num %d \n", num, philo->ind_right_fork );
-        gettimeofday(&(philo->end), NULL);
-        print_time(philo->start, philo->end);
-        printf("Philo num %d mange \n", num);
-        check_sleep(philo->start, philo->end, philo->time_to_eat);
+        print_case(philo, 1);
+        print_case(philo, 2);
+        check_sleep(philo->start, philo->now, philo->time_to_eat);
         if (philo->nb_of_eat > 0)
             philo->nb_of_eat--;
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_left_fork]));
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_right_fork]));
-        gettimeofday(&(philo->end), NULL);
-        print_time(philo->start, philo->end);
-        printf("Philo num %d dort \n", num);
-        gettimeofday(&(philo->end), NULL);
-        print_time(philo->start, philo->end);
-        printf("Philo num %d pense \n", num);
+        print_case(philo, 3);
+        check_sleep(philo->start, philo->now, philo->time_to_sleep);
+        print_case(philo, 4);
         usleep(300);
    }
     return (NULL); 
@@ -61,43 +46,29 @@ void    *print_philo(void *param)
 void    *print_philo_last(void *param)
 {
     t_philo_single *philo;
-    int num;
     
     philo = param;
-    num = philo->num_philo;
-    gettimeofday(&(philo->end), NULL);
-    print_time(philo->start, philo->end);
-    printf("Philo num %d is alive\n", num); 
+    print_case(philo, 7);
     while (1)
    {
         if (philo->nb_of_eat == 0)
         {
-            gettimeofday(&(philo->end), NULL);
-            print_time(philo->start, philo->end);
-            printf("Philo num %d a fini de manger\n", num);
+            print_case(philo, 6);
             return (NULL);
         }
         pthread_mutex_lock(&(philo->fork_p[philo->ind_right_fork]));
-        gettimeofday(&(philo->end), NULL);
-        print_time(philo->start, philo->end);
-        printf("Philo num %d  a pris la fourchette num %d \n", num, philo->ind_left_fork );
+        print_case(philo, 1);
         pthread_mutex_lock(&(philo->fork_p[philo->ind_left_fork]));
-        gettimeofday(&(philo->end), NULL);
-        print_time(philo->start, philo->end);
-        printf("Philo num %d a pris la fourchette num %d \n", num, philo->ind_right_fork );
-        gettimeofday(&(philo->end), NULL);
-        print_time(philo->start, philo->end);
-        printf("Philo num %d mange \n", num);
+        print_case(philo, 1);
+        print_case(philo, 2);
+        check_sleep(philo->start, philo->now, philo->time_to_eat);
         if (philo->nb_of_eat > 0)
             philo->nb_of_eat--;
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_right_fork]));
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_left_fork]));
-        gettimeofday(&(philo->end), NULL);
-        print_time(philo->start, philo->end);
-        printf("Philo num %d dort \n", num);
-        gettimeofday(&(philo->end), NULL);
-        print_time(philo->start, philo->end);
-        printf("Philo num %d pense \n", num);
+        print_case(philo, 3);
+        check_sleep(philo->start, philo->now, philo->time_to_sleep);
+        print_case(philo, 4);
         usleep(300);
    }
     return (NULL); 

@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:59:05 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/10 15:25:48 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:25:30 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ int main (int ac, char **av)
             break;
     }
     printf("TOUS LES PHILO ONT MANGE");
+    system("leaks philo");
 }
