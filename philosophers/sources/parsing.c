@@ -23,7 +23,25 @@
     philo->nb_of_eat = 0;
     
 }*/
+int check_digit(char **av, int ac)
+{
+    int i;
+    int arg;
 
+    arg = 1;
+    while (arg < ac)
+    {
+        i = 0;
+        while(av[arg][i])
+        {
+            if (av[arg][i] < 48 || av[arg][i] > 57)
+                return (0);
+            i++;
+        }
+        arg++;
+    }
+    return (1);
+}
 
 int parse_philo(t_philo_total *philo, char **av, int ac)
 {
@@ -31,6 +49,11 @@ int parse_philo(t_philo_total *philo, char **av, int ac)
         return (0);
     if (ac == 6 && av[5] == NULL)
         return (0);
+    if (!(check_digit(av, ac)))
+    {    
+        printf("arguments invalides\n");
+        return (0);
+    }
     philo->nb_philo = ft_atoi(av[1]);
     if (philo->nb_philo < 1)
         return (0);

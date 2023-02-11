@@ -55,15 +55,14 @@ void print_time(struct timeval start, struct timeval end)
 }
 
 
-void check_sleep(struct timeval start, struct timeval begin ,int delay)
+void check_wait(t_philo_single *philo ,int delay)
 {
     struct timeval actual_time;
     
-    actual_time = begin;
-    while(calc_time(start, actual_time) <= (calc_time(start, begin) + delay ))
+    actual_time = philo->now;
+    while(calc_time(philo->start, actual_time) <= (calc_time(philo->start, philo->now) + delay ))
     {
-        usleep (1000);
-        // check si qqn est mort
+        usleep (250);
         gettimeofday(&actual_time, NULL);
         //printf("temps d'attente : %d ms \n", calc_time(start, actual_time) - (calc_time(start, begin)));
     }
@@ -76,7 +75,16 @@ void print_case(t_philo_single *philo, int choice)
     if (choice == 1)
         printf("%d ms %d has taken a fork\n", calc_time(philo->start, philo->now), philo->num_philo);
     if (choice == 2)
+    {
+        if (calc_time(philo->last_eat, philo->now) > philo->time_to_die)
+        {
+            philo->is_dead = 1;
+            printf("%d ms %d died\n", calc_time(philo->start, philo->now), philo->num_philo);
+            return;
+        }
         printf("%d ms %d is eating\n", calc_time(philo->start, philo->now), philo->num_philo);
+        philo->last_eat = philo->now;
+    }
     if (choice == 3)
         printf("%d ms %d is sleeping\n", calc_time(philo->start, philo->now), philo->num_philo);
     if (choice == 4)

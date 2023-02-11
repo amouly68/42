@@ -29,8 +29,10 @@ typedef struct s_philo_single
     int nb_of_eat;
     int ind_right_fork;
     int ind_left_fork;
+    int is_dead;
     struct timeval start;
     struct timeval now;
+    struct timeval last_eat;
     pthread_mutex_t *fork_p;
 
 } t_philo_single;
@@ -71,7 +73,7 @@ void create_philo(t_philo_total *philo);
 //utils
 int check_and_add_philo_full(int index, t_list_philo **list_of_full_philo);
 void print_time(struct timeval start, struct timeval end);
-void check_sleep(struct timeval start, struct timeval begin ,int delay);
+void check_wait(t_philo_single *philo ,int delay);
 void print_case(t_philo_single *philo, int choice);
 
 #endif

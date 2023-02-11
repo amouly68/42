@@ -18,6 +18,8 @@ void    *print_philo(void *param)
     t_philo_single *philo;
     
     philo = param;
+    if (philo->num_philo % 2 == 0)
+        usleep (150);
     print_case(philo, 7);
     while (1)
    {
@@ -31,13 +33,13 @@ void    *print_philo(void *param)
         pthread_mutex_lock(&(philo->fork_p[philo->ind_right_fork]));
         print_case(philo, 1);
         print_case(philo, 2);
-        check_sleep(philo->start, philo->now, philo->time_to_eat);
+        check_wait(philo, philo->time_to_eat);
         if (philo->nb_of_eat > 0)
             philo->nb_of_eat--;
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_left_fork]));
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_right_fork]));
         print_case(philo, 3);
-        check_sleep(philo->start, philo->now, philo->time_to_sleep);
+        check_wait(philo, philo->time_to_sleep);
         print_case(philo, 4);
         usleep(300);
    }
@@ -61,13 +63,13 @@ void    *print_philo_last(void *param)
         pthread_mutex_lock(&(philo->fork_p[philo->ind_left_fork]));
         print_case(philo, 1);
         print_case(philo, 2);
-        check_sleep(philo->start, philo->now, philo->time_to_eat);
+        check_wait(philo, philo->time_to_eat);
         if (philo->nb_of_eat > 0)
             philo->nb_of_eat--;
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_right_fork]));
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_left_fork]));
         print_case(philo, 3);
-        check_sleep(philo->start, philo->now, philo->time_to_sleep);
+        check_wait(philo, philo->time_to_sleep);
         print_case(philo, 4);
         usleep(300);
    }
@@ -88,6 +90,8 @@ void fill_struct_philo(t_philo_total *philo, t_philo_single *struct_philo)
         struct_philo->ind_right_fork = philo->num_philo;
     struct_philo->fork_p = philo->fork_p;
     struct_philo->start = philo->start;
+    struct_philo->is_dead = 0;
+    struct_philo->last_eat = philo->start;
     
 }
 
