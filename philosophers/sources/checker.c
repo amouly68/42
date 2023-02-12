@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 10:51:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/12 11:21:52 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/12 12:15:37 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,25 @@ void check_dead(t_philo_total *philo)
     }
 }
 
+
+int check_wait(t_philo_single *philo ,int delay)
+{
+    struct timeval actual_time;
+    
+    actual_time = philo->now;
+    while(calc_time(philo->start, actual_time) <= (calc_time(philo->start, philo->now) + delay ))
+    {
+        usleep (250);
+        if (calc_time(philo->last_eat, actual_time) > philo->time_to_die)
+        {
+            philo->is_dead = 1;
+            printf("%d ms %d died\n", calc_time(philo->start, actual_time), philo->num_philo);
+            return(0);
+        }
+        gettimeofday(&actual_time, NULL);
+        
+    }
+    return (1);
+}
 
 

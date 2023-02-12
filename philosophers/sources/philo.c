@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:54:56 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/12 11:48:15 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/12 12:23:07 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ void    *print_philo_last(void *param)
             print_case(philo, 6);
             return (NULL);
         }
-        pthread_mutex_lock(&(philo->fork_p[philo->ind_right_fork]));
+        pthread_mutex_lock(&(philo->fork_p[philo->ind_right_fork]));       
         print_case(philo, 1);
+        if (philo->num_philo == 1)
+            check_wait(philo, philo->time_to_die + 9);
         pthread_mutex_lock(&(philo->fork_p[philo->ind_left_fork]));
         print_case(philo, 1);
         print_case(philo, 2);
