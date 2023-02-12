@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:58:29 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/10 12:13:07 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/12 11:11:29 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int parse_philo(t_philo_total *philo, char **av, int ac)
          philo->nb_of_eat = -1;
     philo->num_philo = 0;
     philo->philo_full = 0;
+    philo->one_dead = 0;
     philo->list_of_full_philo = NULL;
     philo->th_philo = malloc(sizeof(pthread_t) * philo->nb_philo);
     if (philo->th_philo == NULL)

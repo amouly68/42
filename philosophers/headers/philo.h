@@ -53,6 +53,7 @@ typedef struct s_philo_total
     int time_to_die;
     int time_to_sleep;
     int nb_of_eat;
+    int one_dead;
     struct timeval start;
     t_list_philo *list_of_full_philo;
     pthread_t *th_philo;
@@ -75,5 +76,10 @@ int check_and_add_philo_full(int index, t_list_philo **list_of_full_philo);
 void print_time(struct timeval start, struct timeval end);
 void check_wait(t_philo_single *philo ,int delay);
 void print_case(t_philo_single *philo, int choice);
+int calc_time(struct timeval start, struct timeval end);
+
+// checker
+void check_eat(t_philo_total *philo);
+void check_dead(t_philo_total *philo);
 
 #endif

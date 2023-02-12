@@ -8,7 +8,8 @@ HEADERS = -I headers -I libft
 SOURCES = 	main.c \
 			philo.c \
 			parsing.c \
-			utils.c
+			utils.c \
+			checker.c
 
 SRCBONUS = 
 		

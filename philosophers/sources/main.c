@@ -6,16 +6,19 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:59:05 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/10 17:25:30 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/12 11:12:27 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+
+
+
+
 int main (int ac, char **av)
 {
     t_philo_total philo;
-    int i;
 
     if ((ac != 5 && ac != 6) || av == NULL)
     {
@@ -28,25 +31,12 @@ int main (int ac, char **av)
     create_philo(&philo);
     while (1)
     {
-        usleep(300);
-        i = 0;
-        while (i < philo.nb_philo)
-        {
-           // printf("Il reste %d repas au philo num %d\n", philo.struct_philo[i].nb_of_eat, philo.struct_philo[i].num_philo);
-            if (philo.struct_philo[i].nb_of_eat == 0)
-            {
-                pthread_join((philo.th_philo[i]), NULL);
-                if (check_and_add_philo_full(i, &(philo.list_of_full_philo)))
-                {
-                   philo.philo_full++;
-                   printf("NB DE PHILO FULL : %d\n", philo.philo_full );
-                }
-            }
-            i++;
-        }
-        if (philo.philo_full == philo.nb_philo)
+        usleep(50);
+        check_eat(&philo);
+        check_dead(&philo);
+        if (philo.philo_full == philo.nb_philo || philo.one_dead == 1 )
             break;
     }
     printf("TOUS LES PHILO ONT MANGE");
-    system("leaks philo");
+    //system("leaks philo");
 }
