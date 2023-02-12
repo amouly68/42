@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:24:34 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/12 10:52:48 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/12 11:46:34 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void print_time(struct timeval start, struct timeval end)
 }
 
 
-void check_wait(t_philo_single *philo ,int delay)
+int check_wait(t_philo_single *philo ,int delay)
 {
     struct timeval actual_time;
     
@@ -36,10 +36,16 @@ void check_wait(t_philo_single *philo ,int delay)
     while(calc_time(philo->start, actual_time) <= (calc_time(philo->start, philo->now) + delay ))
     {
         usleep (250);
+        if (calc_time(philo->last_eat, actual_time) > philo->time_to_die)
+        {
+            philo->is_dead = 1;
+            printf("%d ms %d died\n", calc_time(philo->start, actual_time), philo->num_philo);
+            return(0);
+        }
         gettimeofday(&actual_time, NULL);
-        //printf("temps d'attente : %d ms \n", calc_time(start, actual_time) - (calc_time(start, begin)));
+        
     }
-    //printf("LE SLEEP EST FINI\n");
+    return (1);
 }
 
 void print_case(t_philo_single *philo, int choice)
@@ -49,12 +55,12 @@ void print_case(t_philo_single *philo, int choice)
         printf("%d ms %d has taken a fork\n", calc_time(philo->start, philo->now), philo->num_philo);
     if (choice == 2)
     {
-        if (calc_time(philo->last_eat, philo->now) > philo->time_to_die)
+       /* if (calc_time(philo->last_eat, philo->now) > philo->time_to_die)
         {
             philo->is_dead = 1;
             printf("%d ms %d died\n", calc_time(philo->start, philo->now), philo->num_philo);
             return;
-        }
+        }*/
         printf("%d ms %d is eating\n", calc_time(philo->start, philo->now), philo->num_philo);
         philo->last_eat = philo->now;
     }

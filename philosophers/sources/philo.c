@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:54:56 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/10 17:14:04 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/12 11:48:15 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ void    *print_philo(void *param)
         pthread_mutex_lock(&(philo->fork_p[philo->ind_right_fork]));
         print_case(philo, 1);
         print_case(philo, 2);
-        check_wait(philo, philo->time_to_eat);
+        if (!(check_wait(philo, philo->time_to_eat)))
+            return (NULL);
         if (philo->nb_of_eat > 0)
             philo->nb_of_eat--;
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_left_fork]));
         pthread_mutex_unlock(&(philo->fork_p[philo->ind_right_fork]));
         print_case(philo, 3);
-        check_wait(philo, philo->time_to_sleep);
+        if (!(check_wait(philo, philo->time_to_sleep)))
+            return(NULL);
         print_case(philo, 4);
         usleep(300);
    }

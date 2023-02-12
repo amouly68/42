@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 10:51:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/12 11:12:36 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/12 11:21:52 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void check_eat(t_philo_total *philo)
         // printf("Il reste %d repas au philo num %d\n", philo.struct_philo[i].nb_of_eat, philo.struct_philo[i].num_philo);
         if (philo->struct_philo[i].nb_of_eat == 0)
         {
-            pthread_join((philo->th_philo[i]), NULL);
+          //  pthread_join((philo->th_philo[i]), NULL);
             if (check_and_add_philo_full(i, &(philo->list_of_full_philo)))
             {
                 philo->philo_full++;

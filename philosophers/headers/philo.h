@@ -74,7 +74,7 @@ void create_philo(t_philo_total *philo);
 //utils
 int check_and_add_philo_full(int index, t_list_philo **list_of_full_philo);
 void print_time(struct timeval start, struct timeval end);
-void check_wait(t_philo_single *philo ,int delay);
+int check_wait(t_philo_single *philo ,int delay);
 void print_case(t_philo_single *philo, int choice);
 int calc_time(struct timeval start, struct timeval end);
 

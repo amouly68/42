@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:59:05 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/12 11:12:27 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/12 11:42:22 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,19 @@ int main (int ac, char **av)
     create_philo(&philo);
     while (1)
     {
-        usleep(50);
+        usleep(150);
         check_eat(&philo);
         check_dead(&philo);
-        if (philo.philo_full == philo.nb_philo || philo.one_dead == 1 )
-            break;
+        if (philo.philo_full == philo.nb_philo)
+        {
+            printf("TOUS LES PHILO ONT MANGE");
+            break ;
+        } 
+        if (philo.one_dead == 1 )
+        {
+            printf("UN PHILO EST MORT");
+            break ;
+        } 
     }
-    printf("TOUS LES PHILO ONT MANGE");
     //system("leaks philo");
 }
