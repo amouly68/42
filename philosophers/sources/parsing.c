@@ -6,23 +6,42 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:58:29 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/13 15:34:25 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/13 16:03:07 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/*void init_philo(t_philo_global *philo)
+long	ft_atoi_philo(const char *str)
 {
-    philo->nb_philo = 0 ;
-    philo->nb_fork = 0;
-    philo->num_philo = 0;
-    philo->time_to_eat = 0;
-    philo->time_to_die = 0;
-    philo->time_to_sleep = 0;
-    philo->nb_of_eat = 0;
-    
-}*/
+	int	i;
+	int	neg;
+	long num;
+
+	i = 0;
+	num = 0;
+	neg = 1;
+	while (str[i] != '\0' && (str[i] == 32 || str[i] == '\t'
+			|| str[i] == '\r' || str[i] == '\n'
+			|| str[i] == '\v' || str[i] == '\f'))
+		i++;
+	if (str[i] != '\0' && (str[i] == '+' || str[i] == '-'))
+	{
+		if (str[i] == '-')
+			neg = -1;
+		i++;
+	}
+	while (str[i] != '\0' && (str[i] >= '0' && str[i] <= '9' ))
+	{
+		num = (num * 10) + (str[i] - 48);
+        if (num > INT32_MAX)
+            return (-1);
+		i++;
+	}		
+	num = num * neg;
+	return (num);
+}
+
 int check_digit(char **av, int ac)
 {
     int i;
@@ -54,20 +73,20 @@ int parse_philo(t_philo_total *philo, char **av, int ac)
         printf("arguments invalides\n");
         return (0);
     }
-    philo->nb_philo = ft_atoi(av[1]);
+    philo->nb_philo = ft_atoi_philo(av[1]);
     if (philo->nb_philo < 1)
         return (0);
     philo->nb_fork = philo->nb_philo;
-    philo->time_to_die = ft_atoi(av[2]);
-    philo->time_to_eat = ft_atoi(av[3]);
-    philo->time_to_sleep = ft_atoi(av[4]);
+    philo->time_to_die = ft_atoi_philo(av[2]);
+    philo->time_to_eat = ft_atoi_philo(av[3]);
+    philo->time_to_sleep = ft_atoi_philo(av[4]);
     if (ac == 6)
-        philo->nb_of_eat = ft_atoi(av[5]);
+        philo->nb_of_eat = ft_atoi_philo(av[5]);
     else 
          philo->nb_of_eat = -1;
-    if (philo->time_to_die > INT32_MAX || philo->time_to_eat > INT32_MAX
-        || philo->time_to_sleep > INT32_MAX || philo->nb_philo > INT32_MAX
-        || philo->nb_of_eat > INT32_MAX )
+    if (philo->time_to_die == -1 || philo->time_to_eat == -1
+        || philo->time_to_sleep == -1 || philo->nb_philo == -1
+        || philo->nb_of_eat == -1 )
     {    
         printf("arguments invalides\n");
         return (0);

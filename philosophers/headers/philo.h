@@ -45,14 +45,14 @@ typedef struct s_list_philo
 
 typedef struct s_philo_total
 {
-    int nb_philo;
+    long nb_philo;
     int philo_full;
     int nb_fork;
-    int num_philo;
-    int time_to_eat;
-    int time_to_die;
-    int time_to_sleep;
-    int nb_of_eat;
+    long num_philo;
+    long time_to_eat;
+    long time_to_die;
+    long time_to_sleep;
+    long nb_of_eat;
     int one_dead;
     struct timeval start;
     t_list_philo *list_of_full_philo;
