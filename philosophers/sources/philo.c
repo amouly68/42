@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:54:56 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/12 12:23:07 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/13 15:08:17 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    *print_philo(void *param)
    {
         if (philo->nb_of_eat == 0)
         {
-            print_case(philo, 6);
+            //print_case(philo, 6);
             return (NULL);
         }
         pthread_mutex_lock(&(philo->fork_p[philo->ind_left_fork]));
@@ -43,6 +43,8 @@ void    *print_philo(void *param)
         if (!(check_wait(philo, philo->time_to_sleep)))
             return(NULL);
         print_case(philo, 4);
+        if (!(check_wait(philo, philo->time_to_eat - philo->time_to_sleep)))
+            return(NULL);
         usleep(300);
    }
     return (NULL); 
@@ -63,7 +65,7 @@ void    *print_philo_last(void *param)
         pthread_mutex_lock(&(philo->fork_p[philo->ind_right_fork]));       
         print_case(philo, 1);
         if (philo->num_philo == 1)
-            check_wait(philo, philo->time_to_die + 9);
+            check_wait(philo, philo->time_to_die);
         pthread_mutex_lock(&(philo->fork_p[philo->ind_left_fork]));
         print_case(philo, 1);
         print_case(philo, 2);
@@ -75,6 +77,8 @@ void    *print_philo_last(void *param)
         print_case(philo, 3);
         check_wait(philo, philo->time_to_sleep);
         print_case(philo, 4);
+        if (!(check_wait(philo, philo->time_to_eat - philo->time_to_sleep)))
+            return(NULL);
         usleep(300);
    }
     return (NULL); 

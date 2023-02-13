@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:58:29 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/12 12:09:06 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/13 15:34:25 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ int parse_philo(t_philo_total *philo, char **av, int ac)
         philo->nb_of_eat = ft_atoi(av[5]);
     else 
          philo->nb_of_eat = -1;
+    if (philo->time_to_die > INT32_MAX || philo->time_to_eat > INT32_MAX
+        || philo->time_to_sleep > INT32_MAX || philo->nb_philo > INT32_MAX
+        || philo->nb_of_eat > INT32_MAX )
+    {    
+        printf("arguments invalides\n");
+        return (0);
+    }
     philo->num_philo = 0;
     philo->philo_full = 0;
     philo->one_dead = 0;
