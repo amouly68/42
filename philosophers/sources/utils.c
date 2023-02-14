@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:24:34 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/14 16:22:24 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/14 16:49:49 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,41 +21,38 @@ int	calc_time(struct timeval start, struct timeval end)
 	return (time);
 }
 
-void	print_time(struct timeval start, struct timeval end)
+void	if_dead(t_philo_single *philo, int time_calc)
 {
-	printf("%d ms ", calc_time(start, end));
+	if (calc_time(philo->last_eat, philo->now) >= philo->time_to_die
+		&& philo->is_dead == 0)
+	{
+		philo->is_dead = 1;
+		printf("%d %d died\n", time_calc, philo->num_philo);
+	}
 }
 
 void	print_case(t_philo_single *philo, int choice)
 {
+	int	time_calc;
+
 	gettimeofday(&(philo->now), NULL);
-	if (calc_time(philo->last_eat, philo->now) > philo->time_to_die
-		&& philo->is_dead == 0)
-	{
-		philo->is_dead = 1;
-		printf("%d %d died\n", calc_time(philo->start, philo->now),
-			philo->num_philo);
-	}
+	time_calc = calc_time(philo->start, philo->now);
+	if_dead(philo, time_calc);
 	if (philo->is_dead == 0)
 	{
 		if (choice == 1)
-			printf("%d %d has taken a fork\n", calc_time(philo->start,
-					philo->now), philo->num_philo);
+			printf("%d %d has taken a fork\n", time_calc, philo->num_philo);
 		if (choice == 2)
 		{
-			printf("%d %d is eating\n", calc_time(philo->start, philo->now),
-				philo->num_philo);
+			printf("%d %d is eating\n", time_calc, philo->num_philo);
 			philo->last_eat = philo->now;
 		}
 		if (choice == 3)
-			printf("%d %d is sleeping\n", calc_time(philo->start, philo->now),
-				philo->num_philo);
+			printf("%d %d is sleeping\n", time_calc, philo->num_philo);
 		if (choice == 4)
-			printf("%d %d is thinking\n", calc_time(philo->start, philo->now),
-				philo->num_philo);
+			printf("%d %d is thinking\n", time_calc, philo->num_philo);
 		if (choice == 5)
-			printf("%d %d died\n", calc_time(philo->start, philo->now),
-				philo->num_philo);
+			printf("%d %d died\n", time_calc, philo->num_philo);
 	}
 	usleep(150);
 }
