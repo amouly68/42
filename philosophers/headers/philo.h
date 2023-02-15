@@ -34,6 +34,8 @@ typedef struct s_philo_single
 	struct timeval		now;
 	struct timeval		last_eat;
 	pthread_mutex_t		*fork_p;
+	pthread_mutex_t		mutex_isdead;
+	pthread_mutex_t		mutex_nbofeat;
 
 }						t_philo_single;
 
@@ -59,6 +61,8 @@ typedef struct s_philo_total
 	pthread_t			*th_philo;
 	t_philo_single		*struct_philo;
 	pthread_mutex_t		*fork_p;
+	pthread_mutex_t		mutex_isdead;
+	pthread_mutex_t		mutex_nbofeat;
 
 }						t_philo_total;
 
@@ -74,6 +78,7 @@ int						check_and_add_philo_full(int index,
 void					print_time(struct timeval start, struct timeval end);
 void					print_case(t_philo_single *philo, int choice);
 int						calc_time(struct timeval start, struct timeval end);
+void					clean_exit (t_philo_total	*philo);
 
 // checker
 void					check_eat(t_philo_total *philo);

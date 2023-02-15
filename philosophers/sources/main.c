@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:59:05 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/14 16:12:23 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/15 13:31:03 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,16 @@ int	main(int ac, char **av)
 		return (-1);
 	}
 	create_philo(&philo);
-	while (philo.one_dead == 0)
+	while (philo.one_dead != 1 && philo.philo_full != philo.nb_philo)
+	{
+		check_eat(&philo);
+		check_dead(&philo);
+		/*if (philo.philo_full == philo.nb_philo)
+			break ;
+		if (philo.one_dead == 1)
+			break ;*/
+	}
+	/*while (philo.one_dead == 0)
 	{
 		check_eat(&philo);
 		check_dead(&philo);
@@ -35,5 +44,6 @@ int	main(int ac, char **av)
 			break ;
 		if (philo.one_dead == 1)
 			break ;
-	}
+	}*/
+	clean_exit (&philo);
 }

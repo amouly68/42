@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 10:51:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/14 16:42:32 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/15 13:30:34 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,14 @@ void	check_eat(t_philo_total *philo)
 	i = 0;
 	while (i < philo->nb_philo)
 	{
+		//pthread_mutex_lock(&(philo->mutex_nbofeat));
 		if (philo->struct_philo[i].nb_of_eat == 0)
 		{
+			
 			if (check_and_add_philo_full(i, &(philo->list_of_full_philo)))
 				philo->philo_full++;
 		}
+		//pthread_mutex_unlock(&(philo->mutex_nbofeat));
 		i++;
 	}
 }
@@ -64,6 +67,7 @@ void	check_dead(t_philo_total *philo)
 	j = 0;
 	while (i < philo->nb_philo)
 	{
+		//pthread_mutex_lock(&(philo->mutex_isdead));
 		if (philo->struct_philo[i].is_dead == 1)
 		{
 			philo->one_dead = 1;
@@ -74,6 +78,7 @@ void	check_dead(t_philo_total *philo)
 			}
 			break ;
 		}
+		//pthread_mutex_unlock(&(philo->mutex_isdead));
 		i++;
 	}
 }
@@ -89,7 +94,9 @@ int	check_wait(t_philo_single *philo, int delay)
 		usleep(250);
 		if (calc_time(philo->last_eat, actual_time) >= philo->time_to_die)
 		{
+			//pthread_mutex_lock(&(philo->mutex_isdead));
 			philo->is_dead = 1;
+			//pthread_mutex_unlock(&(philo->mutex_isdead));
 			printf("%d %d died\n", calc_time(philo->start, actual_time),
 				philo->num_philo);
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:58:29 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/14 16:19:32 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/15 13:30:07 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int	init_philo(t_philo_total *philo)
 	philo->fork_p = malloc(sizeof(pthread_mutex_t) * philo->nb_philo);
 	if (philo->fork_p == NULL)
 		return (0);
+	//pthread_mutex_init(&(philo->mutex_isdead), NULL);
+	//pthread_mutex_init(&(philo->mutex_nbofeat), NULL);
 	return (1);
 }
 
