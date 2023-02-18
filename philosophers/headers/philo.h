@@ -20,22 +20,27 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+struct s_philo_total;
+
+
+
 typedef struct s_philo_single
 {
-	int					num_philo;
-	int					time_to_eat;
-	int					time_to_die;
-	int					time_to_sleep;
-	int					nb_of_eat;
-	int					ind_right_fork;
-	int					ind_left_fork;
-	int					is_dead;
-	struct timeval		start;
-	struct timeval		now;
-	struct timeval		last_eat;
-	pthread_mutex_t		*fork_p;
-	pthread_mutex_t		mutex_isdead;
-	pthread_mutex_t		mutex_nbofeat;
+	int						num_philo;
+	long					nb_philo;
+	int						time_to_eat;
+	int						time_to_die;
+	int						time_to_sleep;
+	int						nb_of_eat;
+	int						ind_right_fork;
+	int						ind_left_fork;
+	int						is_dead;
+	struct timeval			start;
+	struct timeval			now;
+	struct timeval			last_eat;
+	pthread_mutex_t			*fork_p;
+	
+	struct s_philo_total	*philo_total;
 
 }						t_philo_single;
 
@@ -61,8 +66,8 @@ typedef struct s_philo_total
 	pthread_t			*th_philo;
 	t_philo_single		*struct_philo;
 	pthread_mutex_t		*fork_p;
-	pthread_mutex_t		mutex_isdead;
-	pthread_mutex_t		mutex_nbofeat;
+	
+	pthread_mutex_t		mutex_dead;
 
 }						t_philo_total;
 
@@ -83,6 +88,7 @@ void					clean_exit (t_philo_total	*philo);
 // checker
 void					check_eat(t_philo_total *philo);
 void					check_dead(t_philo_total *philo);
+void					put_dead(t_philo_total *philo);
 int						check_wait(t_philo_single *philo, int delay);
 
 #endif

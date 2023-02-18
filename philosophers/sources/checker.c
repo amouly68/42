@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 10:51:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/15 13:30:34 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/18 11:11:02 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,21 @@ void	check_eat(t_philo_total *philo)
 	i = 0;
 	while (i < philo->nb_philo)
 	{
-		//pthread_mutex_lock(&(philo->mutex_nbofeat));
 		if (philo->struct_philo[i].nb_of_eat == 0)
 		{
 			
+			
 			if (check_and_add_philo_full(i, &(philo->list_of_full_philo)))
 				philo->philo_full++;
+			if (philo->philo_full == philo->nb_philo)
+			{
+				pthread_mutex_lock(&(philo->mutex_dead));
+				put_dead(philo);
+				pthread_mutex_unlock(&(philo->mutex_dead));
+				break;
+			}
+			
 		}
-		//pthread_mutex_unlock(&(philo->mutex_nbofeat));
 		i++;
 	}
 }
@@ -67,7 +74,6 @@ void	check_dead(t_philo_total *philo)
 	j = 0;
 	while (i < philo->nb_philo)
 	{
-		//pthread_mutex_lock(&(philo->mutex_isdead));
 		if (philo->struct_philo[i].is_dead == 1)
 		{
 			philo->one_dead = 1;
@@ -78,10 +84,23 @@ void	check_dead(t_philo_total *philo)
 			}
 			break ;
 		}
-		//pthread_mutex_unlock(&(philo->mutex_isdead));
 		i++;
 	}
 }
+
+void	put_dead(t_philo_total *philo)
+{
+	int	i;
+	
+	
+	i = 0;
+		while (i < philo->nb_philo)
+		{
+			philo->struct_philo[i].is_dead = 1;
+			i++;
+		}
+}
+
 
 int	check_wait(t_philo_single *philo, int delay)
 {
@@ -92,13 +111,15 @@ int	check_wait(t_philo_single *philo, int delay)
 				philo->now) + delay))
 	{
 		usleep(250);
-		if (calc_time(philo->last_eat, actual_time) >= philo->time_to_die)
+		if (calc_time(philo->last_eat, actual_time) >= philo->time_to_die && philo->is_dead == 0)
 		{
-			//pthread_mutex_lock(&(philo->mutex_isdead));
+			
 			philo->is_dead = 1;
-			//pthread_mutex_unlock(&(philo->mutex_isdead));
-			printf("%d %d died\n", calc_time(philo->start, actual_time),
+			pthread_mutex_lock(&(philo->philo_total->mutex_dead));
+			printf("%d yo %d died\n", calc_time(philo->start, actual_time),
 				philo->num_philo);
+			put_dead(philo->philo_total);
+			pthread_mutex_unlock(&(philo->philo_total->mutex_dead));
 			return (0);
 		}
 		gettimeofday(&actual_time, NULL);

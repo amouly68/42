@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:24:34 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/15 13:30:50 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/18 10:59:25 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@ int	calc_time(struct timeval start, struct timeval end)
 
 void	if_dead(t_philo_single *philo, int time_calc)
 {
+	pthread_mutex_lock(&(philo->philo_total->mutex_dead));
 	if (calc_time(philo->last_eat, philo->now) >= philo->time_to_die
 		&& philo->is_dead == 0)
 	{
-		//pthread_mutex_lock(&(philo->mutex_isdead));
 		philo->is_dead = 1;
-		//pthread_mutex_unlock(&(philo->mutex_isdead));
-		printf("%d %d died\n", time_calc, philo->num_philo);
+		printf("%d test %d died\n", time_calc, philo->num_philo);
+		put_dead(philo->philo_total);
 	}
+	pthread_mutex_unlock(&(philo->philo_total->mutex_dead));
 }
 
 void	print_case(t_philo_single *philo, int choice)
@@ -39,8 +40,8 @@ void	print_case(t_philo_single *philo, int choice)
 
 	gettimeofday(&(philo->now), NULL);
 	time_calc = calc_time(philo->start, philo->now);
-	//pthread_mutex_lock(&(philo->mutex_isdead));
 	if_dead(philo, time_calc);
+	pthread_mutex_lock(&(philo->philo_total->mutex_dead));
 	if (philo->is_dead == 0)
 	{
 		if (choice == 1)
@@ -54,10 +55,8 @@ void	print_case(t_philo_single *philo, int choice)
 			printf("%d %d is sleeping\n", time_calc, philo->num_philo);
 		if (choice == 4)
 			printf("%d %d is thinking\n", time_calc, philo->num_philo);
-		if (choice == 5)
-			printf("%d %d died\n", time_calc, philo->num_philo);
 	}
-	//pthread_mutex_unlock(&(philo->mutex_isdead));
+	pthread_mutex_unlock(&(philo->philo_total->mutex_dead));
 	usleep(150);
 }
 
@@ -77,8 +76,9 @@ void	clean_exit (t_philo_total	*philo)
 		pthread_mutex_destroy (&(philo->fork_p[i]));
 		i++;
 	}
-	//pthread_mutex_destroy (&(philo->mutex_nbofeat));
+	pthread_mutex_destroy(&(philo->mutex_dead));
 	free (philo->th_philo);
 	free (philo->struct_philo);
 	free (philo->fork_p);
+	
 }
