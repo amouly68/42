@@ -20,9 +20,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-struct s_philo_total;
-
-
+struct	s_philo_total;
 
 typedef struct s_philo_single
 {
@@ -39,56 +37,58 @@ typedef struct s_philo_single
 	struct timeval			now;
 	struct timeval			last_eat;
 	pthread_mutex_t			*fork_p;
-	
+
 	struct s_philo_total	*philo_total;
 
-}						t_philo_single;
+}							t_philo_single;
 
 typedef struct s_list_philo
 {
-	int					index;
-	struct s_list_philo	*next;
-}						t_list_philo;
+	int						index;
+	struct s_list_philo		*next;
+}							t_list_philo;
 
 typedef struct s_philo_total
 {
-	long				nb_philo;
-	int					philo_full;
-	int					nb_fork;
-	long				num_philo;
-	long				time_to_eat;
-	long				time_to_die;
-	long				time_to_sleep;
-	long				nb_of_eat;
-	int					one_dead;
-	struct timeval		start;
-	t_list_philo		*list_of_full_philo;
-	pthread_t			*th_philo;
-	t_philo_single		*struct_philo;
-	pthread_mutex_t		*fork_p;
-	
-	pthread_mutex_t		mutex_dead;
+	long					nb_philo;
+	int						philo_full;
+	int						nb_fork;
+	long					num_philo;
+	long					time_to_eat;
+	long					time_to_die;
+	long					time_to_sleep;
+	long					nb_of_eat;
+	int						stop;
+	struct timeval			start;
+	t_list_philo			*list_of_full_philo;
+	pthread_t				*th_philo;
+	t_philo_single			*struct_philo;
+	pthread_mutex_t			*fork_p;
 
-}						t_philo_total;
+	pthread_mutex_t			mutex_protec;
+
+}							t_philo_total;
 
 // parsing
-int						parse_philo(t_philo_total *philo, char **av, int ac);
+int							parse_philo(t_philo_total *philo, char **av,
+								int ac);
 
 //create philo
-void					create_philo(t_philo_total *philo);
+void						create_philo(t_philo_total *philo);
 
 //utils
-int						check_and_add_philo_full(int index,
-							t_list_philo **list_of_full_philo);
-void					print_time(struct timeval start, struct timeval end);
-void					print_case(t_philo_single *philo, int choice);
-int						calc_time(struct timeval start, struct timeval end);
-void					clean_exit (t_philo_total	*philo);
+int							check_and_add_philo_full(int index,
+								t_list_philo **list_of_full_philo);
+void						print_time(struct timeval start,
+								struct timeval end);
+void						print_case(t_philo_single *philo, int choice);
+int							calc_time(struct timeval start, struct timeval end);
+void						clean_exit(t_philo_total *philo);
 
 // checker
-void					check_eat(t_philo_total *philo);
-void					check_dead(t_philo_total *philo);
-void					put_dead(t_philo_total *philo);
-int						check_wait(t_philo_single *philo, int delay);
+void						check_eat(t_philo_total *philo);
+void						check_dead(t_philo_total *philo);
+void						put_dead(t_philo_total *philo);
+void						check_wait(t_philo_single *philo, int delay);
 
 #endif

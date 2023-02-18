@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 11:24:34 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/18 10:59:25 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/18 13:09:33 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,16 @@ int	calc_time(struct timeval start, struct timeval end)
 
 void	if_dead(t_philo_single *philo, int time_calc)
 {
-	pthread_mutex_lock(&(philo->philo_total->mutex_dead));
+	pthread_mutex_lock(&(philo->philo_total->mutex_protec));
 	if (calc_time(philo->last_eat, philo->now) >= philo->time_to_die
 		&& philo->is_dead == 0)
 	{
 		philo->is_dead = 1;
-		printf("%d test %d died\n", time_calc, philo->num_philo);
+		printf("%d %d died\n", time_calc, philo->num_philo);
 		put_dead(philo->philo_total);
+		philo->philo_total->stop = 1;
 	}
-	pthread_mutex_unlock(&(philo->philo_total->mutex_dead));
+	pthread_mutex_unlock(&(philo->philo_total->mutex_protec));
 }
 
 void	print_case(t_philo_single *philo, int choice)
@@ -41,7 +42,7 @@ void	print_case(t_philo_single *philo, int choice)
 	gettimeofday(&(philo->now), NULL);
 	time_calc = calc_time(philo->start, philo->now);
 	if_dead(philo, time_calc);
-	pthread_mutex_lock(&(philo->philo_total->mutex_dead));
+	pthread_mutex_lock(&(philo->philo_total->mutex_protec));
 	if (philo->is_dead == 0)
 	{
 		if (choice == 1)
@@ -56,13 +57,13 @@ void	print_case(t_philo_single *philo, int choice)
 		if (choice == 4)
 			printf("%d %d is thinking\n", time_calc, philo->num_philo);
 	}
-	pthread_mutex_unlock(&(philo->philo_total->mutex_dead));
+	pthread_mutex_unlock(&(philo->philo_total->mutex_protec));
 	usleep(150);
 }
 
-void	clean_exit (t_philo_total	*philo)
+void	clean_exit(t_philo_total *philo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < (philo->nb_philo))
@@ -73,12 +74,11 @@ void	clean_exit (t_philo_total	*philo)
 	i = 0;
 	while (i < (philo->nb_philo))
 	{
-		pthread_mutex_destroy (&(philo->fork_p[i]));
+		pthread_mutex_destroy(&(philo->fork_p[i]));
 		i++;
 	}
-	pthread_mutex_destroy(&(philo->mutex_dead));
-	free (philo->th_philo);
-	free (philo->struct_philo);
-	free (philo->fork_p);
-	
+	pthread_mutex_destroy(&(philo->mutex_protec));
+	free(philo->th_philo);
+	free(philo->struct_philo);
+	free(philo->fork_p);
 }

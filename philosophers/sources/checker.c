@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 10:51:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/18 11:11:02 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/18 13:36:22 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,86 +43,61 @@ void	check_eat(t_philo_total *philo)
 {
 	int	i;
 
-	i = 0;
-	while (i < philo->nb_philo)
+	while (philo->stop == 0)
 	{
-		if (philo->struct_philo[i].nb_of_eat == 0)
+		i = 0;
+		while (i < philo->nb_philo)
 		{
-			
-			
-			if (check_and_add_philo_full(i, &(philo->list_of_full_philo)))
-				philo->philo_full++;
-			if (philo->philo_full == philo->nb_philo)
+			if (philo->struct_philo[i].nb_of_eat == 0)
 			{
-				pthread_mutex_lock(&(philo->mutex_dead));
-				put_dead(philo);
-				pthread_mutex_unlock(&(philo->mutex_dead));
-				break;
+				if (check_and_add_philo_full(i, &(philo->list_of_full_philo)))
+					philo->philo_full++;
+				if (philo->philo_full == philo->nb_philo)
+				{
+					pthread_mutex_lock(&(philo->mutex_protec));
+					put_dead(philo);
+					philo->stop = 1;
+					pthread_mutex_unlock(&(philo->mutex_protec));
+					break ;
+				}
 			}
-			
+			i++;
 		}
-		i++;
-	}
-}
-
-void	check_dead(t_philo_total *philo)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i < philo->nb_philo)
-	{
-		if (philo->struct_philo[i].is_dead == 1)
-		{
-			philo->one_dead = 1;
-			while (j < philo->nb_philo)
-			{
-				philo->struct_philo[j].is_dead = 1;
-				j++;
-			}
-			break ;
-		}
-		i++;
 	}
 }
 
 void	put_dead(t_philo_total *philo)
 {
 	int	i;
-	
-	
+
 	i = 0;
-		while (i < philo->nb_philo)
-		{
-			philo->struct_philo[i].is_dead = 1;
-			i++;
-		}
+	while (i < philo->nb_philo)
+	{
+		philo->struct_philo[i].is_dead = 1;
+		i++;
+	}
 }
 
-
-int	check_wait(t_philo_single *philo, int delay)
+void	check_wait(t_philo_single *philo, int delay)
 {
 	struct timeval	actual_time;
 
 	actual_time = philo->now;
-	while (calc_time(philo->start, actual_time) < (calc_time(philo->start,
-				philo->now) + delay))
+	while (calc_time(philo->start, actual_time)
+		< (calc_time(philo->start, philo->now) + delay))
 	{
 		usleep(250);
-		if (calc_time(philo->last_eat, actual_time) >= philo->time_to_die && philo->is_dead == 0)
+		pthread_mutex_lock(&(philo->philo_total->mutex_protec));
+		if (calc_time(philo->last_eat, actual_time) >= philo->time_to_die
+			&& philo->is_dead == 0)
 		{
-			
 			philo->is_dead = 1;
-			pthread_mutex_lock(&(philo->philo_total->mutex_dead));
-			printf("%d yo %d died\n", calc_time(philo->start, actual_time),
+			philo->philo_total->stop = 1;
+			printf("%d %d died\n", calc_time(philo->start, actual_time),
 				philo->num_philo);
 			put_dead(philo->philo_total);
-			pthread_mutex_unlock(&(philo->philo_total->mutex_dead));
-			return (0);
 		}
+		pthread_mutex_unlock(&(philo->philo_total->mutex_protec));
 		gettimeofday(&actual_time, NULL);
 	}
-	return (1);
 }

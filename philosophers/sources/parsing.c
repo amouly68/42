@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:58:29 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/17 10:48:05 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/18 13:08:22 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	init_philo(t_philo_total *philo)
 {
 	philo->num_philo = 0;
 	philo->philo_full = 0;
-	philo->one_dead = 0;
+	philo->stop = 0;
 	philo->list_of_full_philo = NULL;
 	philo->th_philo = malloc(sizeof(pthread_t) * philo->nb_philo);
 	if (philo->th_philo == NULL)
@@ -88,12 +88,13 @@ int	parse_philo(t_philo_total *philo, char **av, int ac)
 	if (!(check_digit(av, ac)))
 		return (0);
 	philo->nb_philo = ft_atoi_philo(av[1]);
-	if (philo->nb_philo < 1)
-		return (0);
 	philo->nb_fork = philo->nb_philo;
 	philo->time_to_die = ft_atoi_philo(av[2]);
 	philo->time_to_eat = ft_atoi_philo(av[3]);
 	philo->time_to_sleep = ft_atoi_philo(av[4]);
+	if (philo->nb_philo < 1 || philo->nb_philo > 200
+		|| philo->time_to_die < 60 || philo->time_to_eat < 60)
+		return (0);
 	if (ac == 6)
 		philo->nb_of_eat = ft_atoi_philo(av[5]);
 	else
