@@ -6,32 +6,33 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:59:05 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/23 11:42:50 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/24 11:33:33 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int ac, char **av)
+/*int	main(int ac, char **av)
 {
-	t_philo_total	philo;
+	if (ac == 5)
+	{
+		char *f1;
+		char *f2;
+		char *c1;
+		char *c2;
+		
+		f1 = av[1];
+		f2 = av[4];
+		c1 = av[2];
+		c2 = av[3];
+		printf("%s\n%s\n%s\n%s\n", f1, c1 , c2 , f2);
+	}
+	
+}*/
 
-	if ((ac != 5 && ac != 6) || av == NULL)
-	{
-		printf("nombre d'argument invalide\n");
-		return (-1);
-	}
-	if (!(parse_philo(&philo, av, ac)))
-	{
-		printf("Arguments invalides\n");
-		return (-1);
-	}
-	create_philo(&philo);
-	while (philo.stop == 0)
-	{
-		check_eat(&philo);
-		check_dead(&philo);
-		usleep(150);
-	}
-	clean_exit(&philo);
+
+int main(void)
+{
+	
+	
 }
