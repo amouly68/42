@@ -6,33 +6,16 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:59:05 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/24 11:33:33 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/27 16:01:37 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-/*int	main(int ac, char **av)
-{
-	if (ac == 5)
-	{
-		char *f1;
-		char *f2;
-		char *c1;
-		char *c2;
-		
-		f1 = av[1];
-		f2 = av[4];
-		c1 = av[2];
-		c2 = av[3];
-		printf("%s\n%s\n%s\n%s\n", f1, c1 , c2 , f2);
-	}
-	
-}*/
-
-
 int main(void)
 {
-	
+	char *test;
+	test =readline("test> ");
+	printf("%s\n", test);
 	
 }

@@ -1,6 +1,7 @@
 NAME = pipex 
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -g3
+FLAGS = -Wall -Werror -Wextra -g3 
+READLINE = -lreadline
 LIBFT = ./libft/libft.a
 HEADERS = -I headers -I libft 
 
@@ -22,11 +23,11 @@ all :  ${NAME}
 
 ${NAME} : ${OBJS} 
 	make -C libft
-	gcc ${FLAGS} ${OBJS} ${LIBFT} ${LIB_MLX} ${HEADERS} -o ${NAME} 
+	gcc  ${FLAGS} ${OBJS} ${LIBFT} ${HEADERS} -o ${NAME} ${READLINE}
 
 bonus : ${OBJBONUS} 
 	make -C libft
-	gcc ${FLAGS} ${OBJBONUS} ${LIBFT} ${LIB_MLX} ${HEADERS} -o ${NAME} 
+	gcc ${FLAGS} ${OBJBONUS} ${LIBFT} ${HEADERS} -o ${NAME} ${READLINE}
 
 debug : ${OBJS} ${OBJBONUS} 
 	make -C libft
