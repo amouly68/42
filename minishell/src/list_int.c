@@ -6,15 +6,15 @@
 /*   By: event <event@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:19:41 by amouly            #+#    #+#             */
-/*   Updated: 2023/03/08 15:38:16 by event            ###   ########.fr       */
+/*   Updated: 2023/03/08 17:11:04 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	lstadd_back_list_int(t_int **list, t_int *new)
+int	lstadd_back_list_int(t_number **list, t_number *new)
 {
-	t_int      *temp;
+	t_number      *temp;
 
 	if (list == NULL && new == NULL)
 		return (0);
@@ -37,12 +37,12 @@ int	lstadd_back_list_int(t_int **list, t_int *new)
 
 
 
-int fill_list_int(int nbr, t_int **list)
+int fill_list_int(int nbr, t_number **list)
 {
-    t_int *new;
+    t_number *new;
 
     
-    new = malloc(sizeof(t_int));
+    new = malloc(sizeof(t_number));
     if (new == NULL)
         return (0);
     // cleaan la liste si il y a un souci
@@ -54,11 +54,16 @@ int fill_list_int(int nbr, t_int **list)
     return (1);
 }
 
-void print_list_int_from_head(t_int *list)
+void print_list_int_from_head(t_number *list)
 {
-    t_int *head;
+    t_number *head;
     
     head = list;
+    if (head == NULL)
+    {
+        printf("NULL\n");
+        return ;
+    }
     while (head)
     {
         printf("index : %d\n", head->nbr);
@@ -66,11 +71,16 @@ void print_list_int_from_head(t_int *list)
     }
 }
 
-void print_list_int_from_bottom(t_int *list)
+void print_list_int_from_bottom(t_number *list)
 {
-    t_int *head;
+    t_number *head;
     
     head = list;
+    if (head == NULL)
+    {
+        printf("NULL\n");
+        return ;
+    }
     while (head->next)
         head = head->next;
     while (head)

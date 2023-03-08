@@ -6,7 +6,7 @@
 /*   By: event <event@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:25:17 by llion             #+#    #+#             */
-/*   Updated: 2023/03/08 15:42:41 by event            ###   ########.fr       */
+/*   Updated: 2023/03/08 15:50:22 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,19 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+typedef struct s_number
+{
+	int			        nbr;
+	struct s_number	    *next;
+    struct s_number	    *previous;
+}					t_number;
+
 typedef struct s_char
 {
 	char			character;
 	struct s_char	*next;
     struct s_char	*previous;
 }					t_char;
-
-typedef struct s_int
-{
-	int			    nbr;
-	struct s_int	*next;
-    struct s_int	*previous;
-}					t_int;
-
 
 
 /* -------------- BUILTINS -------------- */
@@ -81,10 +80,10 @@ void    insert_space_everywhere(t_char **list);
 
 /* -------------- LIST_INT.c -------------- */
 
-int	    lstadd_back_list_int(t_int **list, t_int *new);
-int     fill_list_int(int nbr, t_int **list);
-void    print_list_int_from_head(t_int *list);
-void    print_list_int_from_bottom(t_int *list);
+int	    lstadd_back_list_int(t_number **list, t_number *new);
+int     fill_list_int(int nbr, t_number **list);
+void    print_list_int_from_head(t_number *list);
+void    print_list_int_from_bottom(t_number *list);
 
 /* -------------- FORMAT_LIST.c -------------- */
 
@@ -100,6 +99,10 @@ int     length_list(t_char *list);
 char    *list_to_string(t_char *list);
 char    *format_line(char *line);
 void    print_input_after_formating(char *line_input);
+
+/* -------------- PARSE.c -------------- */
+
+void    parse_input(char *input);
 
 #endif
 

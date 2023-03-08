@@ -16,7 +16,8 @@ SOURCES = 	main.c \
 			list_char.c \
 			format_line.c \
 			format_list.c \
-			parse.c
+			parse.c \
+			list_int.c
 
 			
 SRCBONUS = 
