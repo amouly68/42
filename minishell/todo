@@ -1,3 +1,8 @@
->> laisser les guillemets dans le split
->> revoir la segmentation pour la print_list
+>> laisser les guillemets dans le split --> Normalement ok
+>> revoir la segmentation pour la print_list --> Normalement ok
+>> finir le parsing : pour les chevrons (double et simple)
+>> faire toutes les sorties cleans (free tout ce qui a free)
+    --- close quote please
+    ---
+
 

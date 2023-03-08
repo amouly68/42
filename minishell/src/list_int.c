@@ -6,7 +6,7 @@
 /*   By: event <event@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:19:41 by amouly            #+#    #+#             */
-/*   Updated: 2023/03/08 17:11:04 by event            ###   ########.fr       */
+/*   Updated: 2023/03/08 17:13:56 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void print_list_int_from_bottom(t_number *list)
     head = list;
     if (head == NULL)
     {
-        printf("NULL\n");
+        printf("\n");
         return ;
     }
     while (head->next)
