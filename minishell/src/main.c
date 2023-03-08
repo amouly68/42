@@ -8,6 +8,6 @@ int main()
     {
         input = readline("Minishell> ");
         add_history(input);
-        format_line(input);
+        print_input_after_formating(input);
     }
 }

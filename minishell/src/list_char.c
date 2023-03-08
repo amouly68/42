@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_char.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: event <event@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:19:41 by amouly            #+#    #+#             */
-/*   Updated: 2023/03/06 15:47:12 by amouly           ###   ########.fr       */
+/*   Updated: 2023/03/08 15:22:25 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int fill_list(char *line, t_char **list)
             return (0);
         // cleaan la liste si il y a un souci
         new->character = line[i];
-        new->flag_double_quote = 0;
-        new->flag_simple_quote = 0;
         new->next = NULL;
         if (!lstadd_back_ms(list, new ))
                return (0);
@@ -95,8 +93,6 @@ int insert_space_node(t_char *previous, t_char *next)
     if (node_space == NULL)
         return (0);
     node_space->character = ' '; 
-    node_space->flag_double_quote = 0;
-    node_space->flag_simple_quote = 0;
     node_space->previous = previous;
     if (previous != NULL)
         previous->next = node_space;

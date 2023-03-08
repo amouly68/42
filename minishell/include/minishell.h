@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
+/*   By: event <event@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:25:17 by llion             #+#    #+#             */
-/*   Updated: 2023/03/06 17:36:11 by amouly           ###   ########.fr       */
+/*   Updated: 2023/03/08 15:42:41 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,18 @@
 typedef struct s_char
 {
 	char			character;
-    int             flag_simple_quote;
-    int             flag_double_quote;
 	struct s_char	*next;
     struct s_char	*previous;
 }					t_char;
+
+typedef struct s_int
+{
+	int			    nbr;
+	struct s_int	*next;
+    struct s_int	*previous;
+}					t_int;
+
+
 
 /* -------------- BUILTINS -------------- */
 
@@ -62,7 +69,7 @@ int		quotes_nbr(char *str);
 int		command_len(char *str);
 char	**find_args(char *str);
 
-/* -------------- ADD_SPACE.c -------------- */
+/* -------------- LIST_CHAR.c -------------- */
 
 int	    lstadd_back_ms(t_char **list, t_char *new);
 int     fill_list(char *line, t_char **list);
@@ -71,6 +78,13 @@ void    print_list_from_bottom(t_char *list);
 int     insert_space_node(t_char *previous, t_char *next);
 int     insert_two_space(t_char *node);
 void    insert_space_everywhere(t_char **list);
+
+/* -------------- LIST_INT.c -------------- */
+
+int	    lstadd_back_list_int(t_int **list, t_int *new);
+int     fill_list_int(int nbr, t_int **list);
+void    print_list_int_from_head(t_int *list);
+void    print_list_int_from_bottom(t_int *list);
 
 /* -------------- FORMAT_LIST.c -------------- */
 
@@ -84,7 +98,8 @@ int     format_list(t_char *list);
 
 int     length_list(t_char *list);
 char    *list_to_string(t_char *list);
-void    format_line(char *line_input);
+char    *format_line(char *line);
+void    print_input_after_formating(char *line_input);
 
 #endif
 
