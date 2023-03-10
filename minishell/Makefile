@@ -6,7 +6,7 @@ LIBFT = ./libft/libft.a
 HEADERS = -I headers -I libft 
 
 
-SOURCES = 	main.c \
+SOURCES = 	main_antoine.c \
 			find_arg.c \
 			verif_line.c \
 			split_ms.c \
@@ -17,7 +17,7 @@ SOURCES = 	main.c \
 			format_line.c \
 			format_list.c \
 			parse.c \
-			list_int.c
+			list_int.c 
 
 			
 SRCBONUS = 

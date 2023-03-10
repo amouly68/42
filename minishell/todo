@@ -1,5 +1,4 @@
->> laisser les guillemets dans le split --> Normalement ok
->> revoir la segmentation pour la print_list --> Normalement ok
+>> faire la diff entre " et ' ==> $
 >> finir le parsing : pour les chevrons (double et simple)
 >> faire toutes les sorties cleans (free tout ce qui a free)
     --- close quote please
