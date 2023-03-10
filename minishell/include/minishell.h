@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: event <event@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:25:17 by llion             #+#    #+#             */
-/*   Updated: 2023/03/08 15:50:22 by event            ###   ########.fr       */
+/*   Updated: 2023/03/10 13:52:13 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ typedef struct s_char
 	struct s_char	*next;
     struct s_char	*previous;
 }					t_char;
+
+typedef struct s_command
+{
+	int			        fd_input;
+	int					fd_output;
+	int 				order;
+	int					pipe_after;
+	t_char				*delimiters;
+	char				*command;
+	t_char				*options_and_args;
+    struct s_command	*next;
+	struct s_command	*previous;
+}					t_command;
 
 
 /* -------------- BUILTINS -------------- */

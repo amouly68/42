@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:03:31 by event             #+#    #+#             */
-/*   Updated: 2023/03/10 13:02:37 by amouly           ###   ########.fr       */
+/*   Updated: 2023/03/10 13:25:31 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,8 @@ void handle_chevrons(char **tab, int index)
 }
 
 
-void find_command_until_pipe(char **tab, int *i, int *cmd)
+void find_command_until_pipe(char **tab, int *i, int *cmd, int *arg)
 {
-    //int i;
-    //int cmd;
-    int arg;
-
-    //i = 0;
-    //cmd = 0;
-    arg = 0;
     if (tab[*i][0] == '<' || tab[*i][0] == '>')
     {
         handle_chevrons(tab, *i);
@@ -75,41 +68,10 @@ void find_command_until_pipe(char **tab, int *i, int *cmd)
             *cmd = 1;
         }
         else 
-            printf("arg ou option num %d : %s\n", ++arg, tab[*i]); 
+            printf("arg ou option num %d : %s\n", (*arg)++, tab[*i]); 
     }
-   // i++;
 }
 
-/*void    parse_between_pipes(t_number *list_of_index, char **tab)
-{
-    t_number   *temp;
-    
-    temp = list_of_index;
-    while(temp)
-    {
-        find_command_until_pipe(tab, temp->nbr);
-        temp = temp->next;
-    }
-}*/
-
-/*void    parse_input(char *input)
-{
-    char    **tab;
-    int     nb_of_pipes = 0;
-    //int     i = 0;
-    t_number   *list_of_index;
-    
-    list_of_index = NULL;
-    tab = ft_split_ms(format_line(input));
-    print_input_after_formating(input);
-    nb_of_pipes = (count_nb_of_pipes(tab, &list_of_index));
-    printf("il y a %d pipes aux index suivants :\n", nb_of_pipes);
-    print_list_int_from_head(list_of_index);
-    printf("---------------\n");
-    print_list_int_from_bottom(list_of_index);
-    parse_between_pipes(list_of_index, tab);
-    
-}*/
 
 void    parse_input(char *input)
 {
@@ -117,24 +79,18 @@ void    parse_input(char *input)
     int     i;
     int     pipe;
     int     cmd;
+    int     arg;
     
     i = 0;
     pipe = 0;
-    
     tab = ft_split_ms(format_line(input));
-     while(tab[i])
-    {
-        printf("tab[%d] = %s\n",i,tab[i]);
-        i++;  
-    }
-   // print_input_after_formating(input);
-    i = 0;
     while(tab[i])
     {
         cmd = 0;
+        arg = 1;
         while(tab[i] && (tab[i][0] != '|' || tab[i][1] != '\0'))
         {
-            find_command_until_pipe(tab, &i, &cmd);
+            find_command_until_pipe(tab, &i, &cmd, &arg);
             i++;
         }
         if (tab[i] && (tab[i][0] == '|' && tab[i][1] == '\0'))
