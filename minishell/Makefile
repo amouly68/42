@@ -17,7 +17,10 @@ SOURCES = 	main_antoine.c \
 			format_line.c \
 			format_list.c \
 			parse.c \
-			list_int.c 
+			list_int.c \
+			list_string.c \
+			list_command.c \
+			parse_try.c
 
 			
 SRCBONUS = 

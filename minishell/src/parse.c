@@ -6,13 +6,13 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:03:31 by event             #+#    #+#             */
-/*   Updated: 2023/03/10 13:25:31 by amouly           ###   ########.fr       */
+/*   Updated: 2023/03/10 14:46:21 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int count_nb_of_pipes(char **tab, t_number **list)
+/*int count_nb_of_pipes(char **tab, t_number **list)
 {
     int i;
     int nb_of_pipes;
@@ -28,6 +28,22 @@ int count_nb_of_pipes(char **tab, t_number **list)
             nb_of_pipes++;
             fill_list_int(i, temp);   
         }   
+        i++;
+    }
+    return (nb_of_pipes);
+}*/
+
+int count_nb_of_pipes(char **tab)
+{
+    int i;
+    int nb_of_pipes;
+    
+    i = 0;
+    nb_of_pipes = 0;
+    while(tab[i])
+    {
+        if (tab[i][0] == '|' && tab[i][1] == '\0')
+            nb_of_pipes++;    
         i++;
     }
     return (nb_of_pipes);
@@ -84,6 +100,8 @@ void    parse_input(char *input)
     i = 0;
     pipe = 0;
     tab = ft_split_ms(format_line(input));
+
+    
     while(tab[i])
     {
         cmd = 0;
@@ -100,3 +118,4 @@ void    parse_input(char *input)
         }
     }
 }
+

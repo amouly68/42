@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:25:17 by llion             #+#    #+#             */
-/*   Updated: 2023/03/10 13:52:13 by amouly           ###   ########.fr       */
+/*   Updated: 2023/03/10 16:13:41 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 typedef struct s_number
 {
@@ -37,15 +40,23 @@ typedef struct s_char
     struct s_char	*previous;
 }					t_char;
 
+typedef struct s_string
+{
+	char				*string;
+	struct s_string		*next;
+    struct s_string		*previous;
+}					t_string;
+
 typedef struct s_command
 {
 	int			        fd_input;
 	int					fd_output;
 	int 				order;
 	int					pipe_after;
-	t_char				*delimiters;
+	int					delimiter;
+	t_string			*delimiters;
 	char				*command;
-	t_char				*options_and_args;
+	t_string			*options_and_args;
     struct s_command	*next;
 	struct s_command	*previous;
 }					t_command;
@@ -98,6 +109,18 @@ int     fill_list_int(int nbr, t_number **list);
 void    print_list_int_from_head(t_number *list);
 void    print_list_int_from_bottom(t_number *list);
 
+/* -------------- LIST_STRING.c -------------- */
+
+int		lstadd_back_list_string(t_string **list, t_string *new);
+int 	fill_list_string(char *str, t_string **list);
+void 	print_list_string_from_head(t_string *list);
+
+/* -------------- LIST_COMMAND.c -------------- */
+
+void    init_struct_command(t_command *list_of_command);
+int		lstadd_back_list_command(t_command **list, t_command *new);
+void 	print_list_command_from_head(t_command *list);
+
 /* -------------- FORMAT_LIST.c -------------- */
 
 int     add_space_before (t_char *node);
@@ -116,6 +139,7 @@ void    print_input_after_formating(char *line_input);
 /* -------------- PARSE.c -------------- */
 
 void    parse_input(char *input);
+void    parse_try_input(char *input);
 
 #endif
 

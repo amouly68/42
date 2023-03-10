@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_ms.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: event <event@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 08:04:32 by amouly            #+#    #+#             */
-/*   Updated: 2023/03/08 17:48:43 by event            ###   ########.fr       */
+/*   Updated: 2023/03/10 16:22:39 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,9 +151,6 @@ int	fill_tab_split_ms(char **tab, char const *s)
 	int		len;
 	
 	int count_word = count_word_ms(s);
-	printf("nombre de mots : %d\n", count_word);
-
-	
 	i = 0;
 	pos = 0;
 	while (i < count_word)
