@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 10:25:17 by llion             #+#    #+#             */
-/*   Updated: 2023/03/10 16:13:41 by amouly           ###   ########.fr       */
+/*   Updated: 2023/03/11 13:44:59 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "../libft/libft.h"
+# include "libft.h"
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -43,20 +43,22 @@ typedef struct s_char
 typedef struct s_string
 {
 	char				*string;
+	int					append;
 	struct s_string		*next;
     struct s_string		*previous;
 }					t_string;
 
 typedef struct s_command
 {
-	int			        fd_input;
-	int					fd_output;
-	int 				order;
-	int					pipe_after;
-	int					delimiter;
+	t_string			*command;
+	t_string			*input;
+	int					redir_input;
+	t_string			*output;
+	int					redir_output;
 	t_string			*delimiters;
-	char				*command;
-	t_string			*options_and_args;
+	int					delimiter;
+	int					order;
+	int					pipe_after;
     struct s_command	*next;
 	struct s_command	*previous;
 }					t_command;
@@ -78,6 +80,7 @@ int     verif_line(char *line);
 int     put_flag(char c, int flag);
 int	    count_word_ms(char const *str);
 int	    len_word(char const *str, int *pos);
+void	put_word(char const *str, int *pos, char *line_tab);
 int	    free_tab_ms_split(char **tab, int i);
 int	    fill_tab_split_ms(char **tab, char const *s);
 char    **ft_split_ms(char const *s);
@@ -113,7 +116,9 @@ void    print_list_int_from_bottom(t_number *list);
 
 int		lstadd_back_list_string(t_string **list, t_string *new);
 int 	fill_list_string(char *str, t_string **list);
+int 	fill_list_string_append(char *str, t_string **list);
 void 	print_list_string_from_head(t_string *list);
+void 	print_list_string_from_head_command(t_string *list);
 
 /* -------------- LIST_COMMAND.c -------------- */
 
@@ -138,8 +143,17 @@ void    print_input_after_formating(char *line_input);
 
 /* -------------- PARSE.c -------------- */
 
+void 	handle_chevrons(char **tab, int index, t_command *new);
+void 	find_command_until_pipe(char **tab, int *i,t_command *new);
+int 	fill_list_command(char **tab, int *i, t_command **list, int *count);
 void    parse_input(char *input);
-void    parse_try_input(char *input);
+
+/* -------------- PARSE_V1.c -------------- */
+
+int 	count_nb_of_pipes(char **tab);
+void 	handle_chevrons_v1(char **tab, int index);
+void 	find_command_until_pipe_v1(char **tab, int *i, int *cmd, int *arg);
+void    parse_input_v1(char *input);
 
 #endif
 
