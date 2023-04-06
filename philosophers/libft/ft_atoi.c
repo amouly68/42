@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:33:32 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/13 15:58:59 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/18 13:54:49 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_atoi(const char *str)
 {
 	int	i;
 	int	neg;
-	int num;
+	int	num;
 
 	i = 0;
 	num = 0;

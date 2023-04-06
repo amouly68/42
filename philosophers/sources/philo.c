@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:54:56 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/18 13:44:01 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/18 14:24:14 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,4 @@ void	create_philo(t_philo_total *philo)
 	fill_struct_philo(philo, &(philo->struct_philo[i]));
 	pthread_create(&(philo->th_philo[i]), NULL, &print_philo_last,
 		&(philo->struct_philo[i]));
-	check_eat(philo);
 }

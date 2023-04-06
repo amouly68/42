@@ -3,16 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amouly <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 08:04:32 by amouly            #+#    #+#             */
-/*   Updated: 2022/11/16 12:08:44 by amouly           ###   ########.fr       */
+/*   Updated: 2023/03/04 10:30:52 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
+
+int put_flag(char c, int flag)
+{
+	if (flag == 0 && c == '"')
+		return (1);
+	else if (flag == 0 && c == '\'')
+		return (2);
+	else if (flag == 1 && c == '"')
+		return (0);
+	else if (flag == 2 && c == '\'')
+		return (0);
+	else 
+		return (flag);
+}
+
 
 int	count_word(char const *str, char c)
+{
+	int	i;
+	int	count;
+	int flag;
+
+	flag = 0;
+	count = 0;
+	i = 0;
+	while (str[i] != '\0' && str[i] == c)
+		i++;
+	
+	while (str[i] != '\0')
+	{
+		flag = put_flag(str[i], flag);
+		while (str[i] != '\0' && str[i] != c && flag == 0)
+		{
+			i++;
+			flag = put_flag (str[i], flag);
+		}
+		
+		if ((str[i] == '\0' || str[i] == c )&& flag == 0)
+			count++;
+		while (str[i] != '\0' && str[i] == c && flag == 0 )
+		{
+			i++;
+			flag = put_flag(str[i], flag);
+		}
+		if (flag == 1 || flag == 2)
+			i++;
+	}
+	return (count);
+}
+
+/*int	count_word(char const *str, char c)
 {
 	int	i;
 	int	count;
@@ -20,20 +70,23 @@ int	count_word(char const *str, char c)
 	count = 0;
 	i = 0;
 	while (str[i] != '\0' && str[i] == c)
-			i++;
+		i++;
+	
 	while (str[i] != '\0')
 	{
-		while (str[i] != '\0' && str[i] != c)
+		while (str[i] != '\0' && str[i] != c )
 			i++;
-		if (str[i] == '\0' || str[i] == c)
+
+		if ((str[i] == '\0' || str[i] == c ))
 			count++;
-		while (str[i] != '\0' && str[i] == c)
+		while (str[i] != '\0' && str[i] == c )
 			i++;
+		
 	}
 	return (count);
-}
+}*/
 
-int	long_mot(char const *str, char c)
+int	long_mot(char const *str, char c, int flag)
 {
 	int	count;
 	int	i;
@@ -42,8 +95,12 @@ int	long_mot(char const *str, char c)
 	i = 0;
 	while (str[i] == '\0' || str[i] == c)
 		return (count);
-	while (str[i] != '\0' && str[i] != c)
+	while ((str[i] != '\0' && str[i] != c) || flag == 1 || flag == 2)
 	{
+		if (flag == 1 && str[i] == '"' )
+			break;
+		if (flag == 2 && str[i] == '\'' )
+			break;
 		i++;
 		count++;
 	}
@@ -69,22 +126,28 @@ int	fill_tab(char **tab, char c, char const *s)
 	int		i;
 	int		pos;
 	int		j;
-
+	int 	flag;
+	
+	flag = 0;
 	i = 0;
 	pos = 0;
+	printf("nombre de mots : %d\n", count_word(s, c));
 	while (i < count_word(s, c))
 	{
-		while (long_mot(&s[pos], c) == 0)
+		flag = put_flag(s[pos], flag);
+		while (long_mot(&s[pos], c, flag) == 0)
 			pos++;
-		tab[i] = malloc (sizeof(char) * (long_mot(&s[pos], c) + 1));
+		tab[i] = malloc (sizeof(char) * (long_mot(&s[pos], c, flag) + 1));
 		if (tab[i] == NULL)
 			return (free_tab(tab, i));
 		j = 0;
-		while ((s[pos] != c) && s[pos] != '\0' )
+		while (((s[pos] != c) && s[pos] != '\0') || flag == 1 || flag == 2 )
 		{	
+			flag = put_flag(s[pos], flag);
 			tab[i][j] = s[pos];
 			pos++;
 			j++;
+			
 		}
 	tab[i][j] = '\0';
 	i++;

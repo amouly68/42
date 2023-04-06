@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:59:05 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/18 12:48:54 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/18 14:23:23 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,11 @@ int	main(int ac, char **av)
 		return (-1);
 	}
 	create_philo(&philo);
-	clean_exit (&philo);
+	while (philo.stop == 0)
+	{
+		check_eat(&philo);
+		check_dead(&philo);
+		usleep(150);
+	}
+	clean_exit(&philo);
 }

@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:58:29 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/18 13:08:22 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/18 14:32:24 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	parse_philo(t_philo_total *philo, char **av, int ac)
 		philo->nb_of_eat = -1;
 	if (philo->time_to_die == -2 || philo->time_to_eat == -2
 		|| philo->time_to_sleep == -2 || philo->nb_philo == -2
-		|| philo->nb_of_eat == -2)
+		|| philo->nb_of_eat == -2 || philo->nb_of_eat == 0)
 		return (0);
 	if (!(init_philo(philo)))
 		return (0);

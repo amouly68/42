@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 10:51:04 by amouly            #+#    #+#             */
-/*   Updated: 2023/02/18 13:36:22 by amouly           ###   ########.fr       */
+/*   Updated: 2023/02/18 14:27:59 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,50 @@ void	check_eat(t_philo_total *philo)
 {
 	int	i;
 
-	while (philo->stop == 0)
+	i = 0;
+	while (i < philo->nb_philo)
 	{
-		i = 0;
-		while (i < philo->nb_philo)
+		if (philo->struct_philo[i].nb_of_eat == 0)
 		{
-			if (philo->struct_philo[i].nb_of_eat == 0)
+			if (check_and_add_philo_full(i, &(philo->list_of_full_philo)))
+				philo->philo_full++;
+			if (philo->philo_full == philo->nb_philo)
 			{
-				if (check_and_add_philo_full(i, &(philo->list_of_full_philo)))
-					philo->philo_full++;
-				if (philo->philo_full == philo->nb_philo)
-				{
-					pthread_mutex_lock(&(philo->mutex_protec));
-					put_dead(philo);
-					philo->stop = 1;
-					pthread_mutex_unlock(&(philo->mutex_protec));
-					break ;
-				}
+				pthread_mutex_lock(&(philo->mutex_protec));
+				put_dead(philo);
+				philo->stop = 1;
+				pthread_mutex_unlock(&(philo->mutex_protec));
+				break ;
 			}
-			i++;
 		}
+		i++;
+	}
+}
+
+void	check_dead(t_philo_total *philo)
+{
+	int				i;
+	struct timeval	now;
+	int				time_calc;
+
+	i = 0;
+	while (i < philo->nb_philo)
+	{
+		gettimeofday(&now, NULL);
+		time_calc = calc_time(philo->start, now);
+		pthread_mutex_lock(&(philo->mutex_protec));
+		if (calc_time(philo->struct_philo[i].last_eat,
+				now) >= philo->time_to_die
+			&& philo->struct_philo[i].is_dead == 0)
+		{
+			philo->struct_philo[i].is_dead = 1;
+			printf("%d %d died\n", time_calc,
+				philo->struct_philo[i].num_philo);
+			put_dead(philo);
+			philo->stop = 1;
+		}
+		pthread_mutex_unlock(&(philo->mutex_protec));
+		i++;
 	}
 }
 
@@ -83,8 +107,8 @@ void	check_wait(t_philo_single *philo, int delay)
 	struct timeval	actual_time;
 
 	actual_time = philo->now;
-	while (calc_time(philo->start, actual_time)
-		< (calc_time(philo->start, philo->now) + delay))
+	while (calc_time(philo->start, actual_time) < (calc_time(philo->start,
+				philo->now) + delay))
 	{
 		usleep(250);
 		pthread_mutex_lock(&(philo->philo_total->mutex_protec));
