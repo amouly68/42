@@ -15,21 +15,21 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "Contact.hpp"
 
 class PhoneBook {
 
     public :
+    int number; 
+    Contact list[8]; 
     
-   // PhoneBook(void);
+    PhoneBook(int number);
    // ~PhoneBook(void);
 
-    void display(void) const;
-
-    private :
-    
-    //int number;  
-    Contact list[8]; 
+    void display(void) const; 
+    void add(void);
+   
     
 };
 

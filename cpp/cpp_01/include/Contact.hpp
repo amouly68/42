@@ -20,14 +20,17 @@ class Contact {
 
     public :
     
+    std::string index;
     std::string first_name;
     std::string last_name;
     std::string nickname;
     std::string num;
     std::string secret;
+   // int         index;
     
     
-    //Contact(void);
+   // Contact(std::string first_name, std::string last_name, 
+     //       std::string nickname, std::string num, std::string secret);
    //~Contact(void);
 
    
