@@ -6,7 +6,7 @@
 #    By: amouly <amouly@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 15:27:43 by llion             #+#    #+#              #
-#    Updated: 2023/06/17 11:16:10 by amouly           ###   ########.fr        #
+#    Updated: 2023/06/18 11:09:19 by amouly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,9 @@ CC			= g++
 RM			= rm -rf
 FLAGS		= -Wall -Werror -Wextra -g3 -std=c++98
 MLX			= MLX42/build/libmlx42.a
-HEADERS		= -Iinclude 
-SRC			=	megaphone.cpp
+HEADERS		= -I include 
+SRC			=	main.cpp \
+				PhoneBook.cpp
 					
 OBJ			= $(addprefix obj/,$(notdir $(SRC:.cpp=.o)))
 
@@ -25,10 +26,10 @@ all:  $(NAME)
 
 obj/%.o : src/%.cpp
 	@mkdir -p obj
-	@$(CC) -c $< -o $@
+	@$(CC) $(FLAGS) $(HEADERS) -c $< -o $@
 
 $(NAME) : $(OBJ) 
-	@$(CC) $(FLAGS) $(OBJ)  -o $(NAME)	
+	@$(CC) $(FLAGS) $(OBJ)  $(HEADERS) -o $(NAME)	
 	$(call echo,COMPILED,megaphone,32)
 
 $(LIBFT): libft/Makefile
@@ -38,7 +39,7 @@ libft/Makefile: libft/src/*.c libft/include/*.h
 	@$(MAKE) -sC libft
 
 debug: $(OBJ) 
-	@$(CC) $(FLAGS) $(OBJ) $ $(HEADERS) -fsanitize=address -o $(NAME)	
+	@$(CC) $(FLAGS) $(OBJ) $(HEADERS) -fsanitize=address -o $(NAME)	
 	$(call echo,COMPILED,megaphone,33)
 
 clean :
