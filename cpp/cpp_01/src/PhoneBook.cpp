@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:02:35 by amouly            #+#    #+#             */
-/*   Updated: 2023/06/18 11:41:38 by amouly           ###   ########.fr       */
+/*   Updated: 2023/06/19 09:19:38 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,23 @@ void PhoneBook::display(void) const
     std::cout << std::endl;
 }
 
+int 
+{
+    
+}
+
+
+
 void PhoneBook::add(void)
 {
+    std::string input;
+    
     if (this->number == 8)
         this->number = 0;
-    std::stringstream ss;
-    ss << this->number + 1 ;
-    this->list[this->number].index = ss.str();
+    
 
     std::cout << "Please type the first name of your contact : ";
-    std::cin >> this->list[this->number].first_name;
+    this->list[this->number].first_name;
     std::cout << "Please type the lastname of your contact : ";
     std::cin >> this->list[this->number].last_name;
     std::cout << "Please type the nickname of your contact : ";
@@ -86,6 +93,10 @@ void PhoneBook::add(void)
     std::cin >> this->list[this->number].num;
     std::cout << "Please type the darkest secret of your contact : ";
     std::cin >> this->list[this->number].secret;
+
+    std::stringstream ss;
+    ss << this->number + 1 ;
+    this->list[this->number].index = ss.str();
     this->number++;
     
 }

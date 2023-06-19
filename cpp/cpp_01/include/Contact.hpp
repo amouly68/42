@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:17:11 by amouly            #+#    #+#             */
-/*   Updated: 2023/06/18 11:08:08 by amouly           ###   ########.fr       */
+/*   Updated: 2023/06/19 09:30:57 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ class Contact {
    // Contact(std::string first_name, std::string last_name, 
      //       std::string nickname, std::string num, std::string secret);
    //~Contact(void);
-
+    int   add_first_name();
+    void  empty_contact(void) 
    
     
 };
