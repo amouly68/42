@@ -6,7 +6,7 @@
 #    By: amouly <amouly@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 15:27:43 by llion             #+#    #+#              #
-#    Updated: 2023/06/18 11:09:19 by amouly           ###   ########.fr        #
+#    Updated: 2023/06/19 09:57:54 by amouly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ FLAGS		= -Wall -Werror -Wextra -g3 -std=c++98
 MLX			= MLX42/build/libmlx42.a
 HEADERS		= -I include 
 SRC			=	main.cpp \
-				PhoneBook.cpp
+				PhoneBook.cpp \
+				Contact.cpp
 					
 OBJ			= $(addprefix obj/,$(notdir $(SRC:.cpp=.o)))
 

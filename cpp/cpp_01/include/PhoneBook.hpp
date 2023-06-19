@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.hpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:17:11 by amouly            #+#    #+#             */
-/*   Updated: 2023/06/18 11:12:26 by amouly           ###   ########.fr       */
+/*   Updated: 2023/06/19 12:55:27 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ class PhoneBook {
     Contact list[8]; 
     
     PhoneBook(int number);
-   // ~PhoneBook(void);
 
     void display(void) const; 
     void add(void);
+    void search(void);
    
     
 };
