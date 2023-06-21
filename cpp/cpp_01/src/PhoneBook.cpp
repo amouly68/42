@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:02:35 by amouly            #+#    #+#             */
-/*   Updated: 2023/06/19 12:55:05 by amouly           ###   ########.fr       */
+/*   Updated: 2023/06/21 11:18:24 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,16 @@ PhoneBook::PhoneBook(int number) : number(number) {
     
 }
 
+/* *****  ********    DESTRUCTEUR ********* ******** ***/
+
+PhoneBook::~PhoneBook(void) { 
+}
+
 /* *****  ********    DISPLAY ********* ******** ***/
 
 void display_bordure()
 {
-    std::string line;
-    line.assign(45, '-');
-    std::cout << line << std::endl;
+    std::cout << std::setfill('-') << std::setw(45) << "-" << std::endl ;
     return;
 }
 
@@ -63,14 +66,15 @@ void display_line(std::string f_name, std::string name, std::string nickname, st
 void PhoneBook::display(void) const
 {
     int i = -1;
+    std::cout << std::endl;
     display_bordure();
     display_line("INDEX", "FIRST NAME", "NAME", "NICKNAME");
     display_bordure();
     while (++i < 8)
     {
-        if (this->list[i].index.length() == 1)
-            display_line(this->list[i].index, this->list[i].first_name, \
-                            this->list[i].last_name, this->list[i].nickname);
+        if (this->_list[i].index.length() == 1)
+            display_line(this->_list[i].index, this->_list[i].first_name, \
+                            this->_list[i].last_name, this->_list[i].nickname);
         else
             display_line(" ", " ", " ", " ");
     }
@@ -89,20 +93,20 @@ void PhoneBook::add(void)
     
     index = this->number % 8;
      
-    if (this->list[index].add_first_name() 
-        || this->list[index].add_last_name()
-        || this->list[index].add_nickname() 
-        || this->list[index].add_num()
-        || this->list[index].add_secret())
+    if (this->_list[index].add_first_name() 
+        || this->_list[index].add_last_name()
+        || this->_list[index].add_nickname() 
+        || this->_list[index].add_num()
+        || this->_list[index].add_secret())
         {
-            this->list[index].empty_contact();
+            this->_list[index].empty_contact();
             return;
         }
     ss << index + 1 ;
-    this->list[index].index = ss.str();
+    this->_list[index].index = ss.str();
     this->number++;
     
-    std::cout << std::endl << "THANK YOU  -  " << this->list[index].first_name;
+    std::cout << std::endl << "THANK YOU  -  " << this->_list[index].first_name;
     std::cout << " has been added to your phonebook !" << std::endl << std::endl;
     
     return ;
@@ -120,7 +124,7 @@ int    take_input(void)
     int index;
     
     std::cout << "Please type the index of your contact : " <<  std::endl;
-    std::cin >> input;
+    std::getline(std::cin, input);
     
     while((input.compare("1") && input.compare("2") &&
         input.compare("3") && input.compare("4") &&
@@ -128,7 +132,7 @@ int    take_input(void)
         input.compare("7") && input.compare("8"))  && i < 2)
     {
         std::cout << "Please enter a valid index:" << std::endl;
-        std::cin >> input;
+        std::getline(std::cin, input);
         i++;
     }
     ss << input;
@@ -155,7 +159,7 @@ void PhoneBook::search(void)
         return ;
     }
     else   
-        this->list[index - 1].display();
+        this->_list[index - 1].display();
     return ;
     
 }

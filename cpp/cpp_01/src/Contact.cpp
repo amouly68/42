@@ -6,28 +6,50 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:02:35 by amouly            #+#    #+#             */
-/*   Updated: 2023/06/19 12:47:22 by amouly           ###   ########.fr       */
+/*   Updated: 2023/06/21 11:04:30 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-static inline bool is_not_digit(char c)
-{
-    return !(isdigit(c) || (c == ' ') || (c == '-'));
-}
-static inline bool is_not_alpha(char c)
-{
-    return !(isalpha(c) || (c == ' ') || (c == '-') || (c == '.'));
+/* *****  ********    CONSTRUCTEUR ********* ******** ***/
+
+Contact::Contact(void) {  
 }
 
-bool string_is_not_valid(const std::string &str, int i)
-{
-    if (i == 1)
-        return (find_if(str.begin(), str.end(), is_not_alpha) == str.end());
-    else
-        return (find_if(str.begin(), str.end(), is_not_digit) == str.end());
+/* *****  ********    DESTRUCTEUR ********* ******** ***/
+
+Contact::~Contact(void) { 
 }
+
+
+
+int string_is_not_valid(std::string input, int dig_or_let)
+{
+    int i = 0;
+    if ((int)input.length() == 0)
+        return (1);
+    if (dig_or_let == 1)
+    {
+        while(i < (int)input.length())
+        {
+            if (!isalpha(input.at(i)) )
+               return (1);
+            i++; 
+        }
+    }
+    else
+    {
+        while(i < (int)input.length())
+        {
+            if (!isdigit(input.at(i)))
+               return (1);
+            i++; 
+        }
+    }
+    return (0);
+}
+
 
 int Contact::add_first_name()
 {
@@ -35,16 +57,16 @@ int Contact::add_first_name()
     int i = 0;
     
     std::cout << "Please type the first name of your contact : " <<  std::endl;
-    std::cin >> input;
+    std::getline(std::cin, input);
     
-    while(string_is_not_valid(input, 2) && i < 2)
+    while(string_is_not_valid(input, 1) && i < 2)
     {
         std::cout << "!!!! WRONG !!!!!!" << std::endl;
         std::cout << "Please enter a valid first name (only letters) :" << std::endl;
-        std::cin >> input;
+        std::getline(std::cin, input);
         i++;
     }
-    if (string_is_not_valid(input, 2))
+    if (string_is_not_valid(input, 1))
     {
         std::cout << "Sorry Contact adding failed, have another go" << std::endl;
         return (1);        
@@ -60,16 +82,16 @@ int Contact::add_last_name()
     int i = 0;
     
     std::cout << "Please type the last name of your contact : " <<  std::endl;
-    std::cin >> input;
+    std::getline(std::cin, input);
     
-    while(string_is_not_valid(input, 2) && i < 2)
+    while(string_is_not_valid(input, 1) && i < 2)
     {
         std::cout << "!!!! WRONG !!!!!!" << std::endl;
         std::cout << "Please enter a valid last name (only letters) :" << std::endl;
-        std::cin >> input;
+        std::getline(std::cin, input);
         i++;
     }
-    if (string_is_not_valid(input, 2))
+    if (string_is_not_valid(input, 1))
     {
         std::cout << "Sorry Contact adding failed, have another go" << std::endl;
         return (1);        
@@ -85,16 +107,16 @@ int Contact::add_nickname()
     int i = 0;
     
     std::cout << "Please type the nickname of your contact : " <<  std::endl;
-    std::cin >> input;
+    std::getline(std::cin, input);
     
-    while(string_is_not_valid(input, 2) && i < 2)
+    while(string_is_not_valid(input, 1) && i < 2)
     {
         std::cout << "!!!! WRONG !!!!!!" << std::endl;
         std::cout << "Please enter a valid nickname (only letters) :" << std::endl;
-        std::cin >> input;
+        std::getline(std::cin, input);
         i++;
     }
-    if (string_is_not_valid(input, 2))
+    if (string_is_not_valid(input, 1))
     {
         std::cout << "Sorry Contact adding failed, have another go" << std::endl;
         return (1);        
@@ -110,16 +132,16 @@ int Contact::add_num()
     int i = 0;
     
     std::cout << "Please type telephone number of your contact : " <<  std::endl;
-    std::cin >> input;
+    std::getline(std::cin, input);
     
-    while(string_is_not_valid(input, 1) && i < 2)
+    while(string_is_not_valid(input, 2) && i < 2)
     {
         std::cout << "!!!! WRONG !!!!!!" << std::endl;
         std::cout << "Please enter a valid phone number (only digit) : " << std::endl;
-        std::cin >> input;
+        std::getline(std::cin, input);
         i++;
     }
-    if (string_is_not_valid(input, 1))
+    if (string_is_not_valid(input, 2))
     {
         std::cout << "Sorry Contact adding failed, have another go" << std::endl;
         return (1);        
@@ -135,16 +157,16 @@ int Contact::add_secret()
     int i = 0;
     
     std::cout << "Please type the darkest secret of your contact : " <<  std::endl;
-    std::cin >> input;
+    std::getline(std::cin, input);
     
-    while(string_is_not_valid(input, 2) && i < 2)
+    while(string_is_not_valid(input, 1) && i < 2)
     {
         std::cout << "!!!! WRONG !!!!!!" << std::endl;
         std::cout << "Please enter a valid secret (only letters) : " << std::endl;
-        std::cin >> input;
+        std::getline(std::cin, input);
         i++;
     }
-    if (string_is_not_valid(input, 2))
+    if (string_is_not_valid(input, 1))
     {
         std::cout << "Sorry Contact adding failed, have another go" << std::endl;
         return (1);        
@@ -171,10 +193,10 @@ void Contact::empty_contact(void)
 
 void Contact::display(void)
 {
-    std::cout << "Here are your contact infos" << std::endl;
+    std::cout << std::endl << "Here are your contact infos" << std::endl;
     std::cout << "First name : " << this->first_name << std::endl;
     std::cout << "Last name : " << this->last_name << std::endl;
     std::cout << "Nickname : " << this->nickname << std::endl;
     std::cout << "Telephone Number : " << this->num << std::endl;
-    std::cout << "Darkest Secret : " << this->secret << std::endl;
+    std::cout << "Darkest Secret : " << this->secret << std::endl << std::endl ;
 }

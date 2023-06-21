@@ -6,7 +6,7 @@
 /*   By: amouly <amouly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 09:45:01 by amouly            #+#    #+#             */
-/*   Updated: 2023/06/19 12:55:44 by amouly           ###   ########.fr       */
+/*   Updated: 2023/06/21 11:23:42 by amouly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ int main()
 {
     std::string input;
     PhoneBook repertoire(0);
+
     
     while (1)
     {
-        std::cin>> input;
+        std::cin.clear();
+        std::getline(std::cin, input);
         if(input.compare("ADD") == 0)
             repertoire.add();
         else if(input.compare("SEARCH") == 0)
