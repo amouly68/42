@@ -22,10 +22,9 @@
 class PhoneBook {
 
     public :
-    int number; 
     
     
-    PhoneBook(int number);
+    PhoneBook();
     ~PhoneBook();
     void display(void) const; 
     void add(void);
@@ -34,7 +33,9 @@ class PhoneBook {
     private : 
     
     Contact _list[8]; 
-    
+    int     _number;
+
+   
    
     
 };

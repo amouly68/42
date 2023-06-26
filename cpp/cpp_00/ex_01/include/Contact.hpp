@@ -23,20 +23,23 @@ class Contact {
     Contact(void);
     ~Contact(void);
     
-    std::string index;
-    std::string first_name;
-    std::string last_name;
-    std::string nickname;
-    std::string num;
-    std::string secret;
   
-    int   add_first_name(void);
-    int   add_last_name(void);
-    int   add_nickname(void);
-    int   add_num(void);
-    int   add_secret(void);
+    void    setIndex(std::string input);
+    int     setFirst_name(void);
+    int     setLast_name(void);
+    int     setNickname(void);
+    int     setNum(void);
+    int     setSecret(void);
+    std::string getIndex(void) const;
+    std::string getFirst_name(void) const;
+    std::string getLast_name(void) const;
+    std::string getNickname(void) const;
+    std::string getNum(void) const;
+    std::string getSecret(void) const;
+
     void  empty_contact(void);
     void  display(void);
+    
    
    private : 
 
@@ -46,6 +49,9 @@ class Contact {
     std::string _nickname;
     std::string _num;
     std::string _secret;
+
+    
+    
     
 };
 

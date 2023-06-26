@@ -22,6 +22,34 @@ Contact::Contact(void) {
 Contact::~Contact(void) { 
 }
 
+/* *****  ********    GETTERS ********* ******** ***/
+
+std::string Contact::getIndex(void) const {
+    return (this->_index);
+}
+
+std::string Contact::getFirst_name(void) const {
+    return (this->_first_name);
+}
+
+std::string Contact::getLast_name(void) const {
+    return (this->_last_name);
+}
+
+std::string Contact::getNickname(void) const {
+    return (this->_nickname);
+}
+
+std::string Contact::getNum(void) const {
+    return (this->_num);
+}
+
+std::string Contact::getSecret(void) const {
+    return (this->_secret);
+}
+
+/* *****  ********    SETTERS ********* ******** ***/
+
 
 
 int string_is_not_valid(std::string input, int dig_or_let)
@@ -50,8 +78,14 @@ int string_is_not_valid(std::string input, int dig_or_let)
     return (0);
 }
 
+void    Contact::setIndex(std::string input)
+{
+    this->_index = input;
+    return ;
+}
 
-int Contact::add_first_name()
+
+int Contact::setFirst_name(void)
 {
     std::string input;
     int i = 0;
@@ -72,11 +106,11 @@ int Contact::add_first_name()
         return (1);        
     }
     else
-        this->first_name = input;
+        this->_first_name = input;
     return (0);
 }
 
-int Contact::add_last_name()
+int Contact::setLast_name()
 {
     std::string input;
     int i = 0;
@@ -97,11 +131,11 @@ int Contact::add_last_name()
         return (1);        
     }
     else
-        this->last_name = input;
+        this->_last_name = input;
     return (0);
 }
 
-int Contact::add_nickname()
+int Contact::setNickname()
 {
     std::string input;
     int i = 0;
@@ -122,11 +156,11 @@ int Contact::add_nickname()
         return (1);        
     }
     else
-        this->nickname = input;
+        this->_nickname = input;
     return (0);
 }
 
-int Contact::add_num()
+int Contact::setNum()
 {
     std::string input;
     int i = 0;
@@ -147,11 +181,11 @@ int Contact::add_num()
         return (1);        
     }
     else
-        this->num = input;
+        this->_num = input;
     return (0);
 }
 
-int Contact::add_secret()
+int Contact::setSecret()
 {
     std::string input;
     int i = 0;
@@ -172,31 +206,31 @@ int Contact::add_secret()
         return (1);        
     }
     else
-        this->secret = input;
+        this->_secret = input;
     return (0);
 }
 
 void Contact::empty_contact(void)
 {
-    if (this->first_name.length() != 0)
-        this->first_name.replace(0, this->first_name.length(), this->first_name.length(), ' ');
-    if (this-last_name.length() != 0)
-        this->last_name.replace(0, this->last_name.length(), this->last_name.length(), ' ');
-    if (this->nickname.length() != 0)
-        this->nickname.replace(0, this->nickname.length(), this->nickname.length(), ' ');
-    if (this->num.length() != 0)
-        this->num.replace(0, this->num.length(), this->num.length(), ' ');    
-    if (this->secret.length() != 0)
-        this->secret.replace(0, this->secret.length(), this->secret.length(), ' ');    
+    if (this->_first_name.length() != 0)
+        this->_first_name.replace(0, this->_first_name.length(), this->_first_name.length(), ' ');
+    if (this->_last_name.length() != 0)
+        this->_last_name.replace(0, this->_last_name.length(), this->_last_name.length(), ' ');
+    if (this->_nickname.length() != 0)
+        this->_nickname.replace(0, this->_nickname.length(), this->_nickname.length(), ' ');
+    if (this->_num.length() != 0)
+        this->_num.replace(0, this->_num.length(), this->_num.length(), ' ');    
+    if (this->_secret.length() != 0)
+        this->_secret.replace(0, this->_secret.length(), this->_secret.length(), ' ');    
     
 }
 
 void Contact::display(void)
 {
     std::cout << std::endl << "Here are your contact infos" << std::endl;
-    std::cout << "First name : " << this->first_name << std::endl;
-    std::cout << "Last name : " << this->last_name << std::endl;
-    std::cout << "Nickname : " << this->nickname << std::endl;
-    std::cout << "Telephone Number : " << this->num << std::endl;
-    std::cout << "Darkest Secret : " << this->secret << std::endl << std::endl ;
+    std::cout << "First name : " << this->_first_name << std::endl;
+    std::cout << "Last name : " << this->_last_name << std::endl;
+    std::cout << "Nickname : " << this->_nickname << std::endl;
+    std::cout << "Telephone Number : " << this->_num << std::endl;
+    std::cout << "Darkest Secret : " << this->_secret << std::endl << std::endl ;
 }

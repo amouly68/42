@@ -14,11 +14,12 @@
 
 /* *****  ********    CONSTRUCTEUR ********* ******** ***/
 
-PhoneBook::PhoneBook(int number) : number(number) {
+PhoneBook::PhoneBook(void) {
     std::cout << "Hello, welcome to your phonebook !" << std::endl;
     std::cout << "You can add a new contact,"; 
     std::cout << " search an existing contact or exit the program : " << std::endl;
     std::cout << "Please type ADD, SEARCH or EXIT : "; 
+    this->_number = 0;
     
 }
 
@@ -72,9 +73,9 @@ void PhoneBook::display(void) const
     display_bordure();
     while (++i < 8)
     {
-        if (this->_list[i].index.length() == 1)
-            display_line(this->_list[i].index, this->_list[i].first_name, \
-                            this->_list[i].last_name, this->_list[i].nickname);
+        if (this->_list[i].getIndex().length() == 1)
+            display_line(this->_list[i].getIndex(), this->_list[i].getFirst_name(), \
+                            this->_list[i].getLast_name(), this->_list[i].getNickname());
         else
             display_line(" ", " ", " ", " ");
     }
@@ -91,22 +92,22 @@ void PhoneBook::add(void)
     int index;
     std::stringstream ss;
     
-    index = this->number % 8;
+    index = this->_number % 8;
      
-    if (this->_list[index].add_first_name() 
-        || this->_list[index].add_last_name()
-        || this->_list[index].add_nickname() 
-        || this->_list[index].add_num()
-        || this->_list[index].add_secret())
+    if (this->_list[index].setFirst_name() 
+        || this->_list[index].setLast_name()
+        || this->_list[index].setNickname() 
+        || this->_list[index].setNum()
+        || this->_list[index].setSecret())
         {
             this->_list[index].empty_contact();
             return;
         }
     ss << index + 1 ;
-    this->_list[index].index = ss.str();
-    this->number++;
+    this->_list[index].setIndex(ss.str());
+    this->_number++;
     
-    std::cout << std::endl << "THANK YOU  -  " << this->_list[index].first_name;
+    std::cout << std::endl << "THANK YOU  -  " << this->_list[index].getFirst_name();
     std::cout << " has been added to your phonebook !" << std::endl << std::endl;
     
     return ;
@@ -153,7 +154,7 @@ void PhoneBook::search(void)
         std::cout << "Sorry, search failed, have an other go" << std::endl;
         return ;
     }
-    if (index > this->number)
+    if (index > this->_number)
     {
         std::cout << "Sorry, no contact at this index, have an other go" << std::endl;
         return ;

@@ -17,7 +17,7 @@
 int main()
 {
     std::string input;
-    PhoneBook repertoire(0);
+    PhoneBook repertoire;
 
     
     while (1)
