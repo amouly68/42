@@ -11,14 +11,15 @@ private:
     std::string _name;
 
 public:
-    Zombie();
+    Zombie(std::string name);
     ~Zombie();
 
+    void    setname(std::string name);
     void    announce(void);
 };
 
 
-Zombie* new_zombie(std::string name);
+Zombie* newZombie(std::string name);
 void    randomChump(std::string name);
 
 #endif
