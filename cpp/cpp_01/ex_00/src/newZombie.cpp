@@ -3,7 +3,6 @@
 
 Zombie* newZombie(std::string name){
     
-    Zombie*     newp = (Zombie *)calloc(1, sizeof(Zombie));
-    newp->setname(name);
+    Zombie*     newp = new Zombie(name);
     return (newp);
 }

@@ -12,9 +12,9 @@ int main()
     new_zombie1->announce();
     new_zombie2->announce();
     new_zombie3->announce();
-    new_zombie1->~Zombie();
-    new_zombie2->~Zombie();
-    new_zombie3->~Zombie();
+    delete new_zombie1;
+    delete new_zombie2;
+    delete new_zombie3;
 
     return(0);
 }
