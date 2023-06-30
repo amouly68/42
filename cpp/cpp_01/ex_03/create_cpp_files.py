@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 
 def create_cpp_files():
@@ -64,3 +66,6 @@ private:
     
     print("Fichier {}.cpp créé dans le dossier {}.".format(class_name, src_dir))
 
+
+# Exemple d'utilisation
+create_cpp_files()
