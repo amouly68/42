@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import os
 
 def create_cpp_files():
@@ -28,16 +26,17 @@ def create_cpp_files():
 
 class {} {{
 public:
-    // Descripteur
+    
     {}();
+    ~{}();
 
 private:
     // TODO: Définir les membres de données
 
 }};
 
-#endif // {}_HPP
-""".format(class_name.upper(), class_name.upper(), class_name, class_name, class_name.upper())
+#endif /
+""".format(class_name.upper(), class_name.upper(), class_name, class_name, class_name)
     
     with open(hpp_file_path, "w") as hpp_file:
         hpp_file.write(hpp_content)
@@ -51,15 +50,21 @@ private:
         return
     
     # Créer le fichier .cpp dans le dossier "src"
-    cpp_content = """#include "../{}/{}.hpp"
+    cpp_content = """#include "../include/{}.hpp"
 
-{}::{}() {{
+{}::{}() 
+{{
     // TODO: Implémenter le constructeur
 }}
 
-// TODO: Implémenter les autres fonctions de la classe {}
+{}::~{}() 
+{{
+    // TODO: Implémenter le destructeur
+}}
 
-""".format(include_dir, class_name, class_name, class_name)
+
+
+""".format(class_name, class_name, class_name, class_name, class_name)
     
     with open(cpp_file_path, "w") as cpp_file:
         cpp_file.write(cpp_content)
@@ -69,3 +74,4 @@ private:
 
 # Exemple d'utilisation
 create_cpp_files()
+
