@@ -10,5 +10,7 @@ HumanA::~HumanA()
     // TODO: Implémenter le destructeur
 }
 
-
-
+void    HumanA::attack(void)
+{
+    
+}
