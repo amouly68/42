@@ -3,11 +3,12 @@
 
 #include <string>
 #include "Weapon.hpp"
+#include <iostream>
 
 class HumanA {
 public:
     
-    HumanA();
+    HumanA(std::string name, Weapon &type);
     ~HumanA();
 
     void    attack();     
@@ -15,9 +16,9 @@ public:
 private:
     
     std::string _name;
-    Weapon      _type;
+    Weapon&      _type;
 
 
 };
 
-#endif /
+#endif 

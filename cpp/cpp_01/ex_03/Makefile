@@ -20,6 +20,7 @@ SRC			=	main.cpp \
 				Weapon.cpp \
 				HumanA.cpp \
 				HumanB.cpp
+				
 					
 OBJ			= $(addprefix obj/,$(notdir $(SRC:.cpp=.o)))
 

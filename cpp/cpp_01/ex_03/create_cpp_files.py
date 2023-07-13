@@ -35,7 +35,7 @@ private:
 
 }};
 
-#endif /
+#endif 
 """.format(class_name.upper(), class_name.upper(), class_name, class_name, class_name)
     
     with open(hpp_file_path, "w") as hpp_file:
