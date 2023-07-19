@@ -6,19 +6,20 @@
 #    By: amouly <amouly@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 15:27:43 by llion             #+#    #+#              #
-#    Updated: 2023/07/17 12:11:06 by amouly           ###   ########.fr        #
+#    Updated: 2023/07/19 12:34:54 by amouly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME		= zombieHorde
+NAME		= Fixed
 CC			= c++
 RM			= rm -rf
 CXXFLAGS	= -Wall -Werror -Wextra -g3 -std=c++98
+MLX			= MLX42/build/libmlx42.a
 HEADERS		= -I include 
 SRC			=	main.cpp \
-				Zombie.cpp \
-				zombieHorde.cpp 
+				Fixed.cpp
+				
 					
 OBJ			= $(addprefix obj/,$(notdir $(SRC:.cpp=.o)))
 
@@ -38,16 +39,16 @@ libft/Makefile: libft/src/*.c libft/include/*.h
 	$(MAKE) -sC libft
 
 debug: $(OBJ) 
-	@$(CC) $(CXXFLAGS) $(OBJ) $(HEADERS) -fsanitize=address -o $(NAME)	
+	$(CC) $(CXXFLAGS) $(OBJ) $(HEADERS) -fsanitize=address -o $(NAME)	
 
 clean :
-	@$(RM) $(OBJ)
+	$(RM) $(OBJ)
 
 fclean : clean
-	@$(RM) $(NAME) *.dSYM
+	$(RM) $(NAME) *.dSYM
 
 run:
-	@./$(NAME)
+	./$(NAME)
 
 re : fclean all
 
