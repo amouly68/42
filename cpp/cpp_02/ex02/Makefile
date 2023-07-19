@@ -6,17 +6,20 @@
 #    By: amouly <amouly@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 15:27:43 by llion             #+#    #+#              #
-#    Updated: 2023/07/17 12:12:29 by amouly           ###   ########.fr        #
+#    Updated: 2023/07/19 12:34:54 by amouly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME		= hi_this_is_brain
+NAME		= Fixed
 CC			= c++
 RM			= rm -rf
 CXXFLAGS	= -Wall -Werror -Wextra -g3 -std=c++98
+MLX			= MLX42/build/libmlx42.a
 HEADERS		= -I include 
-SRC			=	main.cpp  
+SRC			=	main.cpp \
+				Fixed.cpp
+				
 					
 OBJ			= $(addprefix obj/,$(notdir $(SRC:.cpp=.o)))
 
@@ -40,7 +43,7 @@ debug: $(OBJ)
 
 clean :
 	$(RM) $(OBJ)
-	
+
 fclean : clean
 	$(RM) $(NAME) *.dSYM
 
