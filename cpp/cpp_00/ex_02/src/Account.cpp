@@ -1,4 +1,8 @@
+
 #include Account.hpp
+#include <ctime>
+#include <iomanip>
+#include <iostream>
 
 Account::Account( int initial_deposit ){
 
@@ -46,4 +50,20 @@ int		Account::checkAmount( void ) const{
 }
 void	Account::displayStatus( void ) const{
 
+}
+
+static void	Account::_displayTimestamp( void )
+{
+    std::time_t now = std::time(NULL);
+    std::tm *TimeInfo = stdd::localtime(&now);
+
+    std::cout << '['
+    std::cout << std::setw(4) << std::setfill('0') <<  (TimeInfo->tm_year + 1900)
+    std::cout << std::setw(2) << std::setfill('0') <<  (TimeInfo->tm_mon + 1)
+    std::cout << std::setw(2) << std::setfill('0') <<  (TimeInfo->tm_mday)
+    std::cout << '_'
+    std::cout << std::setw(2) << std::setfill('0') <<  (TimeInfo->tm_hour)
+    std::cout << std::setw(2) << std::setfill('0') <<  (TimeInfo->tm_min)
+    std::cout << std::setw(2) << std::setfill('0') <<  (TimeInfo->tm_sec)
+    std::cout << "] ";
 }
