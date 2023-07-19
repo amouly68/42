@@ -4,7 +4,7 @@ import os
 
 def create_cpp_files():
     # Demander le nom de la classe à créer
-    class_name = input("Entrez le nom de la classe à créer : ")
+    class_name = raw_input("Entrez le nom de la classe à créer : ")
 
     # Vérifier si le dossier "include" existe, sinon le créer
     include_dir = "include"
@@ -29,16 +29,19 @@ def create_cpp_files():
 class {} {{
 public:
     
-    {}();
+    {}(void);
+    {}( {} const & src );
     ~{}();
 
+    {} & operator=( {} const & rhs ); 
+
 private:
-    // TODO: Définir les membres de données
+    
 
 }};
 
 #endif 
-""".format(class_name.upper(), class_name.upper(), class_name, class_name, class_name)
+""".format(class_name.upper(), class_name.upper(), class_name, class_name, class_name, class_name, class_name, class_name, class_name)
     
     with open(hpp_file_path, "w") as hpp_file:
         hpp_file.write(hpp_content)
@@ -54,9 +57,17 @@ private:
     # Créer le fichier .cpp dans le dossier "src"
     cpp_content = """#include "../include/{}.hpp"
 
-{}::{}() 
+#include <iostream>
+
+{}::{}(void) 
 {{
     // TODO: Implémenter le constructeur
+}}
+
+{}::{}({} const & src) 
+{{
+    *this = src;
+    return ;
 }}
 
 {}::~{}() 
@@ -64,9 +75,12 @@ private:
     // TODO: Implémenter le destructeur
 }}
 
+{} &    {}::operator=( {} const & rhs ) 
+{{
+    // TODO: Implémenter l'operateur d'assignemet
+}}
 
-
-""".format(class_name, class_name, class_name, class_name, class_name)
+""".format(class_name, class_name, class_name, class_name, class_name, class_name, class_name, class_name, class_name, class_name, class_name)
     
     with open(cpp_file_path, "w") as cpp_file:
         cpp_file.write(cpp_content)
