@@ -1,5 +1,6 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 #include <iostream>
 
 int main()
@@ -26,6 +27,13 @@ int main()
     Toto.takeDamage(Eddy.getAttackDamage());
     Toto.display();
     Eddy.display();
+    
+    FragTrap Marco("Marco");
+    Marco.display();
+    Marco.attack("Eddy");
+    Eddy.takeDamage(Marco.getAttackDamage());
+    Eddy.display();
+    Marco.display();
 
 
     return(0);

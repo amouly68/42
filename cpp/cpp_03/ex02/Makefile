@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 
-NAME		= ScavTrap
+NAME		= FragTrap
 CC			= c++
 RM			= rm -rf
 CXXFLAGS	= -Wall -Werror -Wextra -g3 -std=c++98
@@ -19,7 +19,8 @@ MLX			= MLX42/build/libmlx42.a
 HEADERS		= -I include 
 SRC			=	main.cpp \
 				ClapTrap.cpp \
-				ScavTrap.cpp
+				ScavTrap.cpp \
+				FragTrap.cpp
 				
 					
 OBJ			= $(addprefix obj/,$(notdir $(SRC:.cpp=.o)))

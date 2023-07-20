@@ -4,7 +4,7 @@ import os
 
 def create_cpp_files():
     # Demander le nom de la classe à créer
-    class_name = raw_input("Entrez le nom de la classe à créer : ")
+    class_name = input("Entrez le nom de la classe à créer : ")
 
     # Vérifier si le dossier "include" existe, sinon le créer
     include_dir = "include"
