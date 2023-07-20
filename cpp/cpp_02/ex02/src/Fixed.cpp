@@ -138,33 +138,33 @@ Fixed       Fixed::operator--(int)
 
 /*****************   MIN et MAX ***********************/
 
-// static Fixed & Fixed::min(Fixed & a, Fixed & b)
-// {
-//     if (a < b)
-//         return a;
-//     else 
-//         return b;
-// }
-
-static const Fixed & min(const Fixed & a, const Fixed & b)
+Fixed & Fixed::min(Fixed & a, Fixed & b)
 {
-    if (a < b)
+    if (a.getRawBits() < b.getRawBits())
         return a;
     else 
         return b;
 }
 
-static Fixed & max(Fixed & a, Fixed & b)
+const Fixed & Fixed::min(const Fixed & a, const Fixed & b)
 {
-    if (a < b)
+    if (a.getRawBits() < b.getRawBits())
+        return a;
+    else 
+        return b;
+}
+
+Fixed & Fixed::max(Fixed & a, Fixed & b)
+{
+    if (a.getRawBits() < b.getRawBits())
         return b;
     else 
         return a;
 }
 
-static const Fixed & max(const Fixed & a, const Fixed & b)
+const Fixed & Fixed::max(const Fixed & a, const Fixed & b)
 {
-    if (a < b)
+    if (a.getRawBits() < b.getRawBits())
         return b;
     else 
         return a;
