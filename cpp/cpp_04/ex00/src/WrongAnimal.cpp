@@ -4,7 +4,12 @@
 
 WrongAnimal::WrongAnimal(void) 
 {
-    // TODO: Implémenter le constructeur
+    std::cout << "One WRONG animal has been created of type " << this->type << std::endl;
+}
+
+WrongAnimal::WrongAnimal(std::string type) : type(type) 
+{
+    std::cout << "One WRONG animal has been created of type " << this->type << std::endl;
 }
 
 WrongAnimal::WrongAnimal(WrongAnimal const & src) 
@@ -15,11 +20,22 @@ WrongAnimal::WrongAnimal(WrongAnimal const & src)
 
 WrongAnimal::~WrongAnimal() 
 {
-    // TODO: Implémenter le destructeur
+    std::cout << "The WRONG animal of type " << this->type << " has been deleted!" << std::endl;
+}
+
+std::string   WrongAnimal::getType ()  const 
+{
+    return (this->type);
 }
 
 WrongAnimal &    WrongAnimal::operator=( WrongAnimal const & rhs ) 
 {
-    // TODO: Implémenter l'operateur d'assignemet
+    if(this != &rhs)
+        this->type = rhs.type;
+    return (*this);
 }
 
+void   WrongAnimal::makeSound() const
+{
+    std::cout << "Sound of WRONG ANIMAL" << std::endl;
+}

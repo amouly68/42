@@ -2,9 +2,14 @@
 
 #include <iostream>
 
-Animal::Animal(void) 
+Animal::Animal(void) : type("Default") 
 {
-    // TODO: Implémenter le constructeur
+    std::cout << "One ANIMAL has been created of type " << this->type << std::endl;
+}
+
+Animal::Animal(std::string type) : type(type) 
+{
+    std::cout << "One ANIMAL has been created of type " << this->type << std::endl;
 }
 
 Animal::Animal(Animal const & src) 
@@ -15,11 +20,22 @@ Animal::Animal(Animal const & src)
 
 Animal::~Animal() 
 {
-    // TODO: Implémenter le destructeur
+    std::cout << "The ANIMAL of type " << this->type << " has been deleted!" << std::endl;
+}
+
+std::string   Animal::getType ()  const 
+{
+    return (this->type);
 }
 
 Animal &    Animal::operator=( Animal const & rhs ) 
 {
-    // TODO: Implémenter l'operateur d'assignemet
+    if(this != &rhs)
+        this->type = rhs.type;
+    return (*this);
+}
+
+void   Animal::makeSound() const
+{
 }
 

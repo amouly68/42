@@ -2,24 +2,32 @@
 
 #include <iostream>
 
-Cat::Cat(void) 
+Cat::Cat(void)   
 {
-    // TODO: Implémenter le constructeur
+    Animal::type = "Cat";
+    std::cout << "One Cat has been created. " << std::endl;
 }
 
 Cat::Cat(Cat const & src) 
-{
+{    
     *this = src;
     return ;
 }
 
 Cat::~Cat() 
 {
-    // TODO: Implémenter le destructeur
+    std::cout << "One Cat has been deleted!" << std::endl;
 }
 
 Cat &    Cat::operator=( Cat const & rhs ) 
 {
-    // TODO: Implémenter l'operateur d'assignemet
+     if(this != &rhs)
+        this->type = rhs.type;
+    return (*this);
+}
+
+void   Cat::makeSound() const
+{
+    std::cout << "MMMIIIIIIAAAAAAAAOUUUUUU" << std::endl;
 }
 

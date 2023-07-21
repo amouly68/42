@@ -1,17 +1,20 @@
 #ifndef WRONGCAT_HPP
 #define WRONGCAT_HPP
 
-class WrongCat {
+#include "WrongAnimal.hpp"
+
+class WrongCat : public WrongAnimal{
 public:
     
     WrongCat(void);
     WrongCat( WrongCat const & src );
-    ~WrongCat();
+    virtual ~WrongCat();
 
-    WrongCat & operator=( WrongCat const & rhs ); 
+    WrongCat & operator=( WrongCat const & rhs );
+    void   makeSound() const;
 
 private:
-    
+    std::string type;
 
 };
 
