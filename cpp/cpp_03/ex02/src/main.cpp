@@ -28,6 +28,7 @@ int main()
     Toto.display();
     Eddy.display();
     
+    FragTrap Noname;
     FragTrap Marco("Marco");
     Marco.display();
     Marco.attack("Eddy");

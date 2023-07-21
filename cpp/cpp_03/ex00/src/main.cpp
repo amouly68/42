@@ -1,11 +1,11 @@
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
 #include <iostream>
 
 int main()
 {
     ClapTrap Paulo("Paulo");
     ClapTrap Toto("Toto");
+    ClapTrap Noname;
 
     Paulo.attack("Toto");
     Paulo.display();
@@ -19,15 +19,5 @@ int main()
     while (i++ < 50)
         Paulo.beRepaired(1);
     Paulo.takeDamage(20);
-
-    ScavTrap Eddy("Eddy");
-    ScavTrap NoName;
-    Eddy.display();
-    Eddy.attack("Toto");
-    Toto.takeDamage(Eddy.getAttackDamage());
-    Toto.display();
-    Eddy.display();
-
-
     return(0);
 }

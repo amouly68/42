@@ -23,20 +23,18 @@ public:
     int         getEnergyPoints();
     int         getAttackDamage();
 
-protected: 
-
-    std::string _Name;
-    int         _HitPoints;
-    int         _EnergyPoints;
-    int         _AttackDamage;
+    
     
 
 private:
 
+    std::string     _Name;
+    int             _HitPoints;
+    int             _EnergyPoints;
+    int             _AttackDamage;
     
     
 
 };
-
 
 #endif 

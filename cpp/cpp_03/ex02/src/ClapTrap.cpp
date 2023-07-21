@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-ClapTrap::ClapTrap() 
+ClapTrap::ClapTrap() : _Name("The_ONE_who_got_No_Name")
 {
     this->_HitPoints = 10;
     this->_EnergyPoints = 10;

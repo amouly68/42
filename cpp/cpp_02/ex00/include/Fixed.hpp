@@ -1,14 +1,14 @@
-#ifndef FLOATFIXED_HPP
-#define FLOATFIXED_HPP
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
-class FloatFixed {
+class Fixed {
 public:
     
-    FloatFixed(void);
-    FloatFixed( FloatFixed const & src );
-    ~FloatFixed();
+    Fixed(void);
+    Fixed( Fixed const & src );
+    ~Fixed();
 
-    FloatFixed & operator=( FloatFixed const & rhs ); 
+    Fixed & operator=( Fixed const & rhs ); 
     int             getRawBits( void ) const;
     void            setRawBits( int const raw );
 

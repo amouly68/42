@@ -99,5 +99,5 @@ void ClapTrap::display()
 {
     std::cout << this->_Name <<  " : Hitpoints ==> " <<  this->_HitPoints << std::endl;
     std::cout << this->_Name <<  " : EnergyPoints ==> " <<  this->_EnergyPoints << std::endl;
-    std::cout << this->_Name <<  " : AttaqeDamage ==> " <<  this->_AttackDamage << std::endl;
+    std::cout << this->_Name <<  " : AttackDamage ==> " <<  this->_AttackDamage << std::endl;
 }

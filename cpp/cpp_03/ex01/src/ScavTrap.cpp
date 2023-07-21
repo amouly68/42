@@ -4,18 +4,18 @@
 
 ScavTrap::ScavTrap(void) 
 {
-    this->HitPoints = 100;
-    this->EnergyPoints = 50;
-    this->AttackDamage = 20;
+    this->_HitPoints = 100;
+    this->_EnergyPoints = 50;
+    this->_AttackDamage = 20;
     std::cout << "SCAVTRAP : constructeur par defaut" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) : Name(name) 
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name) 
 {
-    this->HitPoints = 100;
-    this->EnergyPoints = 50;
-    this->AttackDamage = 20;
-    std::cout << "SCAVTRAP " << this->Name << " a ete cree" << std::endl;
+    this->_HitPoints = 100;
+    this->_EnergyPoints = 50;
+    this->_AttackDamage = 20;
+    std::cout << "SCAVTRAP " << this->_Name << " a ete cree" << std::endl;
 }
 
 
@@ -27,17 +27,27 @@ ScavTrap::ScavTrap(ScavTrap const & src)
 
 ScavTrap::~ScavTrap() 
 {
-    std::cout << "SCLAVTRAP : destructor par defaut" << std::endl;
+    std::cout << "SCLAVTRAP : " << this->_Name << " destructor par defaut" << std::endl;
 }
 
 ScavTrap &    ScavTrap::operator=( ScavTrap const & rhs ) 
 {
-    // TODO: Implémenter l'operateur d'assignemet
+    ClapTrap::operator=(rhs);
+    return ( *this);
 }
 
 void    ScavTrap::guardGate()
 {
-    std::cout << this->name << " est en mode GateKeeper." << std::endl;
+    std::cout << this->_Name << " est en mode GateKeeper." << std::endl;
 }
 
+void   ScavTrap::attack(const std::string & target)
+{
+     if(this->_EnergyPoints > 0 && this->_HitPoints > 0)
+    {
+        std::cout << "SCAVTRAP " << this->_Name << " attack " <<  target;
+        std::cout << ", causing " << this->_AttackDamage << " points of attack." <<  std::endl;
+        this->_EnergyPoints--;
+    }
 
+}

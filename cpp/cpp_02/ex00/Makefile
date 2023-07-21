@@ -11,14 +11,14 @@
 # **************************************************************************** #
 
 
-NAME		= zombie
+NAME		= Fixed
 CC			= c++
 RM			= rm -rf
 CXXFLAGS	= -Wall -Werror -Wextra -g3 -std=c++98
 MLX			= MLX42/build/libmlx42.a
 HEADERS		= -I include 
 SRC			=	main.cpp \
-				FloatFixed.cpp
+				Fixed.cpp
 				
 					
 OBJ			= $(addprefix obj/,$(notdir $(SRC:.cpp=.o)))
