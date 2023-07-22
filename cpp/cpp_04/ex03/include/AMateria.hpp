@@ -1,6 +1,8 @@
 #ifndef AMATERIA_HPP
 #define AMATERIA_HPP
+
 #include "Icharacter.hpp"
+#include <string>
 
 class AMateria {
 
