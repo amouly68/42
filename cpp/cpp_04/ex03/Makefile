@@ -11,19 +11,18 @@
 # **************************************************************************** #
 
 
-NAME		= Polymorph
+NAME		= Materia
 CC			= c++
 RM			= rm -rf
 CXXFLAGS	= -Wall -Werror -Wextra -g3 -std=c++98
 MLX			= MLX42/build/libmlx42.a
 HEADERS		= -I include 
 SRC			=	main.cpp \
-				Animal.cpp \
-				Cat.cpp \
-				Dog.cpp \
-				WrongAnimal.cpp \
-				WrongCat.cpp \
-				Brain.cpp
+				AMateria.cpp \
+				Character.cpp \
+				Cure.cpp \
+				Ice.cpp \
+				MateriaSource.cpp 
 				
 					
 OBJ			= $(addprefix obj/,$(notdir $(SRC:.cpp=.o)))

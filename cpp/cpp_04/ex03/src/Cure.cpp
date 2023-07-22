@@ -21,7 +21,7 @@ Cure::~Cure()
 
 Cure &    Cure::operator=( Cure const & rhs ) 
 {
-    this->_type = rhs.getType();
+    this->_type = rhs._type;
     return (*this);
 }
 

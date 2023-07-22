@@ -9,7 +9,7 @@ Character::Character(void) : _Name("No_Name")
     while (i < 4)
     {
         this->_Inventaire[i] = NULL;
-        i+;
+        i++;
     }
     return;
 }
@@ -21,7 +21,7 @@ Character::Character (std::string name) : _Name(name)
     while (i < 4)
     {
         this->_Inventaire[i] = NULL;
-        i+;
+        i++;
     }
     return;
 }
@@ -30,7 +30,15 @@ Character::Character (std::string name) : _Name(name)
 Character::Character(Character const & src) 
 {
     this->_Name = src._Name;
-
+    int i = 0;
+    while (i < 4)
+    {
+        if (src._Inventaire[i] != NULL)
+            this->_Inventaire[i] = src._Inventaire[i]->clone();
+        else
+            this->_Inventaire[i] = NULL;
+        i++;
+    }
     return ;
 }
 
@@ -49,7 +57,18 @@ Character::~Character()
 
 Character &    Character::operator=( Character const & rhs ) 
 {
-    // TODO: Implémenter l'operateur d'assignemet
+    this->_Name = rhs._Name;
+    this->~Character();
+    int i = 0;
+    while (i < 4)
+    {
+        if (rhs._Inventaire[i] != NULL)
+            this->_Inventaire[i] = rhs._Inventaire[i]->clone();
+        else
+            this->_Inventaire[i] = NULL;
+        i++;
+    }
+    return (*this)
 }
 
 std::string const & Character::getName() const
@@ -65,12 +84,11 @@ void Character::equip(AMateria * m)
         if (this->_Inventaire[i] == NULL)
         {
             this->_Inventaire[i] = m;
-            break;
+            return;
         }
         i++;
     }
-    if (i == 4)
-        std::cout << "Iventaire full please Unequip !!" << std::endl;
+    std::cout << "Iventaire full please Unequip !!" << std::endl;
     return; 
 }
 

@@ -25,7 +25,7 @@ AMateria::~AMateria()
 
 AMateria &    AMateria::operator=( AMateria const & rhs ) 
 {
-    if (this != &src)
+    if (this != &rhs)
         this->_type = rhs._type;
     return (*this);
 }
@@ -35,7 +35,7 @@ std::string const & AMateria::getType() const
     return (_type);
 }
 
- virtual void use (ICharacter & target)
+ void AMateria::use (ICharacter & target)
  {
     
  }
