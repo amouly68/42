@@ -37,5 +37,6 @@ Animal &    Animal::operator=( Animal const & rhs )
 
 void   Animal::makeSound() const
 {
+    std::cout << "Sound by default" << std::endl;
 }
 

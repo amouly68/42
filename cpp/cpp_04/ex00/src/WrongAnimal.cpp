@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-WrongAnimal::WrongAnimal(void) 
+WrongAnimal::WrongAnimal(void) : type("Default")
 {
     std::cout << "One WRONG animal has been created of type " << this->type << std::endl;
 }
