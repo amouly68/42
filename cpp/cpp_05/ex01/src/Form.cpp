@@ -61,28 +61,12 @@ int           Form::getGradeToExecute() const
 
 void                Form::BeSigned(Bureaucrat& buro)
 {
-    try
-    {
-        if (_Status)
-            throw Form::FormIsSignedException();
-    }
-    catch(const std::exception& e)
-    {
-        std::cout << "Exception attrapée : " << e.what() << std::endl;
-        return;
-    }
-    try
-    {
-        if (buro.getGrade() <= _GradeToSign )
+    if (_Status)
+        throw Form::FormIsSignedException();
+    if (buro.getGrade() <= _GradeToSign )
             _Status = 1;
         else
             throw Form::GradeTooLowException();
-    }
-    catch(const std::exception& e)
-    {
-       std::cout << "Exception attrapée : " << e.what() << std::endl;
-    }
-    buro.signForm(*this);
 }
 
 
