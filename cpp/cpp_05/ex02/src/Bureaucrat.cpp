@@ -61,7 +61,7 @@ void                Bureaucrat::decrement()
     std::cout << "Grade of " << _Name << " has been decremented from " << _Grade << " to " << _Grade + 1 << std::endl;
     _Grade++;
 }
-void                Bureaucrat::signForm(Form& form)
+void                Bureaucrat::signForm(AForm& form)
 {
     if (form.getGradeToSign() >= _Grade)
         std::cout << _Name << " signed form " << form.getName() << std::endl;

@@ -26,6 +26,9 @@ def create_cpp_files():
     hpp_content = """#ifndef {}_HPP
 #define {}_HPP
 
+define
+#include <iostream>
+
 class {} {{
 public:
     
