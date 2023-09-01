@@ -31,7 +31,8 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat &    Bureaucrat::operator=( Bureaucrat const & rhs ) 
 {
-     if(this != &rhs)
+    std::cout << "Operateur d'assignation est appele" << std::endl;
+    if(this != &rhs)
     {
         _Grade = rhs._Grade;
     }
@@ -66,7 +67,7 @@ void                Bureaucrat::signForm(Form& form)
     try
     {
         form.BeSigned(*this);
-        std::cout << _Name << " signed " << form.getName();
+        std::cout << _Name << " signed " << form.getName() << std::endl;
     }
     catch (std::exception& e)
     {

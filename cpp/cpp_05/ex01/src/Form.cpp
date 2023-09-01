@@ -32,6 +32,7 @@ Form::~Form()
 
 Form &    Form::operator=( Form const & rhs ) 
 {
+    std::cout << "Operateur d'assignation est appele" << std::endl;
     if(this != &rhs)
     {
         _Status = rhs._Status;

@@ -31,7 +31,8 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat &    Bureaucrat::operator=( Bureaucrat const & rhs ) 
 {
-     if(this != &rhs)
+    std::cout << "Operateur d'assignation est appele" << std::endl;
+    if(this != &rhs)
     {
         _Grade = rhs._Grade;
     }
