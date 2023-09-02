@@ -15,13 +15,14 @@ public:
     PresidentialPardonForm(void);
     PresidentialPardonForm(std::string target);
     PresidentialPardonForm( PresidentialPardonForm const & src );
-    ~PresidentialPardonForm();
+    virtual ~PresidentialPardonForm();
 
     std::string getTarget();
     void        setTarget(std::string const target);
 
     PresidentialPardonForm & operator=( PresidentialPardonForm const & rhs ); 
     void        execute(Bureaucrat const & executor);
+    static AForm*      make(std::string type, std::string target, AForm* form);
    
 
 

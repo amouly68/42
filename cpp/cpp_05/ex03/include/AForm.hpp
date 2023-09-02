@@ -21,7 +21,7 @@ public:
     AForm(void);
     AForm(std::string name, int sign, int exec);
     AForm( AForm const & src );
-    ~AForm();
+    virtual ~AForm();
 
     AForm & operator=( AForm const & rhs );
     const std::string   getName() const;
@@ -32,6 +32,7 @@ public:
     void                CanExecute(Bureaucrat const & buro);
     virtual void        execute(Bureaucrat const & executor) = 0;
     void                setStatus(bool const status);
+    static AForm*              makeForm(std::string type, std::string target);
 
     class GradeTooHighException : public std::exception
     {
@@ -58,6 +59,12 @@ public:
     };
 
     class FileWontOpenException : public std::exception
+     {
+        public : 
+            virtual const char* what() const throw();
+    };
+
+    class InvalidNameFormException : public std::exception
      {
         public : 
             virtual const char* what() const throw();

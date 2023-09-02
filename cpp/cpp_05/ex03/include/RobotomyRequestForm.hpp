@@ -16,13 +16,14 @@ public:
     RobotomyRequestForm(void);
     RobotomyRequestForm(std::string target);
     RobotomyRequestForm( RobotomyRequestForm const & src );
-    ~RobotomyRequestForm();
+    virtual ~RobotomyRequestForm();
 
     std::string getTarget();
     void        setTarget(std::string const target);
 
     RobotomyRequestForm & operator=( RobotomyRequestForm const & rhs ); 
     void        execute(Bureaucrat const & executor);
+    static AForm*      make(std::string type, std::string target, AForm* form);
    
 
 

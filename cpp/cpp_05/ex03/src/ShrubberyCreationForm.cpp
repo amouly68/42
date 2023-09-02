@@ -74,3 +74,12 @@ void        ShrubberyCreationForm::execute(Bureaucrat const & executor)
     fichier << "|" << std::endl;
     fichier.close();
 }
+
+AForm*       ShrubberyCreationForm::make(std::string type, std::string target, AForm* form)
+{
+    
+    if (form == NULL && type == "Shrubbery Creation")
+        return (new ShrubberyCreationForm(target));
+    else
+        return form;
+}

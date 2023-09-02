@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 
-NAME		= Schrubbery
+NAME		= Intern
 CC			= c++
 RM			= rm -rf
 CXXFLAGS	= -Wall -Werror -Wextra -g3 -std=c++98

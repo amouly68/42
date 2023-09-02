@@ -68,3 +68,13 @@ void        RobotomyRequestForm::execute(Bureaucrat const & executor)
     else
         std::cout << "La robotomisation a echoué,  " << _Target << " est sauf !!" << std::endl;
 }
+
+
+AForm*    RobotomyRequestForm::make(std::string type, std::string target, AForm* form)
+{
+    
+    if (form == NULL && type == "Robotomy Request")
+        return (new RobotomyRequestForm(target));
+    else
+        return form;
+}

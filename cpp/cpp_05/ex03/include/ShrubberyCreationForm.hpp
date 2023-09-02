@@ -15,13 +15,14 @@ public:
     ShrubberyCreationForm(void);
     ShrubberyCreationForm(std::string target);
     ShrubberyCreationForm( ShrubberyCreationForm const & src );
-    ~ShrubberyCreationForm();
+    virtual ~ShrubberyCreationForm();
 
     std::string getTarget();
     void        setTarget(std::string const target);
 
     ShrubberyCreationForm & operator=( ShrubberyCreationForm const & rhs ); 
     void        execute(Bureaucrat const & executor);
+    static AForm*      make(std::string type, std::string target, AForm* form);
    
 
 
