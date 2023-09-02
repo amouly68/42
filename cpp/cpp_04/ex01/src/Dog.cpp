@@ -11,7 +11,8 @@ Dog::Dog(void)
 
 Dog::Dog(Dog const & src) 
 {
-    *this = src;
+    this->_Brain = new Brain(*src._Brain);
+    std::cout << "Dog copy connstructor" << std::endl;
     return ;
 }
 
@@ -32,3 +33,8 @@ void   Dog::makeSound() const
 {
     std::cout << "OUAAAF OUAAAAF OUUUAAAAAAF" << std::endl;
 }
+
+ Brain *    Dog::getBrain()
+ {
+    return (this->_Brain);
+ }

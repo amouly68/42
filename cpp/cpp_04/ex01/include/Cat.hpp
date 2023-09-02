@@ -13,6 +13,7 @@ public:
 
     Cat & operator=( Cat const & rhs ); 
     virtual void   makeSound() const;
+    Brain *    getBrain();
 
 private:
     Brain *_Brain;

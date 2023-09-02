@@ -12,6 +12,7 @@ Cat::Cat(void)
 Cat::Cat(Cat const & src) 
 {    
     *this = src;
+    std::cout << "cat copy connstructor" << std::endl;
     return ;
 }
 
@@ -32,4 +33,9 @@ void   Cat::makeSound() const
 {
     std::cout << "MMMIIIIIIAAAAAAAAOUUUUUU" << std::endl;
 }
+
+Brain *    Cat::getBrain()
+ {
+    return (this->_Brain);
+ }
 
