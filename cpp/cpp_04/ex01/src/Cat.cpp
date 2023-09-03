@@ -5,8 +5,8 @@
 Cat::Cat(void)   
 {
     Animal::type = "Cat";
-    _Brain = new Brain();
     std::cout << "One Cat has been created. " << std::endl;
+    _Brain = new Brain();
 }
 
 Cat::Cat(Cat const & src) 
@@ -17,8 +17,8 @@ Cat::Cat(Cat const & src)
 
 Cat::~Cat() 
 {
-    std::cout << "One Cat has been deleted!" << std::endl;
     delete _Brain;
+    std::cout << "One Cat has been deleted!" << std::endl;
 }
 
 Cat &    Cat::operator=( Cat const & rhs ) 

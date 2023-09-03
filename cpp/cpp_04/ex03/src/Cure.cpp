@@ -32,8 +32,8 @@ Cure &    Cure::operator=( Cure const & rhs )
     return (ret);
 }
 
-void Cure::use(ICharacter & target)
+void Cure::use(ICharacter& target)
 {
-    std::cout << "* heals " << target << "'s wounds *" << std::endl;
+    std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }
 

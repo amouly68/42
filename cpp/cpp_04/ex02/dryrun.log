@@ -1,0 +1,19 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/amouly/Documents/42cursus/42/cpp/cpp_04/ex02'
+mkdir -p obj
+c++ -Wall -Werror -Wextra -g3 -std=c++98 -I include  -c src/main.cpp -o obj/main.o
+mkdir -p obj
+c++ -Wall -Werror -Wextra -g3 -std=c++98 -I include  -c src/Animal.cpp -o obj/Animal.o
+mkdir -p obj
+c++ -Wall -Werror -Wextra -g3 -std=c++98 -I include  -c src/Cat.cpp -o obj/Cat.o
+mkdir -p obj
+c++ -Wall -Werror -Wextra -g3 -std=c++98 -I include  -c src/Dog.cpp -o obj/Dog.o
+mkdir -p obj
+c++ -Wall -Werror -Wextra -g3 -std=c++98 -I include  -c src/WrongAnimal.cpp -o obj/WrongAnimal.o
+mkdir -p obj
+c++ -Wall -Werror -Wextra -g3 -std=c++98 -I include  -c src/WrongCat.cpp -o obj/WrongCat.o
+mkdir -p obj
+c++ -Wall -Werror -Wextra -g3 -std=c++98 -I include  -c src/Brain.cpp -o obj/Brain.o
+c++ -Wall -Werror -Wextra -g3 -std=c++98 obj/main.o obj/Animal.o obj/Cat.o obj/Dog.o obj/WrongAnimal.o obj/WrongCat.o obj/Brain.o  -I include  -o Polymorph	
+make: Leaving directory `/Users/amouly/Documents/42cursus/42/cpp/cpp_04/ex02'
+ 

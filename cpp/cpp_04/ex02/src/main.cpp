@@ -1,4 +1,4 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "WrongCat.hpp"
@@ -8,7 +8,7 @@
 int main()
 {
     //Animal test("test");
-    Animal* meta[10] ; 
+    AAnimal* meta[10] ; 
     int i = 0;
     while(i < 8)
     {

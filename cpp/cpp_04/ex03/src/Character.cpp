@@ -68,41 +68,52 @@ Character &    Character::operator=( Character const & rhs )
             this->_Inventaire[i] = NULL;
         i++;
     }
-    return (*this)
+    return (*this);
 }
 
 std::string const & Character::getName() const
 {
-    return (this->_Name)
+    return (this->_Name);
 }
 
-void Character::equip(AMateria * m)
+void Character::equip(AMateria* m)
 {
     int i = 0;
+    if (m == NULL)
+    {
+        std::cout << "You try to equip " << this->getName() << " with nothing !!!" << std::endl;
+        return;
+    }
     while(i < 4)
     {
         if (this->_Inventaire[i] == NULL)
         {
             this->_Inventaire[i] = m;
+            std::cout << this->getName() << " is equipped with " <<  m->getType() << " at spot " << i << " !" << std::endl; 
             return;
         }
         i++;
     }
     std::cout << "Iventaire full please Unequip !!" << std::endl;
-    return; 
 }
 
 void Character::unequip(int idx)
 {
-    if (idx > 0 || idx < 3)
+    if (idx >= 0 && idx <= 3)
+    {
         this->_Inventaire[idx] = NULL;
+        std::cout << "Spot " << idx << " is unequipped !" << std::endl;
+    }
     else
         std::cout << "PLease use an index between 0 and 3." << std::endl;
-    return; 
 }
 
 void Character::use(int idx, ICharacter & target)
 {
-    this->_Inventaire[idx]->use(target);
-    return;
+    if (idx < 0 || idx > 3)
+        std::cout << "ONLY 4 SPOTS : 0, 1 , 2, 3" << std::endl;
+    else if (this->_Inventaire[idx] == NULL)
+        std::cout << "PAS DE MATERIA A CET EMPLACEMENT" << std::endl;
+    else
+        this->_Inventaire[idx]->use(target);
 }

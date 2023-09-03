@@ -4,7 +4,7 @@
 
 Cat::Cat(void)   
 {
-    Animal::type = "Cat";
+    AAnimal::type = "Cat";
     _Brain = new Brain();
     std::cout << "One Cat has been created. " << std::endl;
 }

@@ -5,8 +5,9 @@
 Dog::Dog(void) 
 {
     Animal::type = "Dog";
-    _Brain = new Brain();
     std::cout << "One Dog has been created. " << std::endl;
+    _Brain = new Brain();
+    
 }
 
 Dog::Dog(Dog const & src) 
@@ -17,8 +18,8 @@ Dog::Dog(Dog const & src)
 
 Dog::~Dog() 
 {
-    std::cout << "One dog has been deleted!" << std::endl;
     delete _Brain;
+    std::cout << "One dog has been deleted!" << std::endl;
 }
 
 Dog &    Dog::operator=( Dog const & rhs ) 

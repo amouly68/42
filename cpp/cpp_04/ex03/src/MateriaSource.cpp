@@ -59,7 +59,7 @@ void MateriaSource::learnMateria (AMateria * mat)
     {
         if (this->_Materia[i] == NULL)
         {
-            this->_Materia[i] = mat->clone();
+            this->_Materia[i] = mat;
             return;
         }
         i++;
@@ -74,7 +74,7 @@ void MateriaSource::learnMateria (AMateria * mat)
     int i = 0;
     while (i < 4)
     {
-        if (this->_Materia[i]->getType().compare(type) == 0)
+        if (this->_Materia[i] && this->_Materia[i]->getType().compare(type) == 0)
         {
             ret = _Materia[i]->clone();
             return (ret);

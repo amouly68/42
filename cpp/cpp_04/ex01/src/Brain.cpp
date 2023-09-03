@@ -4,7 +4,7 @@
 
 Brain::Brain(void) 
 {
-    // TODO: Implémenter le constructeur
+    std::cout << "A brain has been created " << std::endl;
 }
 
 Brain::Brain(Brain const & src) 
@@ -15,7 +15,7 @@ Brain::Brain(Brain const & src)
 
 Brain::~Brain() 
 {
-    // TODO: Implémenter le destructeur
+    std::cout << "A brain has been deleted " << std::endl;
 }
 
 Brain &    Brain::operator=( Brain const & rhs ) 
