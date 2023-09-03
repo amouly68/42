@@ -95,80 +95,112 @@ char toChar(const std::string& input)
 {
     if (input == "nan" || input == "+inf"|| input == "-inf" ||
         input == "nanf" || input == "+inff"|| input == "-inff" )
-        throw ScalarConverter::ImpossibleException();
+            //throw ScalarConverter::ImpossibleException();
+            throw std::string ("impossible");
     if(input.length() == 1 && std::isprint(input[0]))
         return (input[0]);
-    if(is_int(input) && std::stoi(input) >= CHAR_MIN && std::stoi(input) <= CHAR_MAX)
-        return (static_cast<char> (std::stoi(input)));   
-    if(is_double(input) && std::stod(input) >= CHAR_MIN && std::stod(input) <= CHAR_MAX)
-        return (static_cast<char> (std::stod(input)));  
-    if(is_float(input) && std::stof(input) >= CHAR_MIN && std::stof(input) <= CHAR_MAX)
-        return (static_cast<char> (std::stof(input))); 
-    else
-        throw ScalarConverter::NonDisplayableException();
+    try{
+        if(is_int(input) && std::stoi(input) >= CHAR_MIN && std::stoi(input) <= CHAR_MAX)
+            return (static_cast<char> (std::stoi(input)));   
+        if(is_double(input) && std::stod(input) >= CHAR_MIN && std::stod(input) <= CHAR_MAX)
+            return (static_cast<char> (std::stod(input)));  
+        if(is_float(input) && std::stof(input) >= CHAR_MIN && std::stof(input) <= CHAR_MAX)
+            return (static_cast<char> (std::stof(input))); 
+        else
+            //throw ScalarConverter::NonDisplayableException();
+            throw std::string ("Non Displayable");
+    }
+    catch (std::out_of_range &e)
+    {
+        throw std::string ("TOO BIG");
+    }
 }
 
 int toInt(const std::string& input) 
 {
     if (input == "nan" || input == "+inf"|| input == "-inf" ||
         input == "nanf" || input == "+inff"|| input == "-inff" )
-        throw ScalarConverter::ImpossibleException();
+        //throw ScalarConverter::ImpossibleException();
+        throw std::string ("impossible");
     if(input.length() == 1 && std::isprint(input[0]))
         return (static_cast<int>(input[0]));
-    if(is_int(input) && std::stoi(input) >= INT_MIN && std::stoi(input) <= INT_MAX)
+    try
+    {
+        if(is_int(input))
         return ((std::stoi(input)));   
-    if(is_double(input) && std::stod(input) >= INT_MIN && std::stod(input) <= INT_MAX)
-        return (static_cast<int> (std::stod(input)));  
-    if(is_float(input) && std::stof(input) >= INT_MIN && std::stof(input) <= INT_MAX)
-        return (static_cast<int> (std::stof(input))); 
-    else
-        throw ScalarConverter::NonDisplayableException();
+        if(is_double(input))
+            return (static_cast<int> (std::stod(input)));  
+        if(is_float(input))
+            return (static_cast<int> (std::stof(input))); 
+        else
+            //throw ScalarConverter::NonDisplayableException();
+            throw std::string ("Non Displayable");
+    }
+    catch (std::out_of_range &e)
+    {
+        throw std::string ("TOO BIG");
+    }
 }
 
 double toDouble(const std::string& input) 
 {
     if (input == "nan" || input == "+inf"|| input == "-inf")
        // throw ScalarConverter::IdentityException(input);
-       throw std::string(input);
+       throw(input);
     if (input == "nanf" || input == "+inff"|| input == "-inff" )
     {
         //input.erase(input.size()-1);
         //throw ScalarConverter::IdentityException(input);
-        throw std::string(input);
+        std::string ret = input.substr(0, input.length() - 1);
+        throw (ret);
     }
     if(input.length() == 1 && std::isprint(input[0]))
         return (static_cast<double>(input[0]));
-    if(is_int(input))
-        return (static_cast<double> (std::stoi(input)));   
-    if(is_double(input))
-        return ( (std::stod(input)));  
-    if(is_float(input))
-        return (static_cast<double>(std::stof(input))); 
-    else
-        throw ScalarConverter::NonDisplayableException();
+    try{
+        if(is_int(input))
+            return (static_cast<double> (std::stoi(input)));   
+        if(is_double(input))
+            return ( (std::stod(input)));  
+        if(is_float(input))
+            return (static_cast<double>(std::stof(input))); 
+        else
+            //throw ScalarConverter::NonDisplayableException();
+            throw std::string ("Non Displayable");
+    }       
+    catch (std::out_of_range &e)
+    {
+        throw std::string ("TOO BIG");
+    }
 }
 
 char toFloat(const std::string& input) 
 {
     if (input == "nan" || input == "+inf"|| input == "-inf")
     {
-        input + 'f';
+        std::string ret = input + 'f';
        // throw ScalarConverter::IdentityException(input);
-       throw std::string(input);
+       throw (ret);
     }    
     if (input == "nanf" || input == "+inff"|| input == "-inff" )
        // throw ScalarConverter::IdentityException(input);
-       throw std::string(input);
+       throw (input);
     if(input.length() == 1 && std::isprint(input[0]))
         return (static_cast<float>(input[0]));
-    if(is_int(input))
-        return (static_cast<float> (std::stoi(input)));   
-    if(is_double(input))
-        return (static_cast<float> (std::stod(input)));  
-    if(is_float(input))
-        return ((std::stof(input))); 
-    else
-        throw ScalarConverter::NonDisplayableException();
+    try{
+        if(is_int(input))
+            return (static_cast<float> (std::stoi(input)));   
+        if(is_double(input))
+            return (static_cast<float> (std::stod(input)));  
+        if(is_float(input))
+            return ((std::stof(input))); 
+        else
+            //throw ScalarConverter::NonDisplayableException();
+            throw std::string ("Non Displayable");
+    }
+    catch (std::out_of_range &e)
+    {
+        throw std::string ("TOO BIG");
+    }
 }
 
 
@@ -179,19 +211,24 @@ void ScalarConverter::convert(const std::string& input)
         char a = toChar(input);
         std::cout << "'" << a << "'" << std::endl; 
     }
-    catch (const std::exception &e)
+    /*catch (const std::exception &e)
     {
         std::cout << e.what() << std::endl; 
+    }*/
+    catch (std::string &e)
+    {
+        std::cout << e << std::endl; 
     }
+
 
     try{
         std::cout << "int : ";
         int b = toInt(input);
         std::cout << b << std::endl; 
     }
-    catch (const std::exception &e)
+    catch (std::string &e)
     {
-        std::cout << e.what() << std::endl; 
+        std::cout << e << std::endl; 
     }
     
    try{
@@ -201,11 +238,10 @@ void ScalarConverter::convert(const std::string& input)
             std::cout << std::fixed << std::setprecision(1);
         std::cout << c << "f"<< std::endl;
     }
-    catch (const std::exception &e)
+    catch (std::string &e)
     {
-        std::cout << e.what() << std::endl;
+        std::cout << e << std::endl; 
     }
-
     try{
         std::cout << "Double : ";
         double d = toDouble(input);
@@ -213,9 +249,9 @@ void ScalarConverter::convert(const std::string& input)
             std::cout << std::fixed << std::setprecision(1);
         std::cout << d << std::endl; 
     }
-    catch (const std::exception &e)
+    catch (std::string &e)
     {
-        std::cout << e.what() << std::endl; 
+        std::cout << e << std::endl; 
     }
 
 }
