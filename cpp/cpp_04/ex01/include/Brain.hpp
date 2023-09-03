@@ -12,10 +12,11 @@ public:
 
     Brain & operator=( Brain const & rhs ); 
 
-    std::string ideas [100];
+    std::string getIdeas(int indice);
 
 private:
-    
+
+    std::string _ideas [100];
 
 };
 

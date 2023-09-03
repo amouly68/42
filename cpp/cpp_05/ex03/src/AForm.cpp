@@ -1,4 +1,7 @@
 #include "../include/AForm.hpp"
+#include "../include/ShrubberyCreationForm.hpp"
+#include "../include/PresidentialPardonForm.hpp"
+#include "../include/RobotomyRequestForm.hpp"
 
 #include <iostream>
 
@@ -110,6 +113,11 @@ const char* AForm::FileWontOpenException::what() const throw()
     return ("of a problem with File opening !");
 }
 
+const char* AForm::InvalidNameFormException::what() const throw()
+{
+    return (" the name of the form is invlaid !");
+}
+
 std::ostream& operator<<(std::ostream& os, const AForm &form)
 {
     os << "Form : " << form.getName() << std::endl;
@@ -121,4 +129,18 @@ std::ostream& operator<<(std::ostream& os, const AForm &form)
     os << "Grade to sign : " << form.getGradeToSign() <<std::endl;
     os << "Grade to execute : " << form.getGradeToExecute() <<std::endl;
     return os;
+}
+
+AForm*           AForm::makeForm(std::string type, std::string target)
+{
+    
+    AForm* form;
+    form = NULL;
+    form = ShrubberyCreationForm::make(type, target, form);
+    form = PresidentialPardonForm::make(type, target, form);
+    form = RobotomyRequestForm::make(type, target, form);
+    if (form == NULL)
+        throw InvalidNameFormException();
+    return(form);
+    
 }

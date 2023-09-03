@@ -20,11 +20,23 @@ Intern::~Intern()
 
 Intern &    Intern::operator=( Intern const & rhs ) 
 {
-
+    (void) rhs;
     return (*this);
 }
 
-AForm*        Intern::makeForm(std::string form, std::string target)
+AForm*        Intern::makeForm(std::string type, std::string target)
 {
     
+    AForm * form;
+    try
+    {
+        form = AForm::makeForm(type, target);
+        std::cout << "Intern creates " << type << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << "Intern could'nt create Form because"<< e.what() << std::endl;
+    }
+    
+    return form;
 }

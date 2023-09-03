@@ -6,24 +6,19 @@
 #    By: amouly <amouly@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 15:27:43 by llion             #+#    #+#              #
-#    Updated: 2023/09/01 13:35:16 by amouly           ###   ########.fr        #
+#    Updated: 2023/08/30 13:13:08 by amouly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME		= Intern
+NAME		= conversion
 CC			= c++
 RM			= rm -rf
 CXXFLAGS	= -Wall -Werror -Wextra -g3 -std=c++98
 MLX			= MLX42/build/libmlx42.a
 HEADERS		= -I include 
 SRC			=	main.cpp \
-				Bureaucrat.cpp \
-				AForm.cpp \
-				ShrubberyCreationForm.cpp \
-				RobotomyRequestForm.cpp \
-				PresidentialPardonForm.cpp \
-				Intern.cpp
+				
 				
 					
 OBJ			= $(addprefix obj/,$(notdir $(SRC:.cpp=.o)))

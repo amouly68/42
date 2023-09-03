@@ -58,3 +58,12 @@ void        PresidentialPardonForm::execute(Bureaucrat const & executor)
       
     std::cout << _Target << " a été pardonnée par Zaphod Beeblebrox." << std::endl;
 }
+
+AForm*     PresidentialPardonForm::make(std::string type, std::string target, AForm* form)
+{
+    
+    if (form == NULL && type == "Presidential Pardon")
+        return (new PresidentialPardonForm(target));
+    else
+        return form;
+}

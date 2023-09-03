@@ -93,9 +93,6 @@ int main()
     peutToutFaire2.executeForm(Pardon2);
     peutToutFaire2.signForm(Pardon2);
     peutToutFaire2.executeForm(Pardon2);
-    peutToutFaire2.executeForm(Pardon2);
-    peutToutFaire2.executeForm(Pardon2);
-    peutToutFaire2.executeForm(Pardon2);
     PresidentialPardonForm Pardon3;
     Pardon3 = Pardon1;
     std::cout << Pardon3 << std::endl;

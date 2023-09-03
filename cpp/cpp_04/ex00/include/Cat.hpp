@@ -8,13 +8,12 @@ public:
     
     Cat(void);
     Cat( Cat const & src );
-    virtual ~Cat();
+    ~Cat();
 
     Cat & operator=( Cat const & rhs ); 
-    virtual void   makeSound() const;
+    void   makeSound() const;
 
 private:
-    std::string type;
     
 
 };
