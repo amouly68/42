@@ -29,14 +29,21 @@ public:
             virtual const char* what() const throw();
     };
 
-   /* class IdentityException : public std::exception
+     class TooBigException : public std::exception
+    {
+        public : 
+            virtual const char* what() const throw();
+    };
+
+    class IdentityException : public std::exception
     {
         public :
-            IdentityException(const std::string& input);
-            virtual const char* what() const;
+            IdentityException(const char* input);
+            const char* what() const _NOEXCEPT;
+            
         private :
-            std::string message;
-    };*/
+            const char* message;
+    };
 
 private:
     
