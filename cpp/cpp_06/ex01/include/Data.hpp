@@ -17,8 +17,6 @@ public:
     char        c;
 
 private:
-    
-
 };
 
 #endif 

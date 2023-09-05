@@ -101,11 +101,18 @@ char toChar(const std::string& input)
     if (input == "nan" || input == "+inf"|| input == "-inf" ||
         input == "nanf" || input == "+inff"|| input == "-inff" )
             throw ScalarConverter::ImpossibleException();
-    if(input.length() == 1 && std::isprint(input[0]))
-        return (input[0]);
+    
+    
+        if(input.length() == 1 && std::isprint(input[0]))
+        {
+            if (std::isdigit(input[0]))
+                throw ScalarConverter::NonDisplayableException();
+            else
+                return (input[0]);
+        }
     try{
-        if(is_int(input) && std::stoi(input) >= CHAR_MIN && std::stoi(input) <= CHAR_MAX)
-            return (static_cast<char> (std::stoi(input)));   
+        if(is_int(input) && std::stoi(input) >=CHAR_MIN && std::stoi(input) <= CHAR_MAX)
+               return (static_cast<char> (std::stoi(input))); 
         if(is_double(input) && std::stod(input) >= CHAR_MIN && std::stod(input) <= CHAR_MAX)
             return (static_cast<char> (std::stod(input)));  
         if(is_float(input) && std::stof(input) >= CHAR_MIN && std::stof(input) <= CHAR_MAX)
@@ -124,7 +131,7 @@ int toInt(const std::string& input)
     if (input == "nan" || input == "+inf"|| input == "-inf" ||
         input == "nanf" || input == "+inff"|| input == "-inff" )
         throw ScalarConverter::ImpossibleException();
-    if(input.length() == 1 && std::isprint(input[0]))
+    if(input.length() == 1 && std::isprint(input[0]) && !std::isdigit(input[0]))
         return (static_cast<int>(input[0]));
     try
     {
@@ -152,7 +159,7 @@ double toDouble(const std::string& input)
         std::string ret = input.substr(0, input.length() - 1);
         throw ScalarConverter::IdentityException(input.c_str());
     }
-    if(input.length() == 1 && std::isprint(input[0]))
+    if(input.length() == 1 && std::isprint(input[0]) && !std::isdigit(input[0]) )
         return (static_cast<double>(input[0]));
     
         if(is_int(input))
@@ -180,7 +187,7 @@ float toFloat(const std::string& input)
     }    
     if (input == "nanf" || input == "+inff"|| input == "-inff" )
         throw ScalarConverter::IdentityException(input.c_str());
-    if(input.length() == 1 && std::isprint(input[0]))
+    if(input.length() == 1 && std::isprint(input[0]) && !std::isdigit(input[0]))
         return (static_cast<float>(input[0]));
     
         if(is_int(input))
