@@ -1,25 +1,55 @@
-
-
-#include "iter.hpp"
 #include <iostream>
-#include <array>
+#include <Array.hpp>
 
-template <typename T, typename U >
-U display(T obj)
+#define MAX_VAL 750
+int main(int, char**)
 {
-    std::cout << "Display : " << obj << std::endl;
-}
+    /*Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    //SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
 
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
-int main()
-{
-    int tab_int[] = {0,1,2,3,4,5,6};
-    char tab_char[] = {'S','a','L','U','T'};
-    std::array<std::string, 3>  tab_str = {"Chaine 1",
-                                            "Chaine 2",
-                                            "Phrase plus longue"}; 
-    ::iter (tab_int, 7, &display);
-    ::iter (tab_char, 7, &display);
-    ::iter (tab_str, tab_str.size(), &display);
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete [] mirror;//
+    return 0;*/
 
+    
 }
