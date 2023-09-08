@@ -48,8 +48,20 @@ int main(int, char**)
     {
         numbers[i] = rand();
     }
-    delete [] mirror;//
-    return 0;
+    delete [] mirror;
 
+    Array<int> test(10);
+    std::cout << "la size de test est : " << test.size() << std::endl;
+    for (unsigned int i = 0; i < test.size(); i++)
+        test[i] = i;
+    for (unsigned int j = 0; j < test.size(); j++)
+        std::cout << "Test[" << j << "] = " << test[j] << std::endl;
+
+    Array<int> test2(test);    
+    for (unsigned int j = 0; j < test2.size(); j++)
+        std::cout << "Test2[" << j << "] = " << test2[j] << std::endl;
+
+    
+    return(0);
 
 }

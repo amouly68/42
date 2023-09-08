@@ -9,7 +9,7 @@ template <typename T>
 class Array {
 public:
     
-    Array(void) 
+    Array(void) : _size(0)
     {
         _arr = new T [0];
     };
@@ -62,7 +62,7 @@ public:
 
     unsigned int size(void)
     {
-    return (_size); 
+        return (_size); 
     };
 
 private:
