@@ -33,6 +33,8 @@ public:
 
     Array & operator=( Array const & rhs )
     {
+        if (&rhs == this)
+            return (*this);
         _size = rhs._size;
         delete _arr;
         _arr = new T [_size];
