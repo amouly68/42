@@ -3,7 +3,8 @@
 
 #include <iostream>
 #include <algorithm>
-#include <list>
+#include <iterator>
+#include <vector>
 
 class Span {
 public:
@@ -17,7 +18,13 @@ public:
     unsigned int shortestSpan(void);
     unsigned int longestSpan(void);
 
-    class SpanIsFullException : public std::Exception
+    class SpanIsFullException : public std::exception
+    {
+        public : 
+            virtual const char* what() const throw();
+    };
+
+       class OnlyOneElementException : public std::exception
     {
         public : 
             virtual const char* what() const throw();
@@ -26,8 +33,8 @@ public:
 
 private:
     Span(void);
-    const unsigned int _n;
-    std::list<int> li;
+    unsigned int _n;
+    std::vector<int> vec;
     
 
 };

@@ -1,44 +1,85 @@
 
 
-#include "easyfind.hpp"
+#include "Span.hpp"
 #include <iostream>
-#include <list>
 
 
 
 
 int main()
 {
-    std::list<int> test;
-    test.push_back(1);
-    test.push_back(11);
-    test.push_back(42);
-    test.push_back(30);
+    Span test(5);
+
+     try
+    {
+    test.addNumber(6);
+    test.addNumber(11);
+    test.addNumber(42);
+    test.addNumber(35);
+    test.addNumber(30);
+    test.addNumber(39);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     try
     {
-        easyfind(test, 42);
+        std::cout << "shortest span : " << test.shortestSpan() << std::endl;
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
-      try
+     try
     {
-        easyfind(test, 45);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-      try
-    {
-        easyfind(test, 30);
+        std::cout << "longest span : " << test.longestSpan() << std::endl;
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
 
+    
+    Span test2(1);
+      try
+    {
+    test.addNumber(6);
+    test.addNumber(11);
+    test.addNumber(42);
+    test.addNumber(35);
+    test.addNumber(30);
+    test.addNumber(39);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+     try
+    {
+        std::cout << "shortest span : " << test2.shortestSpan() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    test2 =test;
+    try
+    {
+        std::cout << "shortest span : " << test.shortestSpan() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+     try
+    {
+        std::cout << "longest span : " << test.longestSpan() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
     return (0);
 
