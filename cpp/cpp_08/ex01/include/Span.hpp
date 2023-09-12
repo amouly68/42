@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <iterator>
 #include <vector>
+#include <list>
 
 class Span {
 public:
@@ -13,11 +14,14 @@ public:
     Span( Span const & src );
     ~Span();
 
-    Span & operator=( Span const & rhs ); 
-    void addNumber(int n);
-    unsigned int shortestSpan(void);
-    unsigned int longestSpan(void);
-
+    Span &          operator=( Span const & rhs ); 
+    void            addNumber(int n);
+    unsigned int    shortestSpan(void);
+    unsigned int    longestSpan(void);
+    template <class InputIterator>
+    void            fill(InputIterator begin, InputIterator end);
+    void            fill(std::list<int>::iterator begin, std::list<int>::iterator end);
+    void            fill(std::vector<int>::iterator begin, std::vector<int>::iterator end);
     class SpanIsFullException : public std::exception
     {
         public : 
@@ -30,6 +34,11 @@ public:
             virtual const char* what() const throw();
     };
 
+      class RangetoowideException : public std::exception
+    {
+        public : 
+            virtual const char* what() const throw();
+    };
 
 private:
     Span(void);
@@ -38,5 +47,6 @@ private:
     
 
 };
+
 
 #endif 

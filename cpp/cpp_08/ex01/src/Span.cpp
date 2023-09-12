@@ -1,3 +1,4 @@
+
 #include "../include/Span.hpp"
 
 #include <iostream>
@@ -48,6 +49,11 @@ const char* Span::OnlyOneElementException::what() const throw()
     return ("No span possible because only one element !");
 }
 
+const char* Span::RangetoowideException::what() const throw()
+{
+    return ("Could'nt fill because the range is too wide !");
+}
+
 void Span::addNumber(int n)
 {
     if (vec.size() < _n)
@@ -86,3 +92,32 @@ unsigned int Span::longestSpan()
         return (vec.back() - vec.front());
     }          
 }
+
+template <class InputIterator>
+void    Span::fill(InputIterator begin, InputIterator end)
+{
+    if (std::distance(begin, end) > _n)
+        throw RangetoowideException();
+    else
+        vec.assign(begin, end);
+      
+}
+
+void    Span::fill(std::list<int>::iterator begin, std::list<int>::iterator end)
+{
+    if (std::distance(begin, end) > _n)
+        throw RangetoowideException();
+    else
+        vec.assign(begin, end);        
+}
+
+
+void    Span::fill(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+    if (std::distance(begin, end) > _n)
+        throw RangetoowideException();
+    else
+        vec.assign(begin, end);        
+}
+
+
