@@ -26,4 +26,11 @@ void iter(std::array<T, N > &arr, int length, void (*f) (T elem))
     }    
 }
 
+template <typename T, typename U >
+U display(T obj)
+{
+    std::cout << "Display : " << obj << std::endl;
+}
+
+
 #endif 

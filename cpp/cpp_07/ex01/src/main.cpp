@@ -4,11 +4,7 @@
 #include <iostream>
 #include <array>
 
-template <typename T, typename U >
-U display(T obj)
-{
-    std::cout << "Display : " << obj << std::endl;
-}
+
 
 
 int main()

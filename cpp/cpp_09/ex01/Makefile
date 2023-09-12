@@ -6,17 +6,19 @@
 #    By: amouly <amouly@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 15:27:43 by llion             #+#    #+#              #
-#    Updated: 2023/09/12 12:26:37 by amouly           ###   ########.fr        #
+#    Updated: 2023/09/11 11:12:11 by amouly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME		= mutantstack
+NAME		= span
 CC			= c++
 RM			= rm -rf
 CXXFLAGS	= -Wall -Werror -Wextra -g -g3 -std=c++98
 HEADERS		= -I include 
 SRC			=	main.cpp \
+				Span.cpp
+				
 				
 					
 OBJ			= $(addprefix obj/,$(notdir $(SRC:.cpp=.o)))
