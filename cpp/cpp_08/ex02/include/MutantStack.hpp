@@ -6,50 +6,27 @@
 #include <iterator>
 #include <vector>
 #include <deque>
+#include <stack>
 
 template <typename T>
-class MutantStack {
+class MutantStack : public std::stack <T>
+{
 
-private:
-
-    std::deque<T> _data;
 
 public:
     
     typedef typename std::deque<T>::iterator iterator;
-    MutantStack(){};
-    MutantStack( MutantStack const & src ){
-        *this = src;
-    }
+    MutantStack() : std::stack<T> (){}
+    MutantStack( MutantStack const & src ) : std::stack<T>(src){}
 
-    ~MutantStack(){};
-
-    void push(const T &elem){
-        _data.push_back(elem);
-    }
-
-    void pop(){
-        _data.pop_front();
-    }
-
-    T& top(void){
-        return (_data.back());
-    };
-
-    bool empty(){
-        return(_data.empty());
-    }
-
-    unsigned int size(){
-        return (_data.size());
-    }
+    ~MutantStack(){}
 
     typename std::deque<T>::iterator begin(){
-        return (_data.begin());
+        return (c.begin())
     }
 
     typename std::deque<T>::iterator end(){
-        return (_data.end());
+        return (c.end());
     }
 
     
