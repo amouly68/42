@@ -6,18 +6,18 @@
 #    By: amouly <amouly@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 15:27:43 by llion             #+#    #+#              #
-#    Updated: 2023/09/11 11:12:11 by amouly           ###   ########.fr        #
+#    Updated: 2023/09/20 13:14:02 by amouly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME		= span
+NAME		= RPN
 CC			= c++
 RM			= rm -rf
 CXXFLAGS	= -Wall -Werror -Wextra -g -g3 -std=c++98
 HEADERS		= -I include 
 SRC			=	main.cpp \
-				Span.cpp
+				RPN.cpp
 				
 				
 					
