@@ -52,6 +52,8 @@ void fill_stack(std::stack<int> mystack, std::string input)
     std::string str;
     int a;
     int b;
+    int digit = 0;
+    int operand = 0;
     std::stringstream ss(input);
     int res = 0;
 
@@ -67,6 +69,13 @@ void fill_stack(std::stack<int> mystack, std::string input)
         }
         if (str.at(0) == '+' || str.at(0) == '-' || str.at(0) == '/' || str.at(0) == '*')
         {
+            operand++;
+            if (operand >= digit)
+            {
+                std::cout << "Error: bad input" << std::endl;
+                return ;
+            } 
+
             a = mystack.top();
             mystack.pop();
             b = mystack.top();
@@ -75,7 +84,10 @@ void fill_stack(std::stack<int> mystack, std::string input)
             mystack.push(res);
         }    
         else  
+        {
             mystack.push(str.at(0) - '0');
+            digit++;
+        }
     }
     std::cout << res << std::endl;
 }
