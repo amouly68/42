@@ -11,12 +11,13 @@
 # **************************************************************************** #
 
 
-NAME		= mutantstack
+NAME		= PmergeMe
 CC			= c++
 RM			= rm -rf
 CXXFLAGS	= -Wall -Werror -Wextra -g -g3 -std=c++98
 HEADERS		= -I include 
 SRC			=	main.cpp \
+				PmergeMe.cpp
 				
 					
 OBJ			= $(addprefix obj/,$(notdir $(SRC:.cpp=.o)))
