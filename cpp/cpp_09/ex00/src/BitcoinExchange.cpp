@@ -10,25 +10,23 @@ void fill_map(std::map<std::string, double> &rates, std::string data_file, char 
     std::size_t pos;
     std::string key;
     double value;
-
-    if (file.is_open())
-    {
-        while(file)
+        if (file.is_open())
         {
-            std::getline(file, line);
-            pos = line.find(c);
-            while (line[pos] == c || line[pos] == 32)
-                pos--;
-            pos++;
-            key = line.substr(0, pos);
-            while (line[pos] == c || line[pos] == 32)
+            while(file)
+            {
+                std::getline(file, line);
+                pos = line.find(c);
+                while (line[pos] == c || line[pos] == 32)
+                    pos--;
                 pos++;
-            value = atof(line.substr(pos).c_str());
-            rates[key] = value;
+                key = line.substr(0, pos);
+                while (line[pos] == c || line[pos] == 32)
+                    pos++;
+                value = atof(line.substr(pos).c_str());
+                rates[key] = value;
+            }
+            file.close();
         }
-        file.close();
-    }
-    
 }
 
 
@@ -77,51 +75,66 @@ bool has_digit(std::string line)
 
 void get_output(std::map<std::string, double> &rates, std::string data_file, char c)
 {
-    std::ifstream file;
-    file.open(data_file);
+    // std::ifstream file;
+    // file.exceptions(std::ifstream::badbit);
     std::string line;
     std::size_t pos;
     std::string date;
     std::map<std::string, double>::iterator it;
     double value;
-
-    if (file.is_open())
+    try
     {
-        while(std::getline(file, line) )
+        std::ifstream file;
+        file.exceptions(std::ifstream::badbit);
+        file.open(data_file);
+        if (file.is_open())
         {
-            if (has_digit(line))
+            while(std::getline(file, line) )
             {
-                pos = line.find(c);
-                if (pos != std::string::npos)
+                if (has_digit(line))
                 {
-                    while (line[pos] == c || line[pos] == 32)
-                        pos--;
-                    pos++;
-                    date = line.substr(0, pos);
-                }
-                else
-                    date = line;
-                if (valid_date(date))
-                {
-                    it = rates.begin();
-                    while ( it != rates.upper_bound(date))
-                        it++;
-                    it--;
-                    while (line[pos] == c || line[pos] == 32)
+                    pos = line.find(c);
+                    if (pos != std::string::npos)
+                    {
+                        while (line[pos] == c || line[pos] == 32)
+                            pos--;
                         pos++;
-                    value = atof(line.substr(pos).c_str());
-                    if (value < 0)
-                        std::cout << "Error: not a positive number " << std::endl;
-                    else if (value > 1000)
-                        std::cout << "Error: too large a number " << std::endl;
+                        date = line.substr(0, pos);
+                    }
                     else
-                        std::cout << date << " ==> " << value << " = " << value * it->second << std::endl;
-                } else
-                    std::cout << "Error: bad input ==> " << date << std::endl;
-            }
+                        date = line;
+                    if (valid_date(date))
+                    {
+                        it = rates.begin();
+                        while ( it != rates.upper_bound(date))
+                            it++;
+                        it--;
+                        while (line[pos] == c || line[pos] == 32)
+                            pos++;
+                        value = atof(line.substr(pos).c_str());
+                        if (value < 0)
+                            std::cout << "Error: not a positive number " << std::endl;
+                        else if (value > 1000)
+                            std::cout << "Error: too large a number " << std::endl;
+                        else
+                            std::cout << date << " ==> " << value << " = " << value * it->second << std::endl;
+                    } else
+                        std::cout << "Error: bad input ==> " << date << std::endl;
+                }
 
-        }
-        file.close();
+            }
+            file.close();
+            
+        }else 
+            throw std::runtime_error("No file with this name");
+    }
+    catch (const std::ifstream::failure& e)
+    {
+        std::cout << "Erreur lors de l'ouverture ou de la lecture du fichier : " << e.what() << std::endl;
+    }
+    catch (const std::exception& e)
+    {
+    std::cerr << "Erreur lors de l'ouverture du fichier : " << e.what() << std::endl;
     }
     
 }

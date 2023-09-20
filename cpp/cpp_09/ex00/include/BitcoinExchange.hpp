@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <ctime>
+#include <stdexcept> 
 
 class BitcoinExchange {
 public:
@@ -17,7 +17,6 @@ public:
     BitcoinExchange &           operator=( BitcoinExchange const & rhs ); 
     void                        print_rates(void);
     void                        print_input(void);
-    //std::string                 getInput();
     void                        setInput(std::string);          
 
 private:
