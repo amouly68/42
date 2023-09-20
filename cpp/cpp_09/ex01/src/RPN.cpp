@@ -34,23 +34,55 @@ bool valid_char(std::string const &input)
     }
     return (true);
 }
-void fill_stack(std::stack<char> &mystack, std::string input)
+
+int calc(int a, int b, char c)
+{
+    if (c == '+')
+        return (b + a);
+    else if (c == '-')
+        return (b - a);
+    else if (c == '/')
+        return (b / a);
+    else
+        return (b * a);
+    
+}
+void fill_stack(std::stack<int> mystack, std::string input)
 {
     std::string str;
-    //char c;
+    int a;
+    int b;
     std::stringstream ss(input);
-   // int calc;
+    int res = 0;
 
     while (getline(ss, str, ' '))
     {
+        if (str.empty())
+            continue;
         if (str.length() > 1 || (! (isdigit(str.at(0)) || isspace (str.at(0)) 
             || str.at(0) == '+' || str.at(0) == '-' || str.at(0) == '/' || str.at(0) == '*')))
         {
             std::cout << "Error: input must be between 0 and 10" << std::endl;
             return ;
         }
-        mystack.push(str.at(0));
+        if (str.at(0) == '+' || str.at(0) == '-' || str.at(0) == '/' || str.at(0) == '*')
+        {
+            a = mystack.top();
+            mystack.pop();
+            b = mystack.top();
+            mystack.pop();
+            std::cout << "a : " << a << " --- b : " << b << " ---- symbole : " << str.at(0) << std::endl;
+            res = calc (a, b, str.at(0) );
+            mystack.push(res);
+        }    
+        else 
+        {   
+            mystack.push(str.at(0) - '0');
+            std::cout << str.at(0) - '0' << std::endl;
+        }
+
     }
+    std::cout << res << std::endl;
 }
 
 void    RPN::setInput( std::string input ) 

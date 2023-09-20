@@ -21,7 +21,7 @@ public:
     void    printStack();
 
 private:
-    std::stack<char> _mystack;
+    std::stack<int> _mystack;
     std::string     _input;
 
 };
