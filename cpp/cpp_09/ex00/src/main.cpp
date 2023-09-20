@@ -7,10 +7,19 @@
 
 
 
-int main()
+int main(int ac, char **av)
 {
-    BitcoinExchange test;
-    test.print_rates();
+    
+    if (ac == 2)
+    {
+        BitcoinExchange test;
+        test.setInput(av[1]);
+        test.print_input();
+
+    }
+    else 
+        std::cout << "wrong number of args" << std::endl;
+    
     return (0);
 
 }
