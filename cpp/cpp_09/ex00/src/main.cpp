@@ -14,11 +14,10 @@ int main(int ac, char **av)
     {
         BitcoinExchange test;
         test.setInput(av[1]);
-        test.print_input();
-
+        //test.print_rates();
     }
     else 
-        std::cout << "wrong number of args" << std::endl;
+        std::cout << "Error: could not open file" << std::endl;
     
     return (0);
 

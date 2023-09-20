@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <ctime>
 
 class BitcoinExchange {
 public:
