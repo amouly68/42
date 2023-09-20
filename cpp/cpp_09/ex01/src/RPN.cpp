@@ -71,16 +71,11 @@ void fill_stack(std::stack<int> mystack, std::string input)
             mystack.pop();
             b = mystack.top();
             mystack.pop();
-            std::cout << "a : " << a << " --- b : " << b << " ---- symbole : " << str.at(0) << std::endl;
             res = calc (a, b, str.at(0) );
             mystack.push(res);
         }    
-        else 
-        {   
+        else  
             mystack.push(str.at(0) - '0');
-            std::cout << str.at(0) - '0' << std::endl;
-        }
-
     }
     std::cout << res << std::endl;
 }
