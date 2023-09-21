@@ -1,10 +1,10 @@
 #include "../include/RPN.hpp"
 
 #include <iostream>
+#include <iomanip>
 
 RPN::RPN(void) 
 {
-    // TODO: Implémenter le constructeur
 }
 
 RPN::RPN(RPN const & src) 
@@ -15,7 +15,6 @@ RPN::RPN(RPN const & src)
 
 RPN::~RPN() 
 {
-    // TODO: Implémenter le destructeur
 }
 
 RPN &    RPN::operator=( RPN const & rhs ) 
@@ -24,25 +23,27 @@ RPN &    RPN::operator=( RPN const & rhs )
     return (*this);
 }
 
-bool valid_char(std::string const &input)
+void valid_char(std::string const &input)
 {
     std::string::const_iterator it;
     for (it = input.begin(); it != input.end(); it++)
     {
         if (! (isdigit(*it) || isspace (*it) || *it == '+' || *it == '-' || *it == '/' || *it == '*'))
-            return false;
+            throw std::runtime_error("Error : Input invalid");
     }
-    return (true);
+    return;
 }
 
-int calc(int a, int b, char c)
+float calc(int a, int b, char c)
 {
     if (c == '+')
         return (b + a);
     else if (c == '-')
         return (b - a);
     else if (c == '/')
-        return (b / a);
+    {
+        return (static_cast<float>(b) / static_cast<float>(a));
+    }    
     else
         return (b * a);
     
@@ -55,7 +56,7 @@ void fill_stack(std::stack<int> mystack, std::string input)
     int digit = 0;
     int operand = 0;
     std::stringstream ss(input);
-    int res = 0;
+    float res = 0;
 
     while (getline(ss, str, ' '))
     {
@@ -63,20 +64,15 @@ void fill_stack(std::stack<int> mystack, std::string input)
             continue;
         if (str.length() > 1 || (! (isdigit(str.at(0)) || isspace (str.at(0)) 
             || str.at(0) == '+' || str.at(0) == '-' || str.at(0) == '/' || str.at(0) == '*')))
-        {
-            std::cout << "Error: input must be between 0 and 10" << std::endl;
-            return ;
-        }
+            throw std::runtime_error("Error: input must be integer between 0 and 9");
         if (str.at(0) == '+' || str.at(0) == '-' || str.at(0) == '/' || str.at(0) == '*')
         {
             operand++;
             if (operand >= digit)
-            {
-                std::cout << "Error: bad input" << std::endl;
-                return ;
-            } 
-
+                throw std::runtime_error("Error: bad input");
             a = mystack.top();
+            if (str.at(0) == '/' && a == 0)
+                throw std::runtime_error("Error: division by 0");
             mystack.pop();
             b = mystack.top();
             mystack.pop();
@@ -95,10 +91,13 @@ void fill_stack(std::stack<int> mystack, std::string input)
 void    RPN::setInput( std::string input ) 
 {
 
-    if (valid_char (input))
+    try{
+        valid_char (input);
         fill_stack(_mystack, input);
-    else    
-        std::cout << "Error : Input invalid" << std::endl;
+    }
+    catch (const std::exception& e){
+        std::cerr << e.what() << std::endl;
+    }
 }
 
 void    RPN::printStack() 
