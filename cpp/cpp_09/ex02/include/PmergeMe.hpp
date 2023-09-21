@@ -18,9 +18,13 @@ public:
     PmergeMe & operator=( PmergeMe const & rhs );
     void    add_vect(int i);
     void    print_vect();
+    int     getVectSize();
+    void    fordJohnsonSort(std::vector<int>& vec, int left, int right);
+    std::vector<int> vec;
+    std::vector<int> vec_copy;
 
 private:
-    std::vector<int> vec;
+    
 
 };
 
