@@ -36,6 +36,7 @@ private:
 
     std::vector<int>    vec;
     std::list<int>      lis;
+    std::list<int>      list_sorted;
     std::deque<int>     deq;
     double              time_vec;
     double              time_deq;
