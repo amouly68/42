@@ -3,9 +3,11 @@
 
 #include <vector>
 #include <iostream>
+#include <iomanip>
 #include <algorithm>
 #include <deque>
 #include <string>
+#include <sys/time.h>
 
 
 class PmergeMe {
@@ -16,14 +18,22 @@ public:
     ~PmergeMe();
 
     PmergeMe & operator=( PmergeMe const & rhs );
-    void    add_vect(int i);
+    void    add_numbers(double i);
     void    print_vect();
+    void    print_deque();
     int     getVectSize();
-    void    fordJohnsonSort(std::vector<int>& vec, int left, int right);
-    std::vector<int> vec;
-    std::vector<int> vec_copy;
+    double  getTimeVec();
+    double  getTimeDeque();
+    void    fordJohnsonSort();
+   
 
 private:
+
+    std::vector<int> vec;
+    std::vector<int> vec_copy;
+    std::deque<int> deq;
+    double          time_vec;
+    double          time_deque;
     
 
 };
