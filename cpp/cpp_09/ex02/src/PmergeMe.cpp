@@ -26,9 +26,9 @@ PmergeMe &    PmergeMe::operator=( PmergeMe const & rhs )
 void    PmergeMe::add_numbers(double i)
 {
     if (i < 0 || i > 2147483647 || ((i / i) != 1))
-        throw std::runtime_error("Error : bad input. Numbers must positives integers ");
+       throw std::runtime_error("Error : bad input. Numbers must positives integers ");
     //if ( std::find(vec.begin(), vec.end(), i) != vec.end() )
-     //   throw std::runtime_error("Error : bad input. Cannot have duplicate ");
+    //    throw std::runtime_error("Error : bad input. Cannot have duplicate ");
     vec.push_back(static_cast<int> (i));
     deq.push_back(static_cast<int> (i));
     lis.push_back(static_cast<int> (i));
@@ -113,18 +113,18 @@ void insertVec(std::vector<int>& vec, int left, int right)
 
 
 
-void MergeInsertVec(std::vector<int>& vec, int left, int right) 
+void MergeInsertVec(std::vector<int>& vec, int left, int right, int pack) 
 {
     
     if (left < right) {
         int n = right - left + 1;
 
-        if (n <= 2) {
+        if (n <= pack) {
             insertVec(vec, left, right);
         } else {
             int mid = left + (n - 1) / 2;
-            MergeInsertVec(vec, left, mid);
-            MergeInsertVec(vec, mid + 1, right);
+            MergeInsertVec(vec, left, mid, pack);
+            MergeInsertVec(vec, mid + 1, right, pack);
             mergeVec(vec, left, mid, right);
         }
     }
@@ -281,29 +281,29 @@ void mergeInsertList(std::list<int>& lis, std::list<int>::iterator left, std::li
 }
 
 
-void PmergeMe::SortAndCalculateTime() 
+void PmergeMe::SortAndCalculateTime(int n) 
 {
     struct timeval start;
     struct timeval end;
 
-    gettimeofday(&start, NULL);
+    /*gettimeofday(&start, NULL);
     mergeInsertList(lis, lis.begin(), lis.end());
     gettimeofday(&end, NULL);
     time_lis = (end.tv_sec - start.tv_sec) * 1e6;
-    time_lis = (time_lis + (end.tv_usec - start.tv_usec)) * 1e-6;
+    time_lis = (time_lis + (end.tv_usec - start.tv_usec)) * 1e-6;*/
 
     gettimeofday(&start, NULL);
-    MergeInsertVec(vec,0, vec.size() - 1 );
+    MergeInsertVec(vec,0, vec.size() - 1, n );
     gettimeofday(&end, NULL);
     time_vec = (end.tv_sec - start.tv_sec) * 1e6;
     time_vec = (time_vec + (end.tv_usec - start.tv_usec)) * 1e-6;
 
 
-    gettimeofday(&start, NULL);
+    /*gettimeofday(&start, NULL);
     MergeInsertDeq(deq,0, deq.size() - 1 );
     gettimeofday(&end, NULL);
     time_deq = (end.tv_sec - start.tv_sec) * 1e6;
-    time_deq = (time_deq + (end.tv_usec - start.tv_usec)) * 1e-6;
+    time_deq = (time_deq + (end.tv_usec - start.tv_usec)) * 1e-6;*/
     
 }
 

@@ -29,7 +29,7 @@ public:
     double  getTimeVec();
     double  getTimeDeque();
     double  getTimeList();
-    void    SortAndCalculateTime();
+    void    SortAndCalculateTime(int n);
    
 
 private:
