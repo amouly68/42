@@ -202,82 +202,87 @@ void MergeInsertDeq(std::deque<int>& deq, int left, int right)
     }
 }
 
-void mergeList(std::list<int>::iterator left, std::list<int>::iterator mid, std::list<int>::iterator right) 
+
+void insertionListSort(std::list<int>& lst) 
 {
-    std::list<int> leftList(left, std::next(mid));
-    std::list<int> rightList(std::next(mid), std::next(right));
-    
-    leftList.merge(rightList);
+    std::list<int>::iterator it = lst.begin();
+    ++it; 
 
-    // std::list<int>::iterator it1 = leftList.begin();
-    // std::list<int>::iterator it2 = rightList.begin();
-    
-    // while (it1 != leftList.end() && it2 != rightList.end()) {
-    //     if (*it1 <= *it2) 
-    //     {
-    //         *left = *it1;
-    //         ++it1;
-    //     } else 
-    //     {
-    //         *left = *it2;
-    //         ++it2;
-    //     }
-    //     ++left;
-    // }
-    
-    // while (it1 != leftList.end()) 
-    // {
-    //     *left = *it1;
-    //     ++it1;
-    //     ++left;
-    // }
-    
-    // while (it2 != rightList.end()) 
-    // {
-    //     *left = *it2;
-    //     ++it2;
-    //     ++left;
-    // }
-}
-
-void insertList( std::list<int> lis, std::list<int>::iterator left, std::list<int>::iterator right) 
-{
-     (void) lis;
-    // for (std::list<int>::iterator it = std::next(left); it != std::next(right); ++it) 
-    // {
-    //     int key = *it;
-    //     std::list<int>::iterator j = std::prev(it);
-        
-    //     while (j != left && *j > key) {
-    //         *(std::next(j)) = *j;
-    //         --j;
-    //     }
-        
-    //     *(std::next(j)) = key;
-    // }
-    std::list<int> temp(left, right);
-    temp.sort();
-    std::copy(temp.begin(), temp.end(),left);
-    //std::list<int>
-
-
-    
-}
-
-void mergeInsertList(std::list<int>& lis, std::list<int>::iterator left, std::list<int>::iterator right) 
-{
-    int n = std::distance(left, right);
-    
-    if (n <= 2)    
-        insertList(lis, left, right);
-    else 
+    while (it != lst.end()) 
     {
-        std::list<int>::iterator mid = left;
-        std::advance(mid, n / 2);
-        mergeInsertList(lis, left, mid);
-        mergeInsertList(lis, mid, right);
-        mergeList(left, mid, right);
+        int key = *it;
+        std::list<int>::iterator j = it;
+        --j;
+
+        while (j != lst.begin() && *j > key) 
+        {
+            std::list<int>::iterator next_j = j;
+            --next_j;
+            *std::next(j) = *j;
+            j = next_j;
+        }
+
+        *std::next(j) = key;
+        ++it;
     }
+}
+
+void mergeList(std::list<int>& lst, std::list<int>& left, std::list<int>& right) 
+{
+    std::list<int>::iterator leftit = left.begin();
+    std::list<int>::iterator rightit = right.begin();
+    std::list<int>::iterator listit = lst.begin();
+
+    while (leftit != left.end() && rightit != right.end()) 
+    {
+        if (*leftit < *rightit) 
+        {
+            *listit = *leftit;
+            ++leftit;
+        } else 
+        {
+            *listit = *rightit;
+            ++rightit;
+        }
+        ++listit;
+    }
+
+    while (leftit != left.end()) 
+    {
+        *listit = *leftit;
+        ++leftit;
+        ++listit;
+    }
+
+    while (rightit != right.end()) 
+    {
+        *listit = *rightit;
+        ++rightit;
+        ++listit;
+    }
+}
+
+void mergeInsertList(std::list<int>& lis, int paquet) {
+    int n = lis.size();
+
+    if (n < 2)
+        return;
+
+    if (n < paquet) {
+        insertionListSort(lis);
+        return;
+    }
+
+    std::list<int>::iterator mid = lis.begin();
+    std::advance(mid, n / 2);
+
+    std::list<int> left(lis.begin(), mid);
+    std::list<int> right(mid, lis.end());
+
+    mergeInsertList(left, paquet);
+    mergeInsertList(right, paquet);
+
+    mergeList(lis, left, right);
 }
 
 
@@ -286,11 +291,11 @@ void PmergeMe::SortAndCalculateTime(int n)
     struct timeval start;
     struct timeval end;
 
-    /*gettimeofday(&start, NULL);
-    mergeInsertList(lis, lis.begin(), lis.end());
+    gettimeofday(&start, NULL);
+    mergeInsertList(lis, n);
     gettimeofday(&end, NULL);
     time_lis = (end.tv_sec - start.tv_sec) * 1e6;
-    time_lis = (time_lis + (end.tv_usec - start.tv_usec)) * 1e-6;*/
+    time_lis = (time_lis + (end.tv_usec - start.tv_usec)) * 1e-6;
 
     gettimeofday(&start, NULL);
     MergeInsertVec(vec,0, vec.size() - 1, n );
