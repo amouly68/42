@@ -1,3 +1,4 @@
+
 version: '3'
 
 services:
@@ -20,8 +21,6 @@ services:
     image: wordpress:5.1.1-fpm-alpine
     container_name: wordpress
     restart: unless-stopped
-    ports :
-      - "80:80"
     env_file: .env
     environment:
       - WORDPRESS_DB_HOST=db:3306
@@ -44,25 +43,16 @@ services:
     volumes:
       - wordpress:/var/www/html
       - ./nginx-conf:/etc/nginx/conf.d
-      - certbot-etc:/etc/letsencrypt
     networks:
       - app-network
 
-  certbot:
-    depends_on:
-      - webserver
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - wordpress:/var/www/html
-    command: certonly --webroot --webroot-path=/var/www/html --email sammy@gmail.fr --agree-tos --no-eff-email --staging -d amouly.42.fr -d www.amouly.42.fr
 
 volumes:
-  certbot-etc:
   wordpress:
   dbdata:
 
 networks:
   app-network:
     driver: bridge
+
+    
