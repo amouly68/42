@@ -3,7 +3,7 @@ version: '3'
 
 services:
   mariadb:
-    image: mysql:8.0
+    build: requirements/mariadb
     container_name: mariadb
     restart: unless-stopped
     env_file: .env
@@ -35,7 +35,8 @@ services:
   nginx:
     depends_on:
       - wordpress
-    image: nginx:1.15.12-alpine
+    build: requirements/nginx/
+    #image: nginx:1.15.12-alpine
     container_name: nginx
     restart: unless-stopped
     ports:
