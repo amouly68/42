@@ -1,15 +1,24 @@
+
+# Utilisez l'image Debian Buster comme base
 FROM debian:buster
-RUN apt-get update && apt-get install -y nginx
-RUN apt-get install -y openssl
-# RUN rm -rf /var/www/html/*
-# RUN rm -rf /etc/nginx/sites-enabled/default
-#RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=amouly.42.fr/UID=amouly"
 
-COPY ./tools/index.html /var/www/
-COPY ./conf/nginx.conf /etc/nginx/sites-available/
+# Mettez à jour les packages et installez Nginx
+RUN apt-get update && apt-get install -y nginx openssl
 
-COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+# Générez un certificat SSL/TLS auto-signé
+RUN mkdir /etc/nginx/ssl
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/mon_site.key -out /etc/nginx/ssl/mon_site.crt -subj "/C=FR/ST=Grand Est/L=Mulhouse/O=42 School/CN=localhost"
 
+
+# Copiez votre fichier de configuration Nginx dans le conteneur
+COPY ./conf/nginx.conf /etc/nginx/conf.d
+# Copiez votre fichier HTML dans le répertoire de Nginx
+COPY ./tools/index.html /var/www/html
+
+# Exposez le port 80 pour Nginx
 EXPOSE 80
+EXPOSE 443
 
-CMD [ "nginx", "-g", "daemon off;" ]
+# Commande pour démarrer Nginx en mode daemon
+CMD ["nginx", "-g", "daemon off;"]
+
