@@ -16,8 +16,8 @@ COPY ./conf/nginx.conf /etc/nginx/conf.d
 COPY ./tools/index.html /var/www/html
 
 # Exposez le port 80 pour Nginx
-EXPOSE 80
-EXPOSE 443
+EXPOSE 6500
+EXPOSE 6556
 
 # Commande pour démarrer Nginx en mode daemon
 CMD ["nginx", "-g", "daemon off;"]
