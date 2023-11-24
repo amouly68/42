@@ -13,7 +13,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/m
 # Copiez votre fichier de configuration Nginx dans le conteneur
 COPY ./conf/nginx.conf /etc/nginx/conf.d
 # Copiez votre fichier HTML dans le répertoire de Nginx
-COPY ./tools/index.html /var/www/html
+# COPY ./tools/index.html /var/www/html
 
 # Exposez le port 80 pour Nginx
 EXPOSE 6500

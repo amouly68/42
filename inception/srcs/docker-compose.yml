@@ -3,12 +3,18 @@ version: '3'
 
 services:
   mariadb:
-    build: requirements/mariadb
+    image : mariadb:10.3.13
+    # build: requirements/mariadb
     container_name: mariadb
     restart: unless-stopped
     env_file: .env
+    ports:
+      - "3306:3306"
     environment:
       - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
     volumes: 
       - dbdata:/var/lib/mysql
     command: '--default-authentication-plugin=mysql_native_password'
@@ -21,12 +27,16 @@ services:
     image: wordpress:5.1.1-fpm-alpine
     container_name: wordpress
     restart: unless-stopped
+    ports:
+      - "9000:9000"
     env_file: .env
     environment:
       - WORDPRESS_DB_HOST=mariadb:3306
       - WORDPRESS_DB_USER=$MYSQL_USER
       - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
       - WORDPRESS_DB_NAME=wordpress
+    links:
+      - mariadb
     volumes:
       - wordpress:/var/www/html
     networks:
@@ -36,11 +46,11 @@ services:
     depends_on:
       - wordpress
     build: requirements/nginx/
-    #image: nginx:1.15.12-alpine
     container_name: nginx
     restart: unless-stopped
     ports:
-      - "7800:80"
+      - "6500:6500"
+      - "6556:6556"
     volumes:
       - wordpress:/var/www/html
       - ./requirements/nginx/conf:/etc/nginx/conf.d
