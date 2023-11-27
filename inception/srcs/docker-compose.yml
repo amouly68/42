@@ -62,6 +62,21 @@ volumes:
   wordpress:
   dbdata:
 
+# volumes:
+#   wordpress:
+#     driver: local
+#     driver_opts:
+#       type: none
+#       o: bind
+#       device: /Users/antoine/Documents/Data/wordpress
+#   dbdata:
+#     driver: local
+#     driver_opts:
+#       type: none
+#       o: bind
+#       device: /Users/antoine/Documents/Data/mariadb
+
+
 networks:
   app-network:
     driver: bridge
