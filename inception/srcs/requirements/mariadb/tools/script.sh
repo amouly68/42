@@ -1,32 +1,23 @@
 #!/bin/bash
-# Démarrer MariaDB
-service mariadb start;
 
-# Créer la base de données
-# mysql -e "CREATE DATABASE IF NOT EXISTS \`${SQL_DATABASE}\`;"
-mysql -e "CREATE DATABASE IF NOT EXISTS \`wordpress\`;"
+service mariadb start 
 
-# Créer l'utilisateur et lui donner les droits
-# mysql -e "CREATE USER IF NOT EXISTS \`${SQL_USER}\`@'127.0.0.1' IDENTIFIED BY '${SQL_PASSWORD}';"
-# mysql -e "GRANT ALL PRIVILEGES ON \`${SQL_DATABASE}\`.* TO \`${SQL_USER}\`@'%' IDENTIFIED BY '${SQL_PASSWORD}';"
-mysql -e "CREATE USER IF NOT EXISTS \`user\`@'127.0.0.1' IDENTIFIED BY 'pass';"
-mysql -e "GRANT ALL PRIVILEGES ON \`wordpress\`.* TO \`user\`@'%' IDENTIFIED BY 'pass';"
+# Variables pour la base de données et l'utilisateur
+db_name="wordpress"
+db_user="toto"
+db_pwd="totototo"
 
-# mysql -e "UPDATE mysql.user SET host='%' WHERE user='root' AND host='localhost';"
-# mysql -e "FLUSH PRIVILEGES;"
-# mysql -e "ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'secret';"
 
-# Modifier les droits de l'utilisateur root
-mysql -e "ALTER USER 'root'@'127.0.0.1' IDENTIFIED WITH mysql_native_password BY '${SQL_ROOT_PASSWORD}';"
-# mysql -e "ALTER USER 'root'@'127.0.0.1' IDENTIFIED BY 'root';"
 
-# Rafraîchir les privilèges
-mysql -e "FLUSH PRIVILEGES;"
+echo "CREATE DATABASE IF NOT EXISTS $db_name ;" > db1.sql
+echo "CREATE USER IF NOT EXISTS '$db_user'@'%' IDENTIFIED BY '$db_pwd' ;" >> db1.sql
+echo "GRANT ALL PRIVILEGES ON $db_name.* TO '$db_user'@'%' ;" >> db1.sql
+echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '12345' ;" >> db1.sql
+echo "FLUSH PRIVILEGES;" >> db1.sql
 
-# Arrêter MariaDB proprement
-mariadb-admin -u root -p"${SQL_ROOT_PASSWORD}" shutdown
-# mysqladmin -u root -p"root" shutdown
+mysql < db1.sql
 
-# Lancer MariaDB en mode "safe"
-exec mysqld_safe
+kill $(cat /var/run/mysqld/mysqld.pid)
+
+mysqld
 
