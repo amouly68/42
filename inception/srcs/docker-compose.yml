@@ -53,29 +53,30 @@ services:
       - "6556:6556"
     volumes:
       - wordpress:/var/www/html
-      - ./requirements/nginx/conf:/etc/nginx/conf.d
+      # - ./requirements/nginx/conf:/etc/nginx/conf.d
     networks:
       - app-network
 
 
-volumes:
-  wordpress:
-  dbdata:
-
 # volumes:
 #   wordpress:
-#     driver: local
-#     driver_opts:
-#       type: none
-#       o: bind
-#       device: /Users/antoine/Documents/Data/wordpress
 #   dbdata:
-#     driver: local
-#     driver_opts:
-#       type: none
-#       o: bind
-#       device: /Users/antoine/Documents/Data/mariadb
 
+volumes:
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      # device: /Users/antoine/Documents/Data/wordpress
+      device: /local-home/amouly/Documents/Data/wordpress
+  dbdata:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      # device: /Users/antoine/Documents/Data/mariadb
+      device: /local-home/amouly/Documents/Data/mariadb    
 
 networks:
   app-network:
