@@ -39,4 +39,3 @@ mysqladmin --user=root --password="$MYSQL_ROOT_PASSWORD" shutdown
 
 # Lance le serveur MariaDB comme processus principal (PID 1)
 exec mysqld
-doc
