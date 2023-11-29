@@ -9,6 +9,8 @@ COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY tools/script.sh /usr/local/bin/init_db.sh
 RUN chmod +x /usr/local/bin/init_db.sh
 
+# COPY tools/script.sh /docker-entrypoint-initdb.d/
+
 RUN mkdir -p /var/run/mysqld \
 && chown -R mysql:mysql /var/run/mysqld \
 && chmod 777 /var/run/mysqld
@@ -18,4 +20,4 @@ EXPOSE 3306
 
 # Commande pour démarrer MariaDB et exécuter le script d'initialisation
 ENTRYPOINT ["init_db.sh"]
-
+# CMD ["/bin/bash", "-c", "/usr/local/bin/init_db.sh && exec mysqld"]
