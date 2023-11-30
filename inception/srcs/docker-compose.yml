@@ -21,7 +21,7 @@ services:
     networks:
       - app-network
 
-  wordpress:
+  wordpress: 
     depends_on: 
       - mariadb
     # image: wordpress:5.1.1-fpm-alpine
