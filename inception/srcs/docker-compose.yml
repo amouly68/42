@@ -24,9 +24,10 @@ services:
   wordpress:
     depends_on: 
       - mariadb
-    image: wordpress:5.1.1-fpm-alpine
+    # image: wordpress:5.1.1-fpm-alpine
+    build: requirements/wordpress
     container_name: wordpress
-    restart: unless-stopped
+    restart: no
     ports:
       - "9000:9000"
     env_file: .env
@@ -64,19 +65,19 @@ services:
 
 volumes:
   wordpress:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      # device: /Users/antoine/Documents/Data/wordpress
-      device: /local-home/amouly/Documents/Data/wordpress
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: /Users/antoine/Documents/Data/wordpress
+    #   # device: /local-home/amouly/Documents/Data/wordpress
   dbdata:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      # device: /Users/antoine/Documents/Data/mariadb
-      device: /local-home/amouly/Documents/Data/mariadb    
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: /Users/antoine/Documents/Data/mariadb
+    #   # device: /local-home/amouly/Documents/Data/mariadb    
 
 networks:
   app-network:
