@@ -41,7 +41,7 @@ RUN chmod +x /usr/local/bin/init_wordpress.sh
 # RUN useradd -m wordpress_user
 
 # Copier le fichier de configuration php-fpm (si nécessaire)
-# COPY www.conf /etc/php/7.4/fpm/pool.d/
+COPY conf/wp-config.php /var/www/html/wp-config.php
 
 # Exposer le port sur lequel php-fpm écoute
 EXPOSE 9000

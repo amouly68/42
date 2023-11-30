@@ -9,8 +9,7 @@ done
 
 # Utiliser wp-cli pour configurer WordPress et créer les utilisateurs
 cd /var/www/html
-wp config create --dbname="$MYSQL_DATABASE" --dbuser="$MYSQL_USER" --dbpass="$MYSQL_PASSWORD" --dbhost="$WP_DB_HOST" --allow-root
-wp core install --url="$DOMAIN_NAME" --title="$WP_TITLE" --admin_user="$WP_ADMIN_USER" --admin_password="$WP_ADMIN_PWD" --admin_email="$WP_ADMIN_EMAIL" --skip-email --allow-root
+wp core install --url="$DOMAIN_NAME" --title="$WP_TITLE" --admin_user="$WP_ADMIN_USER" --admin_password="$WP_ADMIN_PWD" --admin_email="$WP_ADMIN_EMAIL" --allow-root
 wp user create "$WP_USER1" "$WP_USER1_EMAIL" --role=author --user_pass="$WP_USER1_PWD" --skip-email --allow-root
 
 # Exécuter php-fpm en tant que processus principal
