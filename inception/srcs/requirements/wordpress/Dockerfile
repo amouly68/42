@@ -1,24 +1,10 @@
 # Utilise l'image de base Debian Bullseye
 FROM debian:bullseye
 
-# Installer PHP, php-fpm, extensions PHP nécessaires, et autres dépendances
-RUN apt-get update && apt-get install -y \
-    php \
-    php-fpm \
-    php-mysql \
-    php-curl \
-    php-gd \
-    php-mbstring \
-    php-xml \
-    php-xmlrpc \
-    php-soap \
-    php-intl \
-    php-zip \
-    netcat-openbsd \
-    curl \
-    sudo \
-    less \
-    && rm -rf /var/lib/apt/lists/*
+# Installer PHP, php-fpm, et les extensions PHP nécessaires
+RUN apt-get update && apt-get install -y php7.4-common php7.4-fpm php7.4-mysql php7.4-curl php7.4-gd php7.4-mbstring php7.4-xml php7.4-xmlrpc php7.4-soap php7.4-intl php7.4-zip netcat-openbsd curl sudo less && rm -rf /var/lib/apt/lists/*
+
+
 
 # Créer le répertoire pour WordPress avec les bonnes permissions
 RUN mkdir -p /var/www/html && chown -R www-data:www-data /var/www/html
