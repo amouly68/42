@@ -20,17 +20,18 @@ services:
     # command: '--default-authentication-plugin=mysql_native_password'
     networks:
       - app-network
-
-  wordpress: 
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000"]
-      interval: 30s
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 1m00s
       timeout: 10s
       retries: 3
+
+  wordpress: 
     depends_on: 
-      - mariadb
-    # image: wordpress:5.1.1-fpm-alpine
-    build: requirements/wordpress
+      mariadb:
+        condition: service_healthy
+    image: wordpress:5.1.1-fpm-alpine
+    # build: requirements/wordpress
     container_name: wordpress
     restart: unless-stopped
     ports:
@@ -50,9 +51,7 @@ services:
 
   nginx:
     depends_on:
-      wordpress : 
-        condition : service_healthy
-
+      - wordpress
     build: requirements/nginx/
     container_name: nginx
     restart: unless-stopped
