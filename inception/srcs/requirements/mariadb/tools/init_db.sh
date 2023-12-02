@@ -23,6 +23,7 @@ function initialize_db() {
     mysql --user=root --password="" -e "GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';"
     mysql --user=root --password="" -e "FLUSH PRIVILEGES;"
     mysql --user=root --password="" -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
+   
 }
 
 # Démarre le serveur MariaDB en arrière-plan
@@ -39,3 +40,4 @@ mysqladmin --user=root --password="$MYSQL_ROOT_PASSWORD" shutdown
 
 # Lance le serveur MariaDB comme processus principal (PID 1)
 exec mysqld
+
