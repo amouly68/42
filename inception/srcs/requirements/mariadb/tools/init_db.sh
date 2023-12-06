@@ -12,10 +12,16 @@ function wait_for_mariadb() {
 # Initialisation de la base de données
 function initialize_db() {
     # Définit des valeurs par défaut si les variables d'environnement ne sont pas définies
+    # MYSQL_DATABASE=${MYSQL_DATABASE:-default_db}
+    # MYSQL_USER=${MYSQL_USER:-user}
+    # MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
+    # MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-rootpassword}
+
     MYSQL_DATABASE=${MYSQL_DATABASE:-default_db}
     MYSQL_USER=${MYSQL_USER:-user}
     MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
     MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-rootpassword}
+
 
     # Commandes SQL pour initialiser la base de données et les utilisateurs
     mysql --user=root --password="" -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;"

@@ -9,8 +9,8 @@ services:
     restart: unless-stopped
     env_file: 
       - .env
-    ports:
-      - "3306:3306"
+    # ports:
+    #   - "3306:3306"
     volumes: 
       - dbdata:/var/lib/mysql
     # command: '--default-authentication-plugin=mysql_native_password'
@@ -24,8 +24,6 @@ services:
     build: requirements/wordpress
     container_name: wordpress
     restart: unless-stopped
-    ports:
-      - "9000:9000"
     env_file: 
       - .env
     volumes:
@@ -42,8 +40,8 @@ services:
     container_name: nginx
     restart: unless-stopped
     ports:
-      - "6500:6500"
-      - "6556:6556"
+      - "443:443"
+      - "80:80"
     volumes:
       - wordpress:/var/www/html
       # - ./requirements/nginx/conf:/etc/nginx/conf.d
