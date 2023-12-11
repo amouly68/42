@@ -1,3 +1,4 @@
+
 # Utilise l'image de base Debian Bullseye
 FROM debian:bullseye
 
@@ -36,15 +37,10 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 COPY tools/init_wp.sh /usr/local/bin/init_wordpress.sh
 RUN chmod +x /usr/local/bin/init_wordpress.sh
 
-# Créer un utilisateur non-root
-# RUN useradd -m wordpress_user
-
 # Copier le fichier de configuration php-fpm (si nécessaire)
 COPY conf/wp-config.php /var/www/html/wp-config.php
 
-# Exposer le port sur lequel php-fpm écoute
-# EXPOSE 9000
+Exposer le port sur lequel php-fpm écoute
+EXPOSE 9000
 
-# Passer à l'utilisateur non-root et définir le script d'initialisation comme point d'entrée
-# USER wordpress_user
 ENTRYPOINT ["init_wordpress.sh"]
