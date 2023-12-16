@@ -3,7 +3,7 @@
 FROM debian:bullseye
 
 # Installer PHP, php-fpm, et les extensions PHP nécessaires
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y && apt-get install -y apt-utils \
     php \
     php-fpm \
     php-mysql \
@@ -40,7 +40,7 @@ RUN chmod +x /usr/local/bin/init_wordpress.sh
 # Copier le fichier de configuration php-fpm (si nécessaire)
 COPY conf/wp-config.php /var/www/html/wp-config.php
 
-Exposer le port sur lequel php-fpm écoute
+# Exposer le port sur lequel php-fpm écoute
 EXPOSE 9000
 
 ENTRYPOINT ["init_wordpress.sh"]

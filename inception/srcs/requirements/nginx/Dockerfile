@@ -3,7 +3,7 @@
 FROM debian:bullseye
 
 # Mettez à jour les packages et installez Nginx
-RUN apt-get update && apt-get install -y nginx openssl
+RUN apt-get update && apt-get install -y apt-utils && apt-get install -y nginx openssl
 
 # Générez un certificat SSL/TLS auto-signé
 RUN mkdir /etc/nginx/ssl
