@@ -1,8 +1,9 @@
-version: '3.8'
+version: '3.5'
 
 services:
   mariadb:
     build: requirements/mariadb
+    image: mariadb
     container_name: mariadb
     restart: unless-stopped
     env_file: 
@@ -12,10 +13,12 @@ services:
     networks:
       - app-network
 
+
   wordpress: 
     depends_on: 
       - mariadb
     build: requirements/wordpress
+    image: wordpress
     container_name: wordpress
     restart: unless-stopped
     env_file: 
@@ -30,10 +33,12 @@ services:
     networks:
       - app-network
 
+
   nginx:
     depends_on:
       - wordpress
     build: requirements/nginx/
+    image: nginx
     env_file :
       - .env
     container_name: nginx
@@ -46,6 +51,21 @@ services:
     networks:
       - app-network
 
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    restart: always
+    ports:
+      - 7777:8080
+    networks:
+      - app-network
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    ports:
+      - 9443:9443
+    networks:
+      - app-network
 
 volumes:
   wordpress:
