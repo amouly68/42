@@ -1,8 +1,9 @@
-version: '3.8'
+version: '3.5'
 
 services:
   mariadb:
     build: requirements/mariadb
+    image: mariadb
     container_name: mariadb
     restart: unless-stopped
     env_file: 
@@ -16,15 +17,11 @@ services:
     depends_on: 
       - mariadb
     build: requirements/wordpress
+    image: wordpress
     container_name: wordpress
     restart: unless-stopped
     env_file: 
       - .env
-    environment:
-      - MYSQL_DATABASE=$MYSQL_DATABASE
-      - MYSQL_USER=$MYSQL_USER
-      - MYSQL_PASSWORD=$MYSQL_PASSWORD
-      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
     volumes:
       - wordpress:/var/www/html
     networks:
@@ -34,13 +31,13 @@ services:
     depends_on:
       - wordpress
     build: requirements/nginx/
-    env_file :
+    image: nginx
+    env_file:
       - .env
     container_name: nginx
     restart: unless-stopped
     ports:
       - "443:443"
-      - "80:80"
     volumes:
       - wordpress:/var/www/html
     networks:
@@ -53,17 +50,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      # device: /Users/antoine/Documents/Data/wordpress
-      device: /home/amouly/data/wp
-      # device: /local-home/amouly/goinfre/data/wp5
+      device: /home/amouly/Documents/data/wp
   dbdata:
     driver: local
     driver_opts:
       type: none
       o: bind
-      # device: /Users/antoine/Documents/Data/mariadb
-      device: /home/amouly/data/db
-      # device: /local-home/amouly/goinfre/data/db5    
+      device: /home/amouly/Documents/data/db  
 
 networks:
   app-network:

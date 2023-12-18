@@ -11,11 +11,6 @@ function wait_for_mariadb() {
 
 # Initialisation de la base de données
 function initialize_db() {
-    # Définit des valeurs par défaut si les variables d'environnement ne sont pas définies
-    # MYSQL_DATABASE=${MYSQL_DATABASE:-default_db}
-    # MYSQL_USER=${MYSQL_USER:-user}
-    # MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
-    # MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-rootpassword}
 
     MYSQL_DATABASE=${MYSQL_DATABASE:-default_db}
     MYSQL_USER=${MYSQL_USER:-user}
@@ -24,12 +19,13 @@ function initialize_db() {
 
 
     # Commandes SQL pour initialiser la base de données et les utilisateurs
+    if ! mysql --user=root --password="$MYSQL_ROOT_PASSWORD" -e "USE $MYSQL_DATABASE;" 2>/dev/null; then
     mysql --user=root --password="" -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;"
     mysql --user=root --password="" -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
     mysql --user=root --password="" -e "GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';"
     mysql --user=root --password="" -e "FLUSH PRIVILEGES;"
     mysql --user=root --password="" -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
-   
+    fi
 }
 
 # Démarre le serveur MariaDB en arrière-plan
